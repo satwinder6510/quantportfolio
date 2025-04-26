@@ -3,7 +3,7 @@ import { Card } from '@/components/ui/card';
 import { useLocation } from '@/contexts/LocationContext';
 
 const PerformanceSection: React.FC = () => {
-  const [returnType, setReturnType] = useState<'compound' | 'non-compound'>('compound');
+  const [returnType, setReturnType] = useState<'compound' | 'non-compound'>('non-compound');
   const { region } = useLocation();
   const isIndian = region === 'india';
   
