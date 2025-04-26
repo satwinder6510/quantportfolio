@@ -132,4 +132,31 @@
   .dark .hero-gradient {
     @apply from-dark-accent to-dark-green;
   }
+  
+  /* Hero Slider Styles */
+  .hero-slider {
+    @apply relative;
+    min-height: 14rem;
+  }
+  
+  @media (min-width: 768px) {
+    .hero-slider {
+      min-height: 18rem;
+    }
+  }
+  
+  .hero-slide {
+    @apply w-full transition-opacity duration-500;
+  }
+  
+  @keyframes heroFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
