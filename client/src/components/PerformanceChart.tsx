@@ -112,21 +112,45 @@ const generatePerformanceData = () => {
         currentValue = startValue * (1 + cumulativeReturn);
       }
       
-      // Calculate drawdown
+      // Update high water mark if we've reached a new peak
       if (currentValue > highWatermark) {
         highWatermark = currentValue;
-        drawdown = 0;
-      } else {
-        drawdown = ((currentValue / highWatermark) - 1) * 100;
       }
       
-      // Ensure max drawdown reaches our target at least once
-      if (i === Math.floor(totalMonths * 0.4) && drawdown > maxDrawdown) { // Around 40% through the series
-        // Force drawdown to reach max
-        const drawdownFactor = (1 + (maxDrawdown / 100));
-        currentValue = highWatermark * drawdownFactor;
-        drawdown = maxDrawdown;
+      // Force specific drawdown pattern to match reported metrics
+      let drawdownValue = 0;
+      
+      if (i === Math.floor(totalMonths * 0.25)) {
+        // First significant drawdown at 25% of timeline
+        drawdownValue = Math.abs(maxDrawdown * 0.4);
+        // Temporarily reduce current value to create drawdown
+        const tempValue = highWatermark * (1 - drawdownValue/100);
+        currentValue = tempValue;
+      } 
+      else if (i === Math.floor(totalMonths * 0.4)) {
+        // Max drawdown at 40% of timeline - full drawdown
+        drawdownValue = Math.abs(maxDrawdown);
+        // Temporarily reduce current value to create drawdown
+        const tempValue = highWatermark * (1 - drawdownValue/100);
+        currentValue = tempValue;
       }
+      else if (i === Math.floor(totalMonths * 0.6)) {
+        // Another significant drawdown at 60% of timeline
+        drawdownValue = Math.abs(maxDrawdown * 0.5);
+        // Temporarily reduce current value to create drawdown
+        const tempValue = highWatermark * (1 - drawdownValue/100);
+        currentValue = tempValue;
+      }
+      else if (i % 8 === 0) {
+        // Add smaller periodic drawdowns for visual interest
+        drawdownValue = Math.abs(maxDrawdown * 0.2 * Math.random());
+        // Only create minor drawdowns if they don't conflict with major ones
+        const tempValue = highWatermark * (1 - drawdownValue/100);
+        currentValue = tempValue;
+      }
+      
+      // Calculate the current drawdown from high water mark
+      drawdown = -Math.abs(((currentValue / highWatermark) - 1) * 100);
       
       data.push({
         date: date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' }),
@@ -307,7 +331,7 @@ const PerformanceChart: React.FC<PerformanceChartProps> = ({
               </p>
             )}
             <p className="text-red-400 mt-1">
-              <span className="font-medium">Strategy Drawdown:</span> {payload[2].value.toFixed(1)}%
+              <span className="font-medium">Strategy Drawdown:</span> {Math.abs(payload[2].value).toFixed(1)}%
             </p>
           </div>
         </div>
@@ -378,10 +402,11 @@ const PerformanceChart: React.FC<PerformanceChartProps> = ({
           name="Strategy Drawdown" 
           type="monotone" 
           dataKey="strategyDrawdown" 
-          stroke="#f87171" 
+          stroke="#ef4444" 
           fill="none"
-          strokeWidth={1.5}
+          strokeWidth={2.5}
           strokeDasharray="3 3"
+          activeDot={{ r: 6, stroke: "#ef4444", strokeWidth: 2, fill: "#fee2e2" }}
         />
       </AreaChart>
     </ResponsiveContainer>
