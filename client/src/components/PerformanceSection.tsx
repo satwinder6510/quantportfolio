@@ -35,7 +35,7 @@ const PerformanceSection: React.FC = () => {
             Verified Performance
           </h2>
           <p className="text-text-medium dark:text-dark-text-medium max-w-3xl mx-auto text-lg">
-            Our algorithm has been backtested across multiple market cycles with consistent results. The following data represents actual backtest results from 2021-2025.
+            Our algorithm has been backtested across multiple market cycles with consistent results. The following data represents actual backtest results from January 2021 to April 2025.
           </p>
         </div>
 
@@ -103,9 +103,18 @@ const PerformanceSection: React.FC = () => {
             </div>
           </div>
           
-          <p className="text-xs text-text-light dark:text-dark-text-light italic mt-4">
-            Past performance is not indicative of future results. Chart shows backtested performance from 2021-2025.
-          </p>
+          <div className="mt-8 p-4 bg-amber-50 dark:bg-amber-900/20 rounded-lg border border-amber-100 dark:border-amber-800/30">
+            <h4 className="font-semibold mb-2 text-amber-700 dark:text-amber-400">Understanding the Results</h4>
+            <p className="text-sm text-text-medium dark:text-dark-text-medium">
+              The 117.13% annualized return represents exceptional performance during a specific period (Jan 2021 - Apr 2025) that included both bull and bear markets in crypto. These results reflect the strategy's performance during one of the most volatile periods in crypto history, which featured Bitcoin's rise to all-time highs and subsequent corrections.
+            </p>
+            <p className="text-sm text-text-medium dark:text-dark-text-medium mt-2">
+              The strategy's true advantage lies in its risk-adjusted returns (Sharpe ratio) and lower drawdowns while still capturing most of the upside from crypto markets.
+            </p>
+            <p className="text-xs text-text-light dark:text-dark-text-light italic mt-2">
+              Past performance is not indicative of future results. Chart shows backtested performance from January 2021 to April 2025.
+            </p>
+          </div>
         </div>
 
         {/* Key Performance Metrics */}
