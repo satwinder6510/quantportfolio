@@ -1,0 +1,119 @@
+import React from 'react';
+import { useTheme } from '@/hooks/use-theme';
+import { useLocation } from '@/contexts/LocationContext';
+import { Sun, Moon, MapPin } from 'lucide-react';
+import { Link } from 'wouter';
+
+const Footer: React.FC = () => {
+  const { theme, toggleTheme } = useTheme();
+  const { region, locationEnabled } = useLocation();
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <footer className="bg-gray-50 dark:bg-dark-accent pt-16 pb-8">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          <div>
+            <h3 className="text-xl font-bold mb-4 text-dark-green dark:text-light-green">CryptoTrend Alpha</h3>
+            <p className="text-text-medium dark:text-dark-text-medium mb-4">
+              AI-powered crypto trading made simple for everyone, from beginners to professional traders.
+            </p>
+            <div className="flex space-x-4">
+              <a href="#" className="text-text-medium dark:text-dark-text-medium hover:text-accent-orange dark:hover:text-accent-orange transition-colors duration-200">
+                <i className="fab fa-twitter text-xl"></i>
+              </a>
+              <a href="#" className="text-text-medium dark:text-dark-text-medium hover:text-accent-orange dark:hover:text-accent-orange transition-colors duration-200">
+                <i className="fab fa-linkedin text-xl"></i>
+              </a>
+              <a href="#" className="text-text-medium dark:text-dark-text-medium hover:text-accent-orange dark:hover:text-accent-orange transition-colors duration-200">
+                <i className="fab fa-telegram text-xl"></i>
+              </a>
+              <a href="#" className="text-text-medium dark:text-dark-text-medium hover:text-accent-orange dark:hover:text-accent-orange transition-colors duration-200">
+                <i className="fab fa-discord text-xl"></i>
+              </a>
+            </div>
+          </div>
+          
+          <div>
+            <h4 className="text-lg font-bold mb-4 text-dark-green dark:text-light-green">Company</h4>
+            <ul className="space-y-2">
+              <li><a href="#" className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">About Us</a></li>
+              <li><a href="#" className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">Careers</a></li>
+              <li><a href="#" className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">Press</a></li>
+              <li><a href="#" className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">Blog</a></li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 className="text-lg font-bold mb-4 text-dark-green dark:text-light-green">Resources</h4>
+            <ul className="space-y-2">
+              <li><a href="#" className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">Documentation</a></li>
+              <li><a href="#" className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">Help Center</a></li>
+              <li><a href="#" className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">API</a></li>
+              <li><a href="#" className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">Community</a></li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 className="text-lg font-bold mb-4 text-dark-green dark:text-light-green">Legal</h4>
+            <ul className="space-y-2">
+              <li><a href="#" className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">Terms of Service</a></li>
+              <li><a href="#" className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">Privacy Policy</a></li>
+              <li><a href="#" className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">Cookie Policy</a></li>
+              <li><a href="#" className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">Risk Disclosure</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div className="pt-8 border-t border-gray-200 dark:border-gray-700">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <p className="text-text-medium dark:text-dark-text-medium text-sm mb-4 md:mb-0">
+              &copy; {new Date().getFullYear()} CryptoTrend Alpha. All rights reserved.
+            </p>
+            <div className="flex space-x-4">
+              <button className="text-sm text-text-medium dark:text-dark-text-medium flex items-center">
+                <MapPin className="h-4 w-4 mr-2" />
+                <span>
+                  Location: {locationEnabled ? (
+                    <span className="text-green-500">
+                      {region === 'india' ? 'India' : 
+                       region === 'us' ? 'United States' : 
+                       region === 'europe' ? 'Europe' : 'Detected'}
+                    </span>
+                  ) : (
+                    <span className="text-yellow-500">Disabled</span>
+                  )}
+                </span>
+              </button>
+              <div className="border-r border-gray-300 dark:border-gray-700 h-4 my-auto"></div>
+              <button 
+                onClick={toggleTheme}
+                className="text-sm text-text-medium dark:text-dark-text-medium flex items-center"
+              >
+                {theme === 'light' ? (
+                  <>
+                    <Sun className="h-4 w-4 mr-2 text-yellow-500" />
+                    <span>Light Mode</span>
+                  </>
+                ) : (
+                  <>
+                    <Moon className="h-4 w-4 mr-2 text-indigo-300" />
+                    <span>Dark Mode</span>
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
