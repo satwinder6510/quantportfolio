@@ -6,6 +6,7 @@ import FeaturesSection from '@/components/FeaturesSection';
 import HowItWorksSection from '@/components/HowItWorksSection';
 import PerformanceSection from '@/components/PerformanceSection';
 import PricingSection from '@/components/PricingSection';
+import FAQSection from '@/components/FAQSection';
 import CTASection from '@/components/CTASection';
 import Footer from '@/components/Footer';
 
@@ -20,6 +21,7 @@ const Home: React.FC = () => {
         <HowItWorksSection />
         <PerformanceSection />
         <PricingSection />
+        <FAQSection />
         <CTASection />
       </main>
       <Footer />

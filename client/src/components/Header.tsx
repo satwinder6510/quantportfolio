@@ -70,6 +70,14 @@ const Header: React.FC = () => {
                   {t('nav.pricing')}
                 </button>
               </li>
+              <li>
+                <button 
+                  onClick={() => scrollToSection('faq')} 
+                  className="font-medium text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200 link-underline link-underline-light dark:link-underline-dark"
+                >
+                  FAQ
+                </button>
+              </li>
             </ul>
             
             {/* Action Items */}
@@ -132,6 +140,14 @@ const Header: React.FC = () => {
                   className="w-full text-left py-2 px-4 text-text-medium dark:text-dark-text-medium hover:bg-gray-100 dark:hover:bg-dark-accent rounded-md transition-colors duration-150"
                 >
                   {t('nav.pricing')}
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => scrollToSection('faq')} 
+                  className="w-full text-left py-2 px-4 text-text-medium dark:text-dark-text-medium hover:bg-gray-100 dark:hover:bg-dark-accent rounded-md transition-colors duration-150"
+                >
+                  FAQ
                 </button>
               </li>
             </ul>
