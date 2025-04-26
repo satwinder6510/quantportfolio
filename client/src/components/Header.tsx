@@ -73,7 +73,7 @@ const Header: React.FC = () => {
             </ul>
             
             {/* Action Items */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center">
               {/* Theme Toggle Button */}
               <Button
                 onClick={toggleTheme}
@@ -82,46 +82,6 @@ const Header: React.FC = () => {
                 className="rounded-full bg-gray-200 dark:bg-dark-accent hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors duration-200"
               >
                 {theme === 'light' ? <Sun className="h-5 w-5 text-yellow-500" /> : <Moon className="h-5 w-5 text-indigo-300" />}
-              </Button>
-              
-              {/* Language Selector */}
-              <div className="relative group">
-                <Button
-                  variant="outline"
-                  className="flex items-center space-x-1 py-2 px-3 rounded border border-text-medium dark:border-dark-text-medium text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green hover:border-dark-green dark:hover:border-light-green transition-colors duration-200"
-                >
-                  <Globe className="h-4 w-4 mr-2" />
-                  <span className="text-sm">{currentLanguageLabel}</span>
-                  <i className="fas fa-chevron-down text-xs ml-2"></i>
-                </Button>
-                
-                <div className="absolute right-0 mt-2 w-40 bg-white dark:bg-dark-accent rounded-md shadow-lg overflow-hidden z-10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-right">
-                  <button
-                    onClick={() => changeLanguage('en')}
-                    className={`block w-full text-left px-4 py-2 text-sm ${language === 'en' ? 'font-medium text-dark-green dark:text-light-green' : 'text-text-medium dark:text-dark-text-medium'} hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-150`}
-                  >
-                    English
-                  </button>
-                  <button
-                    onClick={() => changeLanguage('hi')}
-                    className={`block w-full text-left px-4 py-2 text-sm ${language === 'hi' ? 'font-medium text-dark-green dark:text-light-green' : 'text-text-medium dark:text-dark-text-medium'} hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-150`}
-                  >
-                    हिन्दी (Hindi)
-                  </button>
-                  <button
-                    onClick={() => changeLanguage('pa')}
-                    className={`block w-full text-left px-4 py-2 text-sm ${language === 'pa' ? 'font-medium text-dark-green dark:text-light-green' : 'text-text-medium dark:text-dark-text-medium'} hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-150`}
-                  >
-                    ਪੰਜਾਬੀ (Punjabi)
-                  </button>
-                </div>
-              </div>
-              
-              <Button
-                onClick={() => scrollToSection('get-started')}
-                className="py-2 px-5 bg-accent-orange hover:bg-orange-600 text-white rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 text-sm font-medium"
-              >
-                {t('nav.getStarted')}
               </Button>
             </div>
           </div>
@@ -176,51 +136,15 @@ const Header: React.FC = () => {
               </li>
             </ul>
             
-            <div className="flex mb-6">
-              <Button 
-                onClick={() => scrollToSection('get-started')} 
-                className="w-full py-2 px-4 bg-accent-orange hover:bg-orange-600 text-white rounded-lg shadow-md text-center font-medium transition-colors duration-150"
+            <div className="flex justify-center mt-4 border-t border-gray-200 dark:border-gray-700 pt-4 pb-2">
+              <Button
+                onClick={toggleTheme}
+                variant="outline"
+                size="icon"
+                className="rounded-full bg-gray-200 dark:bg-dark-accent hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors duration-200"
               >
-                {t('nav.getStarted')}
+                {theme === 'light' ? <Sun className="h-5 w-5 text-yellow-500" /> : <Moon className="h-5 w-5 text-indigo-300" />}
               </Button>
-            </div>
-            
-            <div className="flex items-center justify-between border-t border-gray-200 dark:border-gray-700 pt-4 pb-2">
-              <div>
-                <Button
-                  onClick={toggleTheme}
-                  variant="outline"
-                  size="icon"
-                  className="rounded-full bg-gray-200 dark:bg-dark-accent hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors duration-200"
-                >
-                  {theme === 'light' ? <Sun className="h-5 w-5 text-yellow-500" /> : <Moon className="h-5 w-5 text-indigo-300" />}
-                </Button>
-              </div>
-              
-              {/* Mobile Language Switcher */}
-              <div className="flex flex-col space-y-2">
-                <p className="text-sm font-medium text-text-medium dark:text-dark-text-medium">Language:</p>
-                <div className="flex space-x-2">
-                  <button
-                    onClick={() => changeLanguage('en')}
-                    className={`px-3 py-1 rounded ${language === 'en' ? 'bg-dark-green text-white dark:bg-light-green dark:text-dark-bg' : 'bg-gray-200 dark:bg-gray-700 text-text-medium dark:text-dark-text-medium'}`}
-                  >
-                    EN
-                  </button>
-                  <button
-                    onClick={() => changeLanguage('hi')}
-                    className={`px-3 py-1 rounded ${language === 'hi' ? 'bg-dark-green text-white dark:bg-light-green dark:text-dark-bg' : 'bg-gray-200 dark:bg-gray-700 text-text-medium dark:text-dark-text-medium'}`}
-                  >
-                    HI
-                  </button>
-                  <button
-                    onClick={() => changeLanguage('pa')}
-                    className={`px-3 py-1 rounded ${language === 'pa' ? 'bg-dark-green text-white dark:bg-light-green dark:text-dark-bg' : 'bg-gray-200 dark:bg-gray-700 text-text-medium dark:text-dark-text-medium'}`}
-                  >
-                    PA
-                  </button>
-                </div>
-              </div>
             </div>
           </div>
         </div>
