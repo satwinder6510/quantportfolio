@@ -18,32 +18,34 @@ const generatePerformanceData = () => {
   // Current Date
   const currentDate = new Date();
   
-  // Target values from our metrics
+  // Target values from our metrics - these match the values in PerformanceSection.tsx
+  // Convert from percentage strings to numbers for calculations
+  
   // Compound metrics
   const compoundMetrics = {
     strategy: {
-      totalReturn: 610.68, // 610.68%
-      annualizedReturn: 117.13, // 117.13%
-      maxDrawdown: -18.88, // -18.88%
+      totalReturn: 610.68, // from '610.68%'
+      annualizedReturn: 117.13, // from '117.13%'
+      maxDrawdown: -18.88, // from '-18.88%'
     },
     bitcoin: {
-      totalReturn: 533.82, // 533.82%
-      annualizedReturn: 102.55, // 102.55%
-      maxDrawdown: -86.24, // -86.24%
+      totalReturn: 533.82, // from '533.82%'
+      annualizedReturn: 102.55, // from '102.55%'
+      maxDrawdown: -86.24, // from '-86.24%'
     }
   };
   
   // Non-compound metrics
   const nonCompoundMetrics = {
     strategy: {
-      totalReturn: 206.65, // 206.65%
-      annualizedReturn: 39.64, // 39.64%
-      maxDrawdown: -8.09, // -8.09%
+      totalReturn: 206.65, // from '206.65%'
+      annualizedReturn: 39.64, // from '39.64%'
+      maxDrawdown: -8.09, // from '-8.09%'
     },
     sp500: {
-      totalReturn: 75.71, // 75.71%
-      annualizedReturn: 14.54, // 14.54%
-      maxDrawdown: -33.72, // -33.72%
+      totalReturn: 75.71, // from '75.71%'
+      annualizedReturn: 14.54, // from '14.54%'
+      maxDrawdown: -33.72, // from '-33.72%'
     }
   };
   
@@ -139,21 +141,36 @@ const generatePerformanceData = () => {
   // Generate data series
   const totalMonths = 52; // ~4.3 years from Jan 2021 to Apr 2025
   
-  // Generate the four data series we need
+  // Adjust volatility based on real-world data patterns
+  // For compound returns where volatility is typically higher
+  const compoundVolatility = {
+    strategy: 0.08,    // Lower for our strategy (more consistent)
+    bitcoin: 0.20      // Higher for Bitcoin (more volatile)
+  };
+  
+  // For non-compound returns where month-to-month changes are smaller
+  const nonCompoundVolatility = {
+    strategy: 0.04,    // Very consistent monthly performance
+    sp500: 0.06        // Standard index volatility
+  };
+  
+  // Generate the data series
+  // Compound data - starts at $100 and grows to target amounts with realistic month-to-month movements
   const compoundStrategy = generateMonthlySeries(
-    100, totalMonths, compoundMetrics.strategy.totalReturn, 0.08, compoundMetrics.strategy.maxDrawdown, true
+    100, totalMonths, compoundMetrics.strategy.totalReturn, compoundVolatility.strategy, compoundMetrics.strategy.maxDrawdown, true
   );
   
   const compoundBitcoin = generateMonthlySeries(
-    100, totalMonths, compoundMetrics.bitcoin.totalReturn, 0.15, compoundMetrics.bitcoin.maxDrawdown, true
+    100, totalMonths, compoundMetrics.bitcoin.totalReturn, compoundVolatility.bitcoin, compoundMetrics.bitcoin.maxDrawdown, true
   );
   
+  // Non-compound data - starts at 100% (shown as 0% gain) and accumulates to target amounts
   const nonCompoundStrategy = generateMonthlySeries(
-    100, totalMonths, nonCompoundMetrics.strategy.totalReturn, 0.04, nonCompoundMetrics.strategy.maxDrawdown, false
+    100, totalMonths, nonCompoundMetrics.strategy.totalReturn, nonCompoundVolatility.strategy, nonCompoundMetrics.strategy.maxDrawdown, false
   );
   
   const nonCompoundSP500 = generateMonthlySeries(
-    100, totalMonths, nonCompoundMetrics.sp500.totalReturn, 0.06, nonCompoundMetrics.sp500.maxDrawdown, false
+    100, totalMonths, nonCompoundMetrics.sp500.totalReturn, nonCompoundVolatility.sp500, nonCompoundMetrics.sp500.maxDrawdown, false
   );
   
   // Define our data types
@@ -240,9 +257,16 @@ const PerformanceChart: React.FC<PerformanceChartProps> = ({
   
   const formatYAxis = (value: number) => {
     if (returnType === 'compound') {
-      return `$${value}`;
+      // For compound returns, show dollar amounts to emphasize total value growth
+      if (value > 500) {
+        return `$${Math.floor(value/100)*100}`; // Round to nearest hundred for larger values
+      } else if (value > 200) {
+        return `$${Math.floor(value/10)*10}`; // Round to nearest ten for medium values
+      } else {
+        return `$${value.toFixed(0)}`; // Show exact value for smaller amounts
+      }
     }
-    // Calculate percent change from base 100
+    // For non-compound returns, show percentage change from base 100
     return `${(value - 100).toFixed(0)}%`;
   };
 
