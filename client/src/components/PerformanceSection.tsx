@@ -261,16 +261,16 @@ const PerformanceSection: React.FC = () => {
         {/* Strategy vs Benchmark Chart */}
         <div className="bg-white dark:bg-dark-card rounded-xl shadow-lg mb-10 p-6">
           <h3 className="text-xl font-semibold mb-6 text-dark-green dark:text-light-green">
-            Strategy vs. {benchmarkName}
+            Strategy vs. Market Benchmarks
           </h3>
           
           <div className="w-full rounded-lg mb-6 overflow-hidden border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 p-6">
             <div className="h-[300px] flex flex-col justify-center items-center">
               <div className="text-dark-green dark:text-light-green font-semibold mb-4">
-                Strategy vs {benchmarkName} Performance (2021-2025)
+                Comprehensive Benchmark Comparison (2021-2025)
               </div>
               <div className="text-text-medium dark:text-dark-text-medium text-sm text-center max-w-md">
-                Our strategy outperforms {benchmarkName} with {metrics.strategy.totalReturn} vs {metrics[benchmark].totalReturn} total return while experiencing only {metrics.strategy.maxDrawdown} maximum drawdown compared to {benchmarkName}'s {metrics[benchmark].maxDrawdown} drawdown
+                Our strategy outperforms all major benchmarks with {metrics.strategy.totalReturn} total return while experiencing only {metrics.strategy.maxDrawdown} maximum drawdown - significantly less than both Bitcoin ({metrics.bitcoin.maxDrawdown}) and equity markets
               </div>
             </div>
           </div>
