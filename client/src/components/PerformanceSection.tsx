@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { useLocation } from '@/contexts/LocationContext';
+import PerformanceChart from './PerformanceChart';
+import BenchmarkComparisonChart from './BenchmarkComparisonChart';
 
 const PerformanceSection: React.FC = () => {
   const [returnType, setReturnType] = useState<'compound' | 'non-compound'>('non-compound');
