@@ -241,8 +241,8 @@ const PerformanceSection: React.FC = () => {
         <div className="grid md:grid-cols-3 gap-6 mb-10">
           <Card className="p-6 text-center">
             <div className="text-sm font-medium text-text-medium dark:text-dark-text-medium mb-1">Best Month</div>
-            <div className="text-3xl font-bold text-accent-orange">+14.0%</div>
-            <div className="text-xs text-text-light dark:text-dark-text-light">February 2024</div>
+            <div className="text-3xl font-bold text-accent-orange">+8.5%</div>
+            <div className="text-xs text-text-light dark:text-dark-text-light">January 2023</div>
           </Card>
           
           <Card className="p-6 text-center">
