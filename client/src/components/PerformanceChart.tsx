@@ -155,13 +155,13 @@ const generatePerformanceData = () => {
   };
   
   // Generate the data series
-  // Compound data - starts at $100 and grows to target amounts with realistic month-to-month movements
+  // Compound data - starts at $1000 and grows to target amounts with realistic month-to-month movements
   const compoundStrategy = generateMonthlySeries(
-    100, totalMonths, compoundMetrics.strategy.totalReturn, compoundVolatility.strategy, compoundMetrics.strategy.maxDrawdown, true
+    1000, totalMonths, compoundMetrics.strategy.totalReturn, compoundVolatility.strategy, compoundMetrics.strategy.maxDrawdown, true
   );
   
   const compoundBitcoin = generateMonthlySeries(
-    100, totalMonths, compoundMetrics.bitcoin.totalReturn, compoundVolatility.bitcoin, compoundMetrics.bitcoin.maxDrawdown, true
+    1000, totalMonths, compoundMetrics.bitcoin.totalReturn, compoundVolatility.bitcoin, compoundMetrics.bitcoin.maxDrawdown, true
   );
   
   // Non-compound data - starts at 100% (shown as 0% gain) and accumulates to target amounts
@@ -258,35 +258,52 @@ const PerformanceChart: React.FC<PerformanceChartProps> = ({
   const formatYAxis = (value: number) => {
     if (returnType === 'compound') {
       // For compound returns, show dollar amounts to emphasize total value growth
-      if (value > 500) {
-        return `$${Math.floor(value/100)*100}`; // Round to nearest hundred for larger values
-      } else if (value > 200) {
-        return `$${Math.floor(value/10)*10}`; // Round to nearest ten for medium values
+      if (value >= 10000) {
+        return `$${Math.floor(value/1000)}K`; // Show in thousands for very large values
+      } else if (value >= 5000) {
+        return `$${Math.floor(value/1000)*1000}`; // Round to nearest thousand for large values
+      } else if (value >= 2000) {
+        return `$${Math.floor(value/500)*500}`; // Round to nearest 500 for medium-large values
       } else {
-        return `$${value.toFixed(0)}`; // Show exact value for smaller amounts
+        return `$${Math.floor(value/100)*100}`; // Round to nearest 100 for smaller amounts
       }
     }
     // For non-compound returns, show percentage change from base 100
     return `${(value - 100).toFixed(0)}%`;
   };
 
-  // Custom tooltip formatter
+  // Custom tooltip formatter with number formatting
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
+      // Format numbers nicely for the tooltip
+      const formatTooltipValue = (value: number, isCompound: boolean) => {
+        if (isCompound) {
+          // Format dollar values
+          return new Intl.NumberFormat('en-US', { 
+            style: 'currency', 
+            currency: 'USD',
+            maximumFractionDigits: 0 
+          }).format(value);
+        } else {
+          // Format percentage values
+          return `${(value - 100).toFixed(1)}%`;
+        }
+      };
+      
       return (
         <div className="bg-white dark:bg-gray-800 p-3 shadow-md rounded border border-gray-200 dark:border-gray-700">
           <p className="font-medium text-text-medium dark:text-dark-text-medium">{label}</p>
           <div className="mt-2">
             <p className="text-blue-600">
-              <span className="font-medium">Our Strategy:</span> {returnType === 'compound' ? `$${payload[0].value}` : `${(payload[0].value - 100).toFixed(1)}%`}
+              <span className="font-medium">Our Strategy:</span> {formatTooltipValue(payload[0].value, returnType === 'compound')}
             </p>
             {returnType === 'compound' ? (
               <p className="text-yellow-500">
-                <span className="font-medium">{cryptoBenchmarkName}:</span> {`$${payload[1].value}`}
+                <span className="font-medium">{cryptoBenchmarkName}:</span> {formatTooltipValue(payload[1].value, true)}
               </p>
             ) : (
               <p className="text-orange-500">
-                <span className="font-medium">{benchmarkName}:</span> {`${(payload[1].value - 100).toFixed(1)}%`}
+                <span className="font-medium">{benchmarkName}:</span> {formatTooltipValue(payload[1].value, false)}
               </p>
             )}
             <p className="text-red-400 mt-1">
