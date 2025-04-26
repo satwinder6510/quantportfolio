@@ -11,80 +11,187 @@ import {
 } from 'recharts';
 import { useLocation } from '@/hooks/use-location';
 
-// Sample performance data
-const generateMonthlyData = (startDate: Date, months: number, strategyBase: number, benchmarkBase: number, volatility: number, isCompound: boolean) => {
-  const data = [];
-  let strategyValue = strategyBase;
-  let benchmarkValue = benchmarkBase;
-  let strategyDrawdown = 0;
-  let benchmarkDrawdown = 0;
-  
-  let strategyHighWatermark = strategyBase;
-  let benchmarkHighWatermark = benchmarkBase;
-  
-  // For non-compound returns, we need to track total returns differently
-  let strategyTotalReturn = 0;
-  let benchmarkTotalReturn = 0;
-  
+// Function to create more consistent, realistic data that matches our metrics
+const generatePerformanceData = () => {
+  // Start date for our data (Jan 2021)
+  const startDate = new Date(2021, 0, 1);
+  // Current Date
   const currentDate = new Date();
   
-  for (let i = 0; i < months; i++) {
-    const date = new Date(startDate);
-    date.setMonth(date.getMonth() + i);
-    
-    // Don't generate future data beyond current date
-    if (date > currentDate) break;
-    
-    // Strategy performance (with some volatility)
-    const strategyMonthlyReturn = (Math.random() * volatility - volatility/3) + 0.033; // average 3.3% monthly
-    
-    // Benchmark performance (with higher volatility and lower returns)
-    const benchmarkMonthlyReturn = (Math.random() * volatility * 1.2 - volatility/2) + 0.015; // average 1.5% monthly
-    
-    if (isCompound) {
-      // Compound returns - multiply by (1 + return)
-      strategyValue = strategyValue * (1 + strategyMonthlyReturn);
-      benchmarkValue = benchmarkValue * (1 + benchmarkMonthlyReturn);
-    } else {
-      // Non-compound returns - add returns to base + total
-      strategyTotalReturn += strategyMonthlyReturn * strategyBase;
-      benchmarkTotalReturn += benchmarkMonthlyReturn * benchmarkBase;
-      
-      strategyValue = strategyBase + strategyTotalReturn;
-      benchmarkValue = benchmarkBase + benchmarkTotalReturn;
+  // Target values from our metrics
+  // Compound metrics
+  const compoundMetrics = {
+    strategy: {
+      totalReturn: 610.68, // 610.68%
+      annualizedReturn: 117.13, // 117.13%
+      maxDrawdown: -18.88, // -18.88%
+    },
+    bitcoin: {
+      totalReturn: 533.82, // 533.82%
+      annualizedReturn: 102.55, // 102.55%
+      maxDrawdown: -86.24, // -86.24%
     }
-    
-    // Calculate drawdowns
-    if (strategyValue > strategyHighWatermark) {
-      strategyHighWatermark = strategyValue;
-      strategyDrawdown = 0;
-    } else {
-      strategyDrawdown = ((strategyValue / strategyHighWatermark) - 1) * 100;
+  };
+  
+  // Non-compound metrics
+  const nonCompoundMetrics = {
+    strategy: {
+      totalReturn: 206.65, // 206.65%
+      annualizedReturn: 39.64, // 39.64%
+      maxDrawdown: -8.09, // -8.09%
+    },
+    sp500: {
+      totalReturn: 75.71, // 75.71%
+      annualizedReturn: 14.54, // 14.54%
+      maxDrawdown: -33.72, // -33.72%
     }
-    
-    if (benchmarkValue > benchmarkHighWatermark) {
-      benchmarkHighWatermark = benchmarkValue;
-      benchmarkDrawdown = 0;
-    } else {
-      benchmarkDrawdown = ((benchmarkValue / benchmarkHighWatermark) - 1) * 100;
-    }
-    
-    data.push({
-      date: date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' }),
-      strategy: parseFloat((strategyValue).toFixed(2)),
-      benchmark: parseFloat((benchmarkValue).toFixed(2)),
-      strategyDrawdown: parseFloat(strategyDrawdown.toFixed(2)),
-      benchmarkDrawdown: parseFloat(benchmarkDrawdown.toFixed(2))
-    });
+  };
+  
+  // Function to generate monthly returns that will reach our target
+  // Define the item type explicitly
+  interface DataItem {
+    date: string;
+    value: number;
+    drawdown: number;
   }
   
-  return data;
+  const generateMonthlySeries = (startValue: number, totalMonths: number, totalReturn: number, volatility: number, maxDrawdown: number, isCompound: boolean): DataItem[] => {
+    const data: DataItem[] = [];
+    let currentValue = startValue;
+    let highWatermark = startValue;
+    let drawdown = 0;
+    
+    // Determine monthly growth rate for compound returns
+    let targetMonthlyReturn;
+    
+    if (isCompound) {
+      // Formula: (1 + r)^n = (1 + totalReturn)
+      // r = (1 + totalReturn)^(1/n) - 1
+      targetMonthlyReturn = Math.pow(1 + (totalReturn / 100), 1/totalMonths) - 1;
+    } else {
+      // For non-compound, simply divide the total return by number of months
+      targetMonthlyReturn = (totalReturn / 100) / totalMonths;
+    }
+    
+    // Add randomness but ensure we reach our target
+    let cumulativeReturn = 0;
+    
+    for (let i = 0; i < totalMonths; i++) {
+      const date = new Date(startDate);
+      date.setMonth(date.getMonth() + i);
+      
+      // Don't generate future data
+      if (date > currentDate) break;
+      
+      // Calculate this month's return with some volatility
+      let monthlyReturn;
+      
+      if (i === totalMonths - 1 && isCompound) {
+        // Make sure final value reaches target exactly
+        const targetFinalValue = startValue * (1 + (totalReturn / 100));
+        monthlyReturn = (targetFinalValue / currentValue) - 1;
+      } else if (i === totalMonths - 1 && !isCompound) {
+        // For non-compound, make sure we reach exactly the target
+        monthlyReturn = (totalReturn / 100) - cumulativeReturn;
+      } else {
+        // Random return with tendency toward target
+        monthlyReturn = targetMonthlyReturn + (Math.random() * volatility - volatility/2);
+        
+        // Ensure some negative months to create drawdowns
+        if (i % 4 === 0) { // Every 4th month on average
+          monthlyReturn = -Math.abs(monthlyReturn * 0.8);
+        }
+      }
+      
+      if (isCompound) {
+        currentValue = currentValue * (1 + monthlyReturn);
+      } else {
+        cumulativeReturn += monthlyReturn;
+        currentValue = startValue * (1 + cumulativeReturn);
+      }
+      
+      // Calculate drawdown
+      if (currentValue > highWatermark) {
+        highWatermark = currentValue;
+        drawdown = 0;
+      } else {
+        drawdown = ((currentValue / highWatermark) - 1) * 100;
+      }
+      
+      // Ensure max drawdown reaches our target at least once
+      if (i === Math.floor(totalMonths * 0.4) && drawdown > maxDrawdown) { // Around 40% through the series
+        // Force drawdown to reach max
+        const drawdownFactor = (1 + (maxDrawdown / 100));
+        currentValue = highWatermark * drawdownFactor;
+        drawdown = maxDrawdown;
+      }
+      
+      data.push({
+        date: date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' }),
+        value: parseFloat(currentValue.toFixed(2)),
+        drawdown: parseFloat(drawdown.toFixed(2))
+      });
+    }
+    
+    return data;
+  };
+  
+  // Generate data series
+  const totalMonths = 52; // ~4.3 years from Jan 2021 to Apr 2025
+  
+  // Generate the four data series we need
+  const compoundStrategy = generateMonthlySeries(
+    100, totalMonths, compoundMetrics.strategy.totalReturn, 0.08, compoundMetrics.strategy.maxDrawdown, true
+  );
+  
+  const compoundBitcoin = generateMonthlySeries(
+    100, totalMonths, compoundMetrics.bitcoin.totalReturn, 0.15, compoundMetrics.bitcoin.maxDrawdown, true
+  );
+  
+  const nonCompoundStrategy = generateMonthlySeries(
+    100, totalMonths, nonCompoundMetrics.strategy.totalReturn, 0.04, nonCompoundMetrics.strategy.maxDrawdown, false
+  );
+  
+  const nonCompoundSP500 = generateMonthlySeries(
+    100, totalMonths, nonCompoundMetrics.sp500.totalReturn, 0.06, nonCompoundMetrics.sp500.maxDrawdown, false
+  );
+  
+  // Define our data types
+  interface DataPoint {
+    date: string;
+    strategy: number;
+    benchmark: number;
+    strategyDrawdown: number;
+    benchmarkDrawdown: number;
+  }
+  
+  // Combine the data for compound returns
+  const compoundData: DataPoint[] = compoundStrategy.map((item, i) => {
+    return {
+      date: item.date,
+      strategy: item.value,
+      benchmark: compoundBitcoin[i] ? compoundBitcoin[i].value : 0,
+      strategyDrawdown: item.drawdown,
+      benchmarkDrawdown: compoundBitcoin[i] ? compoundBitcoin[i].drawdown : 0
+    };
+  });
+  
+  // Combine the data for non-compound returns
+  const nonCompoundData: DataPoint[] = nonCompoundStrategy.map((item, i) => {
+    return {
+      date: item.date,
+      strategy: item.value,
+      benchmark: nonCompoundSP500[i] ? nonCompoundSP500[i].value : 0,
+      strategyDrawdown: item.drawdown,
+      benchmarkDrawdown: nonCompoundSP500[i] ? nonCompoundSP500[i].drawdown : 0
+    };
+  });
+  
+  return { compoundData, nonCompoundData };
 };
 
-// Generate performance data for both compound and non-compound scenarios
-const startDate = new Date(2021, 0); // Jan 2021
-const compoundData = generateMonthlyData(startDate, 60, 100, 100, 0.08, true);
-const nonCompoundData = generateMonthlyData(startDate, 60, 100, 100, 0.08, false);
+// Generate our performance data
+const { compoundData, nonCompoundData } = generatePerformanceData();
 
 interface PerformanceChartProps {
   returnType: 'compound' | 'non-compound';
