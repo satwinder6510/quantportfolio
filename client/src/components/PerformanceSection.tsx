@@ -247,13 +247,13 @@ const PerformanceSection: React.FC = () => {
           
           <Card className="p-6 text-center">
             <div className="text-sm font-medium text-text-medium dark:text-dark-text-medium mb-1">Average Monthly</div>
-            <div className="text-3xl font-bold text-dark-green dark:text-light-green">+6.8%</div>
-            <div className="text-xs text-text-light dark:text-dark-text-light">Compounded monthly avg. return</div>
+            <div className="text-3xl font-bold text-dark-green dark:text-light-green">+3.3%</div>
+            <div className="text-xs text-text-light dark:text-dark-text-light">Monthly avg. return (non-compound)</div>
           </Card>
           
           <Card className="p-6 text-center">
             <div className="text-sm font-medium text-text-medium dark:text-dark-text-medium mb-1">Positive Months</div>
-            <div className="text-3xl font-bold text-light-green">{metrics.strategy.positiveMonths}</div>
+            <div className="text-3xl font-bold text-light-green">{nonCompoundMetrics.strategy.positiveMonths}</div>
             <div className="text-xs text-text-light dark:text-dark-text-light">Months with Positive Returns</div>
           </Card>
         </div>

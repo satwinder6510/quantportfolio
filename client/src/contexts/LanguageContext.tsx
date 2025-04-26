@@ -42,13 +42,13 @@ const translations: Translations = {
     hero: {
       title: 'Automated Crypto Trading in',
       subtitle: '5 Minutes Daily',
-      description: 'Our proprietary algorithm delivers 53.5% return over 5 years while saving you hours of screen time and emotional stress.'
+      description: 'Our proprietary algorithm delivers 39.64% annualized return while saving you hours of screen time and emotional stress.'
     },
     stats: {
       tradeSuccessRate: '5 min',
-      averageReturn: '53.5%',
-      activeUsers: '2.03',
-      tradesExecuted: '18%'
+      averageReturn: '39.64%',
+      activeUsers: '2.29',
+      tradesExecuted: '-8.09%'
     },
     nav: {
       features: 'Features',
