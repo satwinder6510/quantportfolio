@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useLocation, RegionContent } from '@/contexts/LocationContext';
 import { Button } from '@/components/ui/button';
-// Dashboard preview image
-import dashboardImage from '@assets/5785140314728679105.jpg';
 
 const Hero: React.FC = () => {
   const { t } = useLanguage();
@@ -193,7 +191,7 @@ const Hero: React.FC = () => {
               </div>
               <div className="w-full h-64 sm:h-72 md:h-80 flex items-center justify-center overflow-hidden">
                 <img 
-                  src={dashboardImage} 
+                  src="/dashboard-image.jpg" 
                   alt="CryptoTrend Dashboard Preview" 
                   className="w-full h-full object-cover object-center"
                 />
