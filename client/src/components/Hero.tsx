@@ -141,6 +141,7 @@ const Hero: React.FC = () => {
               </Button>
             </div>
             
+{/* User profiles section - commented out until we have real users
             <div className="mt-8 flex items-center space-x-4">
               <div className="flex -space-x-2">
                 <div className="w-10 h-10 rounded-full border-2 border-white dark:border-dark-bg bg-gray-300 flex items-center justify-center overflow-hidden">
@@ -169,6 +170,7 @@ const Hero: React.FC = () => {
                 <span className="font-bold">10,000+</span> traders already using CryptoTrend
               </p>
             </div>
+            */}
           </div>
           
           <div className="order-1 md:order-2 relative">
