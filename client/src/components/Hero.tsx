@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useLocation, RegionContent } from '@/contexts/LocationContext';
 import { Button } from '@/components/ui/button';
+// Dashboard preview image
+import dashboardImage from '@assets/5785140314728679105.jpg';
 
 const Hero: React.FC = () => {
   const { t } = useLanguage();
@@ -189,25 +191,12 @@ const Hero: React.FC = () => {
                   <div className="text-white text-xs">CryptoTrend Alpha Dashboard</div>
                 </div>
               </div>
-              <div className="bg-gray-300 dark:bg-gray-700 w-full h-64 sm:h-72 md:h-80 flex items-center justify-center">
-                <svg 
-                  className="w-full h-full text-gray-400 dark:text-gray-600" 
-                  fill="currentColor" 
-                  viewBox="0 0 400 300" 
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <rect x="50" y="50" width="300" height="40" rx="8" opacity="0.5" />
-                  <rect x="50" y="110" width="300" height="120" rx="8" opacity="0.5" />
-                  <rect x="50" y="250" width="140" height="30" rx="8" opacity="0.5" />
-                  <rect x="210" y="250" width="140" height="30" rx="8" opacity="0.5" />
-                  <circle cx="70" cy="70" r="10" opacity="0.7" />
-                  <path d="M80 130 L120 180 L160 150 L200 190 L240 130 L280 170 L320 120" 
-                    stroke="currentColor" 
-                    strokeWidth="3" 
-                    fill="none" 
-                    opacity="0.8" 
-                  />
-                </svg>
+              <div className="w-full h-64 sm:h-72 md:h-80 flex items-center justify-center overflow-hidden">
+                <img 
+                  src={dashboardImage} 
+                  alt="CryptoTrend Dashboard Preview" 
+                  className="w-full h-full object-cover object-center"
+                />
               </div>
             </div>
             
