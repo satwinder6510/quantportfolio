@@ -11,21 +11,15 @@ const Hero: React.FC = () => {
   // Hero rotating messages
   const heroSlides = [
     {
-      title: 'Automated Crypto Trading in ',
-      highlightedText: '5 Minutes',
-      endTitle: ' Daily',
+      title: 'Automated Crypto Trading in 5 Minutes Daily',
       description: 'Our proprietary algorithm delivers 53.5% return over 5 years while saving you hours of screen time and emotional stress.'
     },
     {
-      title: '',
-      highlightedText: 'Zero',
-      endTitle: ' Learning Curve Required',
+      title: 'Zero Learning Curve Required',
       description: 'Start trading immediately with our intuitive platform. No technical analysis skills needed—our algorithm handles the complex work while you make simple decisions.'
     },
     {
-      title: 'Get ',
-      highlightedText: 'Results',
-      endTitle: ', Not Complexity',
+      title: 'Get Results, Not Complexity',
       description: 'Skip the years of learning technical analysis. Our algorithm has condensed expert trading knowledge into simple buy, sell, and hold signals you can follow in minutes.'
     }
   ];
@@ -51,44 +45,48 @@ const Hero: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="order-2 md:order-1">
-            <div className="hero-slider">
-              <div className="relative">
-                {heroSlides.map((slide, index) => (
-                  <div 
-                    key={index}
-                    style={{ 
-                      opacity: activeSlide === index ? 1 : 0,
-                      visibility: activeSlide === index ? 'visible' : 'hidden',
-                      animation: activeSlide === index ? 'heroFadeIn 0.5s ease forwards' : 'none'
-                    }}
-                    className="hero-slide"
-                  >
-                    <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold font-serif mb-6 leading-tight">
-                      <span className="text-text-dark dark:text-white">
-                        {slide.title}
-                      </span>
-                      <span className="text-dark-green dark:text-light-green">
-                        {slide.highlightedText}
-                      </span>
-                      <span className="text-text-dark dark:text-white">
-                        {slide.endTitle}
-                      </span>
-                    </h1>
-                    
-                    <p className="text-lg md:text-xl text-text-medium dark:text-dark-text-medium mb-8">
-                      {slide.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
+            <div className="min-h-[220px] md:min-h-[240px] relative">
+              {heroSlides.map((slide, index) => (
+                <div 
+                  key={index}
+                  className={`absolute top-0 left-0 w-full transition-opacity duration-500 ${
+                    activeSlide === index ? 'opacity-100 z-10' : 'opacity-0 z-0'
+                  }`}
+                >
+                  <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold mb-6 leading-tight">
+                    {index === 0 ? (
+                      <>
+                        <span>Automated Crypto Trading in </span>
+                        <span className="text-dark-green dark:text-light-green">5 Minutes</span>
+                        <span> Daily</span>
+                      </>
+                    ) : index === 1 ? (
+                      <>
+                        <span className="text-dark-green dark:text-light-green">Zero</span>
+                        <span> Learning Curve Required</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Get </span>
+                        <span className="text-dark-green dark:text-light-green">Results</span>
+                        <span>, Not Complexity</span>
+                      </>
+                    )}
+                  </h1>
+                  
+                  <p className="text-lg md:text-xl text-text-medium dark:text-dark-text-medium mb-8">
+                    {slide.description}
+                  </p>
+                </div>
+              ))}
               
               {/* Slide Navigation Dots */}
-              <div className="flex justify-center mt-4 space-x-2">
+              <div className="absolute bottom-0 left-0 right-0 flex justify-center space-x-2">
                 {heroSlides.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setActiveSlide(index)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
                       activeSlide === index 
                         ? 'bg-dark-green dark:bg-light-green scale-110' 
                         : 'bg-gray-300 dark:bg-gray-600 opacity-50'
