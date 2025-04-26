@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { Card } from '@/components/ui/card';
+import { useLocation } from '@/contexts/LocationContext';
 
 const PerformanceSection: React.FC = () => {
   const [returnType, setReturnType] = useState<'compound' | 'non-compound'>('compound');
+  const { region } = useLocation();
+  const isIndian = region === 'india';
   
   // Key metrics from the backtest data - compound returns (vs Bitcoin comparison)
   const compoundMetrics = {
@@ -26,6 +29,13 @@ const PerformanceSection: React.FC = () => {
       sharpeRatio: '0.73',
       maxDrawdown: '-33.72%',
       positiveMonths: '62%'
+    },
+    nifty50: {
+      totalReturn: '69.42%',
+      annualizedReturn: '13.33%',
+      sharpeRatio: '0.68',
+      maxDrawdown: '-28.96%',
+      positiveMonths: '60%'
     }
   };
   
@@ -51,11 +61,30 @@ const PerformanceSection: React.FC = () => {
       sharpeRatio: '0.73',
       maxDrawdown: '-33.72%',
       positiveMonths: '62%'
+    },
+    nifty50: {
+      totalReturn: '69.42%',
+      annualizedReturn: '13.33%',
+      sharpeRatio: '0.68',
+      maxDrawdown: '-28.96%',
+      positiveMonths: '60%'
     }
   };
   
   // Use the selected metrics based on return type
   const metrics = returnType === 'compound' ? compoundMetrics : nonCompoundMetrics;
+  
+  // Get the appropriate benchmark based on location and return type
+  const getBenchmark = () => {
+    if (returnType === 'compound') {
+      return 'bitcoin';
+    } else {
+      return isIndian ? 'nifty50' : 'sp500';
+    }
+  };
+  
+  const benchmark = getBenchmark();
+  const benchmarkName = benchmark === 'nifty50' ? 'NIFTY 50' : benchmark === 'sp500' ? 'S&P 500' : 'Bitcoin';
 
   return (
     <section className="py-20 bg-white dark:bg-dark-bg" id="performance">
@@ -128,10 +157,7 @@ const PerformanceSection: React.FC = () => {
                 Strategy Growth vs Market (2021-2025)
               </div>
               <div className="text-text-medium dark:text-dark-text-medium text-sm text-center max-w-md">
-                {returnType === 'compound' 
-                  ? `Our strategy (blue line) shows ${metrics.strategy.totalReturn} growth compared to Bitcoin (${metrics.bitcoin.totalReturn}) with significantly lower drawdowns`
-                  : `Our strategy (blue line) shows ${metrics.strategy.totalReturn} growth compared to S&P 500 (${metrics.sp500.totalReturn}) with significantly lower drawdowns`
-                }
+                Our strategy (blue line) shows {metrics.strategy.totalReturn} growth compared to {benchmarkName} ({metrics[benchmark].totalReturn}) with significantly lower drawdowns
               </div>
             </div>
           </div>
@@ -142,14 +168,18 @@ const PerformanceSection: React.FC = () => {
               <div className="w-4 h-4 bg-blue-600 rounded-full mr-2"></div>
               <span className="text-sm text-text-medium dark:text-dark-text-medium">Our Strategy</span>
             </div>
-            <div className="flex items-center">
-              <div className="w-4 h-4 bg-orange-500 rounded-full mr-2"></div>
-              <span className="text-sm text-text-medium dark:text-dark-text-medium">S&P 500</span>
-            </div>
-            <div className="flex items-center">
-              <div className="w-4 h-4 bg-green-500 rounded-full mr-2"></div>
-              <span className="text-sm text-text-medium dark:text-dark-text-medium">NIFTY 50</span>
-            </div>
+            {returnType === 'compound' && (
+              <div className="flex items-center">
+                <div className="w-4 h-4 bg-yellow-500 rounded-full mr-2"></div>
+                <span className="text-sm text-text-medium dark:text-dark-text-medium">Bitcoin</span>
+              </div>
+            )}
+            {returnType === 'non-compound' && (
+              <div className="flex items-center">
+                <div className="w-4 h-4 bg-orange-500 rounded-full mr-2"></div>
+                <span className="text-sm text-text-medium dark:text-dark-text-medium">{isIndian ? 'NIFTY 50' : 'S&P 500'}</span>
+              </div>
+            )}
             <div className="flex items-center">
               <div className="w-4 h-4 bg-red-400 rounded-full mr-2"></div>
               <span className="text-sm text-text-medium dark:text-dark-text-medium">Drawdown</span>
@@ -194,7 +224,7 @@ const PerformanceSection: React.FC = () => {
                   The {metrics.strategy.annualizedReturn} annualized return shown here uses non-compound calculation, which provides a clearer picture of raw performance without the exponential effects of reinvestment. This is especially useful for comparing against traditional market benchmarks.
                 </p>
                 <p className="text-sm text-text-medium dark:text-dark-text-medium mt-2">
-                  <strong>Key takeaway:</strong> Our strategy delivered over 2.7× the total return of the S&P 500 ({metrics.strategy.totalReturn} vs. {metrics.sp500.totalReturn}) with a Sharpe ratio more than 3× higher ({metrics.strategy.sharpeRatio} vs. {metrics.sp500.sharpeRatio})—and capped the worst peak-to-trough loss at {metrics.strategy.maxDrawdown} instead of {metrics.sp500.maxDrawdown}.
+                  <strong>Key takeaway:</strong> Our strategy delivered over 2.7× the total return of the {benchmarkName} ({metrics.strategy.totalReturn} vs. {metrics[benchmark].totalReturn}) with a Sharpe ratio more than 3× higher ({metrics.strategy.sharpeRatio} vs. {metrics[benchmark].sharpeRatio})—and capped the worst peak-to-trough loss at {metrics.strategy.maxDrawdown} instead of {metrics[benchmark].maxDrawdown}.
                 </p>
               </>
             )}
@@ -229,19 +259,16 @@ const PerformanceSection: React.FC = () => {
         {/* Strategy vs Benchmark Chart */}
         <div className="bg-white dark:bg-dark-card rounded-xl shadow-lg mb-10 p-6">
           <h3 className="text-xl font-semibold mb-6 text-dark-green dark:text-light-green">
-            Strategy vs. {returnType === 'compound' ? 'Bitcoin' : 'S&P 500'}
+            Strategy vs. {benchmarkName}
           </h3>
           
           <div className="w-full rounded-lg mb-6 overflow-hidden border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 p-6">
             <div className="h-[300px] flex flex-col justify-center items-center">
               <div className="text-dark-green dark:text-light-green font-semibold mb-4">
-                Strategy vs {returnType === 'compound' ? 'Bitcoin' : 'S&P 500'} Performance (2021-2025)
+                Strategy vs {benchmarkName} Performance (2021-2025)
               </div>
               <div className="text-text-medium dark:text-dark-text-medium text-sm text-center max-w-md">
-                {returnType === 'compound'
-                  ? `Our strategy outperforms Bitcoin with ${metrics.strategy.totalReturn} vs ${metrics.bitcoin.totalReturn} total return while experiencing only ${metrics.strategy.maxDrawdown} maximum drawdown compared to Bitcoin's severe ${metrics.bitcoin.maxDrawdown} drawdown`
-                  : `Our strategy outperforms S&P 500 with ${metrics.strategy.totalReturn} vs ${metrics.sp500.totalReturn} total return while experiencing only ${metrics.strategy.maxDrawdown} maximum drawdown compared to S&P 500's ${metrics.sp500.maxDrawdown} drawdown`
-                }
+                Our strategy outperforms {benchmarkName} with {metrics.strategy.totalReturn} vs {metrics[benchmark].totalReturn} total return while experiencing only {metrics.strategy.maxDrawdown} maximum drawdown compared to {benchmarkName}'s {metrics[benchmark].maxDrawdown} drawdown
               </div>
             </div>
           </div>
@@ -254,7 +281,11 @@ const PerformanceSection: React.FC = () => {
                   <th className="text-left py-3 text-text-medium dark:text-dark-text-medium">Metric</th>
                   <th className="text-center py-3 text-text-medium dark:text-dark-text-medium">Our Strategy</th>
                   <th className="text-center py-3 text-text-medium dark:text-dark-text-medium">Bitcoin</th>
-                  <th className="text-center py-3 text-text-medium dark:text-dark-text-medium">S&P 500</th>
+                  {isIndian ? (
+                    <th className="text-center py-3 text-text-medium dark:text-dark-text-medium">NIFTY 50</th>
+                  ) : (
+                    <th className="text-center py-3 text-text-medium dark:text-dark-text-medium">S&P 500</th>
+                  )}
                 </tr>
               </thead>
               <tbody>
@@ -262,31 +293,51 @@ const PerformanceSection: React.FC = () => {
                   <td className="py-3 text-text-medium dark:text-dark-text-medium">Total Return</td>
                   <td className="py-3 text-center font-semibold text-dark-green dark:text-light-green">{metrics.strategy.totalReturn}</td>
                   <td className="py-3 text-center text-text-medium dark:text-dark-text-medium">{metrics.bitcoin.totalReturn}</td>
-                  <td className="py-3 text-center text-text-medium dark:text-dark-text-medium">{metrics.sp500.totalReturn}</td>
+                  {isIndian ? (
+                    <td className="py-3 text-center text-text-medium dark:text-dark-text-medium">{metrics.nifty50.totalReturn}</td>
+                  ) : (
+                    <td className="py-3 text-center text-text-medium dark:text-dark-text-medium">{metrics.sp500.totalReturn}</td>
+                  )}
                 </tr>
                 <tr className="border-b border-gray-100 dark:border-gray-700">
                   <td className="py-3 text-text-medium dark:text-dark-text-medium">Annualized Return</td>
                   <td className="py-3 text-center font-semibold text-dark-green dark:text-light-green">{metrics.strategy.annualizedReturn}</td>
                   <td className="py-3 text-center text-text-medium dark:text-dark-text-medium">{metrics.bitcoin.annualizedReturn}</td>
-                  <td className="py-3 text-center text-text-medium dark:text-dark-text-medium">{metrics.sp500.annualizedReturn}</td>
+                  {isIndian ? (
+                    <td className="py-3 text-center text-text-medium dark:text-dark-text-medium">{metrics.nifty50.annualizedReturn}</td>
+                  ) : (
+                    <td className="py-3 text-center text-text-medium dark:text-dark-text-medium">{metrics.sp500.annualizedReturn}</td>
+                  )}
                 </tr>
                 <tr className="border-b border-gray-100 dark:border-gray-700">
                   <td className="py-3 text-text-medium dark:text-dark-text-medium">Sharpe Ratio</td>
                   <td className="py-3 text-center font-semibold text-dark-green dark:text-light-green">{metrics.strategy.sharpeRatio}</td>
                   <td className="py-3 text-center text-text-medium dark:text-dark-text-medium">{metrics.bitcoin.sharpeRatio}</td>
-                  <td className="py-3 text-center text-text-medium dark:text-dark-text-medium">{metrics.sp500.sharpeRatio}</td>
+                  {isIndian ? (
+                    <td className="py-3 text-center text-text-medium dark:text-dark-text-medium">{metrics.nifty50.sharpeRatio}</td>
+                  ) : (
+                    <td className="py-3 text-center text-text-medium dark:text-dark-text-medium">{metrics.sp500.sharpeRatio}</td>
+                  )}
                 </tr>
                 <tr className="border-b border-gray-100 dark:border-gray-700">
                   <td className="py-3 text-text-medium dark:text-dark-text-medium">Max Drawdown</td>
                   <td className="py-3 text-center font-semibold text-dark-green dark:text-light-green">{metrics.strategy.maxDrawdown}</td>
                   <td className="py-3 text-center text-red-500">{metrics.bitcoin.maxDrawdown}</td>
-                  <td className="py-3 text-center text-orange-500">{metrics.sp500.maxDrawdown}</td>
+                  {isIndian ? (
+                    <td className="py-3 text-center text-orange-500">{metrics.nifty50.maxDrawdown}</td>
+                  ) : (
+                    <td className="py-3 text-center text-orange-500">{metrics.sp500.maxDrawdown}</td>
+                  )}
                 </tr>
                 <tr>
                   <td className="py-3 text-text-medium dark:text-dark-text-medium">Positive Months</td>
                   <td className="py-3 text-center font-semibold text-dark-green dark:text-light-green">{metrics.strategy.positiveMonths}</td>
                   <td className="py-3 text-center text-text-medium dark:text-dark-text-medium">{metrics.bitcoin.positiveMonths}</td>
-                  <td className="py-3 text-center text-text-medium dark:text-dark-text-medium">{metrics.sp500.positiveMonths}</td>
+                  {isIndian ? (
+                    <td className="py-3 text-center text-text-medium dark:text-dark-text-medium">{metrics.nifty50.positiveMonths}</td>
+                  ) : (
+                    <td className="py-3 text-center text-text-medium dark:text-dark-text-medium">{metrics.sp500.positiveMonths}</td>
+                  )}
                 </tr>
               </tbody>
             </table>
@@ -300,7 +351,7 @@ const PerformanceSection: React.FC = () => {
               </p>
             ) : (
               <p className="text-text-medium dark:text-dark-text-medium text-sm">
-                Our strategy substantially outperforms the S&P 500 while maintaining much lower risk. The most notable advantage is in the maximum drawdown: <strong>{metrics.strategy.maxDrawdown}</strong> for our strategy versus <strong>{metrics.sp500.maxDrawdown}</strong> for the S&P 500. This means your portfolio experiences far less volatility than traditional equity investments while generating significantly higher returns.
+                Our strategy substantially outperforms the {benchmarkName} while maintaining much lower risk. The most notable advantage is in the maximum drawdown: <strong>{metrics.strategy.maxDrawdown}</strong> for our strategy versus <strong>{metrics[benchmark].maxDrawdown}</strong> for the {benchmarkName}. This means your portfolio experiences far less volatility than traditional equity investments while generating significantly higher returns.
               </p>
             )}
           </div>
