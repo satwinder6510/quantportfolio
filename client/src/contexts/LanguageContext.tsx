@@ -40,15 +40,15 @@ type Translations = {
 const translations: Translations = {
   en: {
     hero: {
-      title: 'Automated Crypto Trading',
-      subtitle: 'Powered by AI',
-      description: 'Experience the future of cryptocurrency trading with our advanced AI algorithms that analyze market trends and execute trades with precision.'
+      title: 'Automated Crypto Trading in',
+      subtitle: '5 Minutes Daily',
+      description: 'Our proprietary algorithm delivers 53.5% return over 5 years while saving you hours of screen time and emotional stress.'
     },
     stats: {
-      tradeSuccessRate: '94.7%',
-      averageReturn: '36.5%',
-      activeUsers: '10K+',
-      tradesExecuted: '5.2M+'
+      tradeSuccessRate: '5 min',
+      averageReturn: '53.5%',
+      activeUsers: '2.03',
+      tradesExecuted: '18%'
     },
     nav: {
       features: 'Features',

@@ -5,33 +5,33 @@ const FeaturesSection: React.FC = () => {
   const features = [
     {
       icon: <Bot className="h-16 w-16 text-light-green dark:text-accent-orange" />,
-      title: 'AI-Powered Trading',
-      description: 'Our advanced algorithms analyze market patterns and execute trades with precision, optimizing for maximum returns.'
+      title: 'No More Endless Screen Time',
+      description: 'Say goodbye to 8+ hours of staring at charts and constantly checking price movements.'
     },
     {
       icon: <LineChart className="h-16 w-16 text-light-green dark:text-accent-orange" />,
-      title: 'Real-time Analytics',
-      description: 'Monitor your portfolio performance with comprehensive dashboards and real-time market data.'
+      title: 'No More Emotional Trading',
+      description: 'Eliminate fear and greed from your trading decisions with algorithm-driven signals.'
     },
     {
       icon: <ShieldCheck className="h-16 w-16 text-light-green dark:text-accent-orange" />,
-      title: 'Enterprise Security',
-      description: 'Your assets are protected with bank-level encryption, cold storage, and multi-factor authentication.'
+      title: 'No More Analysis Paralysis',
+      description: 'Skip the confusion of conflicting indicators and complex chart patterns.'
     },
     {
       icon: <Sliders className="h-16 w-16 text-light-green dark:text-accent-orange" />,
-      title: 'Customizable Strategies',
-      description: 'Choose from pre-built strategies or create your own based on risk tolerance and investment goals.'
+      title: 'Zero Learning Curve',
+      description: 'Start trading immediately with our intuitive platform. No technical analysis skills needed.'
     },
     {
       icon: <Bell className="h-16 w-16 text-light-green dark:text-accent-orange" />,
-      title: 'Smart Alerts',
-      description: 'Get notified about market opportunities and critical portfolio changes via email, SMS, or push notifications.'
+      title: 'Get Results, Not Complexity',
+      description: 'Our algorithm has condensed expert trading knowledge into simple buy, sell, and hold signals.'
     },
     {
       icon: <Shuffle className="h-16 w-16 text-light-green dark:text-accent-orange" />,
-      title: 'Multi-Exchange Support',
-      description: 'Trade across multiple exchanges from a single interface, maximizing opportunities and minimizing risks.'
+      title: 'Trade in Just 5 Minutes Daily',
+      description: 'Our system streamlines the complex trading process into a quick daily routine you can complete in minutes.'
     }
   ];
 
@@ -40,10 +40,10 @@ const FeaturesSection: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-dark-green dark:text-light-green">
-            Powerful <span className="text-light-green dark:text-accent-orange">Features</span>
+            What You're <span className="text-light-green dark:text-accent-orange">No Longer Doing</span>
           </h2>
           <p className="text-text-medium dark:text-dark-text-medium max-w-2xl mx-auto">
-            Our platform combines cutting-edge AI with user-friendly design to provide you with the most effective crypto trading experience.
+            Focus on what matters, automate the rest
           </p>
         </div>
         

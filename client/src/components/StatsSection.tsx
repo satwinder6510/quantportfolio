@@ -5,7 +5,7 @@ const StatsSection: React.FC = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="py-16 bg-gray-50 dark:bg-dark-accent transition-colors duration-300" id="performance">
+    <section className="py-16 bg-white dark:bg-dark-accent transition-colors duration-300" id="performance">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-dark-green dark:text-light-green">
           Our Performance <span className="text-light-green dark:text-accent-orange">in Numbers</span>
@@ -19,7 +19,7 @@ const StatsSection: React.FC = () => {
               <h3 className="text-4xl font-bold text-dark-green dark:text-light-green mb-2">
                 {t('stats.tradeSuccessRate')}
               </h3>
-              <p className="text-text-medium dark:text-dark-text-medium font-medium">Trade Success Rate</p>
+              <p className="text-text-medium dark:text-dark-text-medium font-medium">Daily Time Required</p>
             </div>
           </div>
           
@@ -30,7 +30,7 @@ const StatsSection: React.FC = () => {
               <h3 className="text-4xl font-bold text-dark-green dark:text-light-green mb-2">
                 {t('stats.averageReturn')}
               </h3>
-              <p className="text-text-medium dark:text-dark-text-medium font-medium">Average Annual Return</p>
+              <p className="text-text-medium dark:text-dark-text-medium font-medium">Return</p>
             </div>
           </div>
           
@@ -41,7 +41,7 @@ const StatsSection: React.FC = () => {
               <h3 className="text-4xl font-bold text-dark-green dark:text-light-green mb-2">
                 {t('stats.activeUsers')}
               </h3>
-              <p className="text-text-medium dark:text-dark-text-medium font-medium">Active Users</p>
+              <p className="text-text-medium dark:text-dark-text-medium font-medium">Sharpe Ratio</p>
             </div>
           </div>
           
@@ -52,7 +52,7 @@ const StatsSection: React.FC = () => {
               <h3 className="text-4xl font-bold text-dark-green dark:text-light-green mb-2">
                 {t('stats.tradesExecuted')}
               </h3>
-              <p className="text-text-medium dark:text-dark-text-medium font-medium">Trades Executed</p>
+              <p className="text-text-medium dark:text-dark-text-medium font-medium">Max Drawdown</p>
             </div>
           </div>
         </div>
