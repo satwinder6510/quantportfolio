@@ -10,7 +10,7 @@ import {
   ResponsiveContainer,
   LabelList
 } from 'recharts';
-import { useLocation } from '@/hooks/use-location';
+import { useLocation } from '@/contexts/LocationContext';
 
 interface BenchmarkComparisonProps {
   metrics: {

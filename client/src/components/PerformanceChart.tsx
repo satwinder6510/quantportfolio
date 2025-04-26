@@ -9,7 +9,7 @@ import {
   ResponsiveContainer,
   Legend
 } from 'recharts';
-import { useLocation } from '@/hooks/use-location';
+import { useLocation } from '@/contexts/LocationContext';
 
 // Sample performance data
 const generateMonthlyData = (startDate: Date, months: number, strategyBase: number, benchmarkBase: number, volatility: number) => {

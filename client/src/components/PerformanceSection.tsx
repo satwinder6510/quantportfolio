@@ -6,6 +6,7 @@ import BenchmarkComparisonChart from './BenchmarkComparisonChart';
 
 const PerformanceSection: React.FC = () => {
   const [returnType, setReturnType] = useState<'compound' | 'non-compound'>('non-compound');
+  const [timeframe, setTimeframe] = useState<'1Y' | '3Y' | '5Y' | 'All'>('5Y');
   const { region } = useLocation();
   const isIndian = region === 'india';
   
@@ -147,23 +148,52 @@ const PerformanceSection: React.FC = () => {
               Strategy Performance vs {returnType === 'compound' ? 'Bitcoin' : 'Market'}
             </h3>
             <div className="flex gap-2">
-              <button className="px-4 py-2 rounded-md text-sm border border-gray-200 dark:border-gray-700 text-text-medium dark:text-dark-text-medium hover:bg-gray-50 dark:hover:bg-gray-800">1Y</button>
-              <button className="px-4 py-2 rounded-md text-sm border border-gray-200 dark:border-gray-700 text-text-medium dark:text-dark-text-medium hover:bg-gray-50 dark:hover:bg-gray-800">3Y</button>
-              <button className="px-4 py-2 rounded-md text-sm bg-dark-green dark:bg-light-green text-white">5Y</button>
-              <button className="px-4 py-2 rounded-md text-sm border border-gray-200 dark:border-gray-700 text-text-medium dark:text-dark-text-medium hover:bg-gray-50 dark:hover:bg-gray-800">All</button>
+              <button 
+                onClick={() => setTimeframe('1Y')}
+                className={`px-4 py-2 rounded-md text-sm ${
+                  timeframe === '1Y' 
+                    ? 'bg-dark-green dark:bg-light-green text-white' 
+                    : 'border border-gray-200 dark:border-gray-700 text-text-medium dark:text-dark-text-medium hover:bg-gray-50 dark:hover:bg-gray-800'
+                }`}
+              >
+                1Y
+              </button>
+              <button 
+                onClick={() => setTimeframe('3Y')}
+                className={`px-4 py-2 rounded-md text-sm ${
+                  timeframe === '3Y' 
+                    ? 'bg-dark-green dark:bg-light-green text-white' 
+                    : 'border border-gray-200 dark:border-gray-700 text-text-medium dark:text-dark-text-medium hover:bg-gray-50 dark:hover:bg-gray-800'
+                }`}
+              >
+                3Y
+              </button>
+              <button 
+                onClick={() => setTimeframe('5Y')}
+                className={`px-4 py-2 rounded-md text-sm ${
+                  timeframe === '5Y' 
+                    ? 'bg-dark-green dark:bg-light-green text-white' 
+                    : 'border border-gray-200 dark:border-gray-700 text-text-medium dark:text-dark-text-medium hover:bg-gray-50 dark:hover:bg-gray-800'
+                }`}
+              >
+                5Y
+              </button>
+              <button 
+                onClick={() => setTimeframe('All')}
+                className={`px-4 py-2 rounded-md text-sm ${
+                  timeframe === 'All' 
+                    ? 'bg-dark-green dark:bg-light-green text-white' 
+                    : 'border border-gray-200 dark:border-gray-700 text-text-medium dark:text-dark-text-medium hover:bg-gray-50 dark:hover:bg-gray-800'
+                }`}
+              >
+                All
+              </button>
             </div>
           </div>
           
           {/* Chart Container */}
           <div className="w-full rounded-lg mb-6 overflow-hidden border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 p-6">
-            <div className="h-[300px] flex flex-col justify-center items-center">
-              <div className="text-dark-green dark:text-light-green font-semibold mb-4">
-                Strategy Growth vs {returnType === 'compound' ? 'Bitcoin' : (isIndian ? 'NIFTY 50' : 'S&P 500')} (2021-2025)
-              </div>
-              <div className="text-text-medium dark:text-dark-text-medium text-sm text-center max-w-md">
-                Our strategy (blue line) shows {metrics.strategy.totalReturn} growth compared to {benchmarkName} ({metrics[benchmark].totalReturn}) with significantly lower drawdowns
-              </div>
-            </div>
+            <PerformanceChart returnType={returnType} timeframe={timeframe} />
           </div>
 
           {/* Chart Legend */}
@@ -267,14 +297,7 @@ const PerformanceSection: React.FC = () => {
           </h3>
           
           <div className="w-full rounded-lg mb-6 overflow-hidden border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 p-6">
-            <div className="h-[300px] flex flex-col justify-center items-center">
-              <div className="text-dark-green dark:text-light-green font-semibold mb-4">
-                Comprehensive Benchmark Comparison (2021-2025)
-              </div>
-              <div className="text-text-medium dark:text-dark-text-medium text-sm text-center max-w-md">
-                Our strategy outperforms all major benchmarks with {metrics.strategy.totalReturn} total return while experiencing only {metrics.strategy.maxDrawdown} maximum drawdown - significantly less than both Bitcoin ({metrics.bitcoin.maxDrawdown}) and equity markets
-              </div>
-            </div>
+            <BenchmarkComparisonChart metrics={metrics} />
           </div>
 
           {/* Benchmark Comparison Table */}
