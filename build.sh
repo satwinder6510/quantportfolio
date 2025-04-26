@@ -1,14 +1,15 @@
 #!/bin/bash
 
-# This script handles the build process for Vercel
+# This script is used by Vercel to build the frontend and prepare it for deployment
 
-echo "Starting Vercel build process..."
-
-# Build the client
-echo "🔨 Building client..."
+# Navigate to client directory
 cd client
-npm install
-npm run build
-cd ..
 
-echo "✅ Build completed successfully!"
+# Install dependencies
+npm install
+
+# Build the client application
+npm run build
+
+# Return success
+exit 0
