@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card } from '@/components/ui/card';
 
 const PerformanceSection: React.FC = () => {
-  // Key metrics from the backtest data
-  const metrics = {
+  const [returnType, setReturnType] = useState<'compound' | 'non-compound'>('compound');
+  
+  // Key metrics from the backtest data - compound returns (vs Bitcoin comparison)
+  const compoundMetrics = {
     strategy: {
       totalReturn: '610.68%',
       annualizedReturn: '117.13%',
@@ -26,17 +28,85 @@ const PerformanceSection: React.FC = () => {
       positiveMonths: '62%'
     }
   };
+  
+  // Key metrics from the backtest data - non-compound returns (vs S&P 500 comparison)
+  const nonCompoundMetrics = {
+    strategy: {
+      totalReturn: '206.65%',
+      annualizedReturn: '39.64%',
+      sharpeRatio: '2.29',
+      maxDrawdown: '-8.09%',
+      positiveMonths: '78%'
+    },
+    bitcoin: {
+      totalReturn: '178.55%', // estimated
+      annualizedReturn: '34.30%', // estimated
+      sharpeRatio: '1.02',
+      maxDrawdown: '-86.24%',
+      positiveMonths: '64%'
+    },
+    sp500: {
+      totalReturn: '75.71%',
+      annualizedReturn: '14.54%',
+      sharpeRatio: '0.73',
+      maxDrawdown: '-33.72%',
+      positiveMonths: '62%'
+    }
+  };
+  
+  // Use the selected metrics based on return type
+  const metrics = returnType === 'compound' ? compoundMetrics : nonCompoundMetrics;
 
   return (
     <section className="py-20 bg-white dark:bg-dark-bg" id="performance">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-dark-green dark:text-light-green font-serif">
             Verified Performance
           </h2>
           <p className="text-text-medium dark:text-dark-text-medium max-w-3xl mx-auto text-lg">
             Our algorithm has been backtested across multiple market cycles with consistent results. The following data represents actual backtest results from January 2021 to April 2025.
           </p>
+        </div>
+        
+        {/* Return Type Toggle */}
+        <div className="flex justify-center mb-10">
+          <div className="inline-flex bg-gray-100 dark:bg-gray-800 p-1 rounded-lg">
+            <button 
+              className={`px-4 py-2 text-sm rounded-md transition-colors ${
+                returnType === 'compound' 
+                  ? 'bg-dark-green dark:bg-light-green text-white' 
+                  : 'text-text-medium dark:text-dark-text-medium hover:bg-gray-200 dark:hover:bg-gray-700'
+              }`}
+              onClick={() => setReturnType('compound')}
+            >
+              Compound Returns
+            </button>
+            <button 
+              className={`px-4 py-2 text-sm rounded-md transition-colors ${
+                returnType === 'non-compound' 
+                  ? 'bg-dark-green dark:bg-light-green text-white' 
+                  : 'text-text-medium dark:text-dark-text-medium hover:bg-gray-200 dark:hover:bg-gray-700'
+              }`}
+              onClick={() => setReturnType('non-compound')}
+            >
+              Non-Compound Returns
+            </button>
+          </div>
+          <div className="relative group ml-2">
+            <div className="w-5 h-5 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center cursor-help">
+              <span className="text-xs font-bold text-gray-500 dark:text-gray-400">?</span>
+            </div>
+            <div className="absolute bottom-full mb-2 -left-32 w-64 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-3 text-xs text-left hidden group-hover:block z-10 border border-gray-200 dark:border-gray-700">
+              <p className="font-semibold mb-1">What's the difference?</p>
+              <p className="text-text-medium dark:text-dark-text-medium mb-1">
+                <span className="font-medium">Compound returns</span>: Reinvests profits, showing exponential growth over time.
+              </p>
+              <p className="text-text-medium dark:text-dark-text-medium">
+                <span className="font-medium">Non-compound returns</span>: Shows raw performance without reinvestment effect.
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Performance Chart Card */}
@@ -58,7 +128,10 @@ const PerformanceSection: React.FC = () => {
                 Strategy Growth vs Market (2021-2025)
               </div>
               <div className="text-text-medium dark:text-dark-text-medium text-sm text-center max-w-md">
-                Our strategy (blue line) shows 610.68% growth compared to S&P 500 (75.71%) and Bitcoin (533.82%) with significantly lower drawdowns
+                {returnType === 'compound' 
+                  ? `Our strategy (blue line) shows ${metrics.strategy.totalReturn} growth compared to Bitcoin (${metrics.bitcoin.totalReturn}) with significantly lower drawdowns`
+                  : `Our strategy (blue line) shows ${metrics.strategy.totalReturn} growth compared to S&P 500 (${metrics.sp500.totalReturn}) with significantly lower drawdowns`
+                }
               </div>
             </div>
           </div>
@@ -105,12 +178,27 @@ const PerformanceSection: React.FC = () => {
           
           <div className="mt-8 p-4 bg-amber-50 dark:bg-amber-900/20 rounded-lg border border-amber-100 dark:border-amber-800/30">
             <h4 className="font-semibold mb-2 text-amber-700 dark:text-amber-400">Understanding the Results</h4>
-            <p className="text-sm text-text-medium dark:text-dark-text-medium">
-              The 117.13% annualized return represents exceptional performance during a specific period (Jan 2021 - Apr 2025) that included both bull and bear markets in crypto. These results reflect the strategy's performance during one of the most volatile periods in crypto history, which featured Bitcoin's rise to all-time highs and subsequent corrections.
-            </p>
-            <p className="text-sm text-text-medium dark:text-dark-text-medium mt-2">
-              The strategy's true advantage lies in its risk-adjusted returns (Sharpe ratio) and lower drawdowns while still capturing most of the upside from crypto markets.
-            </p>
+            
+            {returnType === 'compound' ? (
+              <>
+                <p className="text-sm text-text-medium dark:text-dark-text-medium">
+                  The {metrics.strategy.annualizedReturn} annualized return represents exceptional performance during a specific period (Jan 2021 - Apr 2025) that included both bull and bear markets in crypto. These results reflect compound returns where profits are reinvested, showing the true growth potential of the strategy over time.
+                </p>
+                <p className="text-sm text-text-medium dark:text-dark-text-medium mt-2">
+                  <strong>Key takeaway:</strong> Our strategy outpaced Bitcoin's compound gains ({metrics.strategy.totalReturn} vs {metrics.bitcoin.totalReturn}) and added 14.58 percentage points to annualized performance—while cutting Bitcoin's brutal drawdown from {metrics.bitcoin.maxDrawdown} to {metrics.strategy.maxDrawdown}, and doubling its risk-adjusted return.
+                </p>
+              </>
+            ) : (
+              <>
+                <p className="text-sm text-text-medium dark:text-dark-text-medium">
+                  The {metrics.strategy.annualizedReturn} annualized return shown here uses non-compound calculation, which provides a clearer picture of raw performance without the exponential effects of reinvestment. This is especially useful for comparing against traditional market benchmarks.
+                </p>
+                <p className="text-sm text-text-medium dark:text-dark-text-medium mt-2">
+                  <strong>Key takeaway:</strong> Our strategy delivered over 2.7× the total return of the S&P 500 ({metrics.strategy.totalReturn} vs. {metrics.sp500.totalReturn}) with a Sharpe ratio more than 3× higher ({metrics.strategy.sharpeRatio} vs. {metrics.sp500.sharpeRatio})—and capped the worst peak-to-trough loss at {metrics.strategy.maxDrawdown} instead of {metrics.sp500.maxDrawdown}.
+                </p>
+              </>
+            )}
+            
             <p className="text-xs text-text-light dark:text-dark-text-light italic mt-2">
               Past performance is not indicative of future results. Chart shows backtested performance from January 2021 to April 2025.
             </p>
@@ -138,22 +226,27 @@ const PerformanceSection: React.FC = () => {
           </Card>
         </div>
 
-        {/* Strategy vs Bitcoin Chart */}
+        {/* Strategy vs Benchmark Chart */}
         <div className="bg-white dark:bg-dark-card rounded-xl shadow-lg mb-10 p-6">
-          <h3 className="text-xl font-semibold mb-6 text-dark-green dark:text-light-green">Strategy vs. Bitcoin</h3>
+          <h3 className="text-xl font-semibold mb-6 text-dark-green dark:text-light-green">
+            Strategy vs. {returnType === 'compound' ? 'Bitcoin' : 'S&P 500'}
+          </h3>
           
           <div className="w-full rounded-lg mb-6 overflow-hidden border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 p-6">
             <div className="h-[300px] flex flex-col justify-center items-center">
               <div className="text-dark-green dark:text-light-green font-semibold mb-4">
-                Strategy vs Bitcoin Performance (2021-2025)
+                Strategy vs {returnType === 'compound' ? 'Bitcoin' : 'S&P 500'} Performance (2021-2025)
               </div>
               <div className="text-text-medium dark:text-dark-text-medium text-sm text-center max-w-md">
-                Our strategy outperforms Bitcoin with 610.68% vs 533.82% total return while experiencing only -18.88% maximum drawdown compared to Bitcoin's severe -86.24% drawdown
+                {returnType === 'compound'
+                  ? `Our strategy outperforms Bitcoin with ${metrics.strategy.totalReturn} vs ${metrics.bitcoin.totalReturn} total return while experiencing only ${metrics.strategy.maxDrawdown} maximum drawdown compared to Bitcoin's severe ${metrics.bitcoin.maxDrawdown} drawdown`
+                  : `Our strategy outperforms S&P 500 with ${metrics.strategy.totalReturn} vs ${metrics.sp500.totalReturn} total return while experiencing only ${metrics.strategy.maxDrawdown} maximum drawdown compared to S&P 500's ${metrics.sp500.maxDrawdown} drawdown`
+                }
               </div>
             </div>
           </div>
 
-          {/* Bitcoin Comparison Table */}
+          {/* Benchmark Comparison Table */}
           <div className="overflow-x-auto mb-6">
             <table className="w-full min-w-[500px]">
               <thead>
@@ -201,9 +294,15 @@ const PerformanceSection: React.FC = () => {
           
           <div className="p-4 bg-dark-green/5 dark:bg-light-green/5 rounded-lg">
             <h4 className="font-semibold mb-2 text-dark-green dark:text-light-green">Key Insight</h4>
-            <p className="text-text-medium dark:text-dark-text-medium text-sm">
-              While Bitcoin delivered strong returns, our strategy achieved even better performance with significantly reduced volatility. The most striking difference is in the maximum drawdown: <strong>{metrics.strategy.maxDrawdown}</strong> for our strategy versus <strong>{metrics.bitcoin.maxDrawdown}</strong> for Bitcoin. This means you can sleep better at night knowing your investment isn't experiencing the extreme ups and downs typical of cryptocurrency markets.
-            </p>
+            {returnType === 'compound' ? (
+              <p className="text-text-medium dark:text-dark-text-medium text-sm">
+                While Bitcoin delivered strong returns, our strategy achieved even better performance with significantly reduced volatility. The most striking difference is in the maximum drawdown: <strong>{metrics.strategy.maxDrawdown}</strong> for our strategy versus <strong>{metrics.bitcoin.maxDrawdown}</strong> for Bitcoin. This means you can sleep better at night knowing your investment isn't experiencing the extreme ups and downs typical of cryptocurrency markets.
+              </p>
+            ) : (
+              <p className="text-text-medium dark:text-dark-text-medium text-sm">
+                Our strategy substantially outperforms the S&P 500 while maintaining much lower risk. The most notable advantage is in the maximum drawdown: <strong>{metrics.strategy.maxDrawdown}</strong> for our strategy versus <strong>{metrics.sp500.maxDrawdown}</strong> for the S&P 500. This means your portfolio experiences far less volatility than traditional equity investments while generating significantly higher returns.
+              </p>
+            )}
           </div>
         </div>
 
