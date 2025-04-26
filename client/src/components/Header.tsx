@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
 import { useTheme } from '@/hooks/use-theme';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocation } from '@/hooks/use-location';
 import { Sun, Moon, Menu, X, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'wouter';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Header: React.FC = () => {
   const { theme, toggleTheme } = useTheme();

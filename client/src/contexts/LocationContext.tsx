@@ -126,9 +126,63 @@ export const LocationProvider: React.FC<{children: React.ReactNode}> = ({ childr
     if (locationEnabled) {
       enableLocation();
     } else {
-      // For demo purposes, set a default region when not using geolocation
-      // In a real app, you would use IP-based geolocation as fallback
-      setRegion('india'); // For demonstration purposes
+      // Use IP detection by default (more accurate) but with a fallback to browser detection
+      detectRegionByIP().catch(() => {
+        // Fallback to browser data if IP detection fails
+        const detectBrowserRegion = (): Region => {
+          try {
+            // Get browser language and timezone
+            const language = navigator.language.toLowerCase();
+            const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            
+            console.log("Browser detection - Language:", language, "Timezone:", timezone);
+            
+            // UK/European detection (highest priority for this fix)
+            const europeLanguages = ['en-gb', 'en-ie', 'fr', 'de', 'es', 'it', 'nl', 'pt'];
+            const hasEuropeanLanguage = europeLanguages.some(lang => language.startsWith(lang));
+            const hasEuropeanTimezone = timezone.includes('Europe') || 
+                                       timezone.includes('London') || 
+                                       timezone.includes('Dublin') ||
+                                       timezone.includes('Lisbon') ||
+                                       timezone.includes('Madrid');
+            
+            if (hasEuropeanLanguage || hasEuropeanTimezone) {
+              return 'europe';
+            }
+            
+            // Indian detection
+            const indianLanguages = ['hi', 'ta', 'te', 'pa', 'ml', 'bn'];
+            const hasIndianLanguage = indianLanguages.some(lang => language.startsWith(lang));
+            const hasIndianTimezone = timezone.includes('India') || 
+                                     timezone.includes('Kolkata');
+            
+            if (hasIndianLanguage || hasIndianTimezone) {
+              return 'india';
+            }
+            
+            // US detection
+            const usLanguages = ['en-us'];
+            const hasUSLanguage = usLanguages.some(lang => language.startsWith(lang));
+            const hasUSTimezone = timezone.includes('America') || 
+                                 timezone.includes('New_York') ||
+                                 timezone.includes('Los_Angeles') ||
+                                 timezone.includes('Chicago');
+            
+            if (hasUSLanguage || hasUSTimezone) {
+              return 'us';
+            }
+            
+            // Default to Europe for UK users as a better fallback than India
+            return 'europe';
+          } catch (err) {
+            console.error("Error in browser region detection:", err);
+            return 'europe'; // Default to Europe for UK users
+          }
+        };
+        
+        // Set region based on browser detection
+        setRegion(detectBrowserRegion());
+      });
     }
   }, []);
 
