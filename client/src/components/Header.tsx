@@ -35,8 +35,8 @@ const Header: React.FC = () => {
           </Link>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            <div className="flex space-x-6">
+          <div className="hidden md:flex items-center justify-between flex-1 pl-10">
+            <div className="flex items-center space-x-8">
               <button 
                 onClick={() => scrollToSection('features')} 
                 className="font-medium text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200 link-underline link-underline-light dark:link-underline-dark"
