@@ -97,7 +97,8 @@ const Hero: React.FC = () => {
               </div>
             </div>
             
-            <div className="location-aware-content mt-8">
+            {/* Fixed: Moved location content outside of the sliding area */}
+            <div className="mt-[240px] sm:mt-[200px] md:mt-16 location-aware-content">
               {/* Location-specific content based on detected region */}
               {isLoading ? (
                 <div className="bg-white dark:bg-dark-card p-4 rounded-lg shadow-md mb-8">
