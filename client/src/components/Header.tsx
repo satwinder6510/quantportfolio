@@ -29,40 +29,50 @@ const Header: React.FC = () => {
   return (
     <header className="sticky top-0 z-50 w-full bg-cream dark:bg-dark-bg shadow-md transition-colors duration-300">
       <div className="container mx-auto px-4 py-3">
-        <nav className="flex justify-between items-center">
-          <Link href="/" className="text-2xl font-bold text-dark-green dark:text-light-green z-10">
+        <nav className="flex items-center">
+          <Link href="/" className="text-2xl font-bold text-dark-green dark:text-light-green flex-shrink-0">
             Crypto<span className="text-light-green dark:text-accent-orange">Trend</span><sub className="text-sm">α</sub>
           </Link>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center justify-between flex-1 pl-10">
-            <div className="flex items-center space-x-8">
-              <button 
-                onClick={() => scrollToSection('features')} 
-                className="font-medium text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200 link-underline link-underline-light dark:link-underline-dark"
-              >
-                {t('nav.features')}
-              </button>
-              <button 
-                onClick={() => scrollToSection('how-it-works')} 
-                className="font-medium text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200 link-underline link-underline-light dark:link-underline-dark"
-              >
-                {t('nav.howItWorks')}
-              </button>
-              <button 
-                onClick={() => scrollToSection('performance')} 
-                className="font-medium text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200 link-underline link-underline-light dark:link-underline-dark"
-              >
-                {t('nav.performance')}
-              </button>
-              <button 
-                onClick={() => scrollToSection('pricing')} 
-                className="font-medium text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200 link-underline link-underline-light dark:link-underline-dark"
-              >
-                {t('nav.pricing')}
-              </button>
-            </div>
+          <div className="hidden md:flex justify-between w-full ml-16">
+            {/* Main Nav Links */}
+            <ul className="flex space-x-8">
+              <li>
+                <button 
+                  onClick={() => scrollToSection('features')} 
+                  className="font-medium text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200 link-underline link-underline-light dark:link-underline-dark"
+                >
+                  {t('nav.features')}
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => scrollToSection('how-it-works')} 
+                  className="font-medium text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200 link-underline link-underline-light dark:link-underline-dark"
+                >
+                  {t('nav.howItWorks')}
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => scrollToSection('performance')} 
+                  className="font-medium text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200 link-underline link-underline-light dark:link-underline-dark"
+                >
+                  {t('nav.performance')}
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => scrollToSection('pricing')} 
+                  className="font-medium text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200 link-underline link-underline-light dark:link-underline-dark"
+                >
+                  {t('nav.pricing')}
+                </button>
+              </li>
+            </ul>
             
+            {/* Action Items */}
             <div className="flex items-center space-x-4">
               {/* Theme Toggle Button */}
               <Button
@@ -120,7 +130,7 @@ const Header: React.FC = () => {
           <Button
             onClick={toggleMobileMenu}
             variant="ghost"
-            className="md:hidden text-dark-green dark:text-light-green"
+            className="md:hidden ml-auto text-dark-green dark:text-light-green"
           >
             {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </Button>
@@ -130,59 +140,87 @@ const Header: React.FC = () => {
         <div 
           className={`md:hidden ${mobileMenuOpen ? 'block' : 'hidden'} bg-cream dark:bg-dark-bg absolute top-16 left-0 w-full shadow-md transition-all duration-300 z-40`}
         >
-          <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
-            <button 
-              onClick={() => scrollToSection('features')} 
-              className="py-2 px-4 text-text-medium dark:text-dark-text-medium hover:bg-gray-100 dark:hover:bg-dark-accent rounded-md transition-colors duration-150"
-            >
-              {t('nav.features')}
-            </button>
-            <button 
-              onClick={() => scrollToSection('how-it-works')} 
-              className="py-2 px-4 text-text-medium dark:text-dark-text-medium hover:bg-gray-100 dark:hover:bg-dark-accent rounded-md transition-colors duration-150"
-            >
-              {t('nav.howItWorks')}
-            </button>
-            <button 
-              onClick={() => scrollToSection('performance')} 
-              className="py-2 px-4 text-text-medium dark:text-dark-text-medium hover:bg-gray-100 dark:hover:bg-dark-accent rounded-md transition-colors duration-150"
-            >
-              {t('nav.performance')}
-            </button>
-            <button 
-              onClick={() => scrollToSection('pricing')} 
-              className="py-2 px-4 text-text-medium dark:text-dark-text-medium hover:bg-gray-100 dark:hover:bg-dark-accent rounded-md transition-colors duration-150"
-            >
-              {t('nav.pricing')}
-            </button>
-            <button 
-              onClick={() => scrollToSection('get-started')} 
-              className="py-2 px-4 bg-accent-orange hover:bg-orange-600 text-white rounded-lg shadow-md text-center font-medium transition-colors duration-150"
-            >
-              {t('nav.getStarted')}
-            </button>
+          <div className="container mx-auto px-4 py-4">
+            <ul className="flex flex-col space-y-3 mb-6">
+              <li>
+                <button 
+                  onClick={() => scrollToSection('features')} 
+                  className="w-full text-left py-2 px-4 text-text-medium dark:text-dark-text-medium hover:bg-gray-100 dark:hover:bg-dark-accent rounded-md transition-colors duration-150"
+                >
+                  {t('nav.features')}
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => scrollToSection('how-it-works')} 
+                  className="w-full text-left py-2 px-4 text-text-medium dark:text-dark-text-medium hover:bg-gray-100 dark:hover:bg-dark-accent rounded-md transition-colors duration-150"
+                >
+                  {t('nav.howItWorks')}
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => scrollToSection('performance')} 
+                  className="w-full text-left py-2 px-4 text-text-medium dark:text-dark-text-medium hover:bg-gray-100 dark:hover:bg-dark-accent rounded-md transition-colors duration-150"
+                >
+                  {t('nav.performance')}
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => scrollToSection('pricing')} 
+                  className="w-full text-left py-2 px-4 text-text-medium dark:text-dark-text-medium hover:bg-gray-100 dark:hover:bg-dark-accent rounded-md transition-colors duration-150"
+                >
+                  {t('nav.pricing')}
+                </button>
+              </li>
+            </ul>
             
-            {/* Mobile Language Switcher */}
-            <div className="flex flex-col space-y-2 pt-2 border-t border-gray-200 dark:border-gray-700">
-              <p className="text-sm text-text-medium dark:text-dark-text-medium px-4">Select Language:</p>
-              <button
-                onClick={() => changeLanguage('en')}
-                className={`text-left py-2 px-4 ${language === 'en' ? 'font-medium text-dark-green dark:text-light-green bg-gray-100 dark:bg-dark-accent' : 'text-text-medium dark:text-dark-text-medium'} hover:bg-gray-100 dark:hover:bg-dark-accent rounded-md transition-colors duration-150`}
+            <div className="flex mb-6">
+              <Button 
+                onClick={() => scrollToSection('get-started')} 
+                className="w-full py-2 px-4 bg-accent-orange hover:bg-orange-600 text-white rounded-lg shadow-md text-center font-medium transition-colors duration-150"
               >
-                English
-              </button>
-              <button
-                onClick={() => changeLanguage('hi')}
-                className={`text-left py-2 px-4 ${language === 'hi' ? 'font-medium text-dark-green dark:text-light-green bg-gray-100 dark:bg-dark-accent' : 'text-text-medium dark:text-dark-text-medium'} hover:bg-gray-100 dark:hover:bg-dark-accent rounded-md transition-colors duration-150`}
-              >
-                हिन्दी (Hindi)
-              </button>
-              <button
-                onClick={() => changeLanguage('pa')}
-                className={`text-left py-2 px-4 ${language === 'pa' ? 'font-medium text-dark-green dark:text-light-green bg-gray-100 dark:bg-dark-accent' : 'text-text-medium dark:text-dark-text-medium'} hover:bg-gray-100 dark:hover:bg-dark-accent rounded-md transition-colors duration-150`}
-              >
-                ਪੰਜਾਬੀ (Punjabi)
-              </button>
+                {t('nav.getStarted')}
+              </Button>
+            </div>
+            
+            <div className="flex items-center justify-between border-t border-gray-200 dark:border-gray-700 pt-4 pb-2">
+              <div>
+                <Button
+                  onClick={toggleTheme}
+                  variant="outline"
+                  size="icon"
+                  className="rounded-full bg-gray-200 dark:bg-dark-accent hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors duration-200"
+                >
+                  {theme === 'light' ? <Sun className="h-5 w-5 text-yellow-500" /> : <Moon className="h-5 w-5 text-indigo-300" />}
+                </Button>
+              </div>
+              
+              {/* Mobile Language Switcher */}
+              <div className="flex flex-col space-y-2">
+                <p className="text-sm font-medium text-text-medium dark:text-dark-text-medium">Language:</p>
+                <div className="flex space-x-2">
+                  <button
+                    onClick={() => changeLanguage('en')}
+                    className={`px-3 py-1 rounded ${language === 'en' ? 'bg-dark-green text-white dark:bg-light-green dark:text-dark-bg' : 'bg-gray-200 dark:bg-gray-700 text-text-medium dark:text-dark-text-medium'}`}
+                  >
+                    EN
+                  </button>
+                  <button
+                    onClick={() => changeLanguage('hi')}
+                    className={`px-3 py-1 rounded ${language === 'hi' ? 'bg-dark-green text-white dark:bg-light-green dark:text-dark-bg' : 'bg-gray-200 dark:bg-gray-700 text-text-medium dark:text-dark-text-medium'}`}
+                  >
+                    HI
+                  </button>
+                  <button
+                    onClick={() => changeLanguage('pa')}
+                    className={`px-3 py-1 rounded ${language === 'pa' ? 'bg-dark-green text-white dark:bg-light-green dark:text-dark-bg' : 'bg-gray-200 dark:bg-gray-700 text-text-medium dark:text-dark-text-medium'}`}
+                  >
+                    PA
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
