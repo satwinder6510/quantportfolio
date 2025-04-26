@@ -1,40 +1,24 @@
 #!/bin/bash
-
-# This script is used by Vercel to build the frontend and prepare it for deployment
+set -e  # Exit on error
 
 echo "Starting build process..."
+echo "Current directory: $(pwd)"
+echo "Listing files: $(ls -la)"
 
-# Debug: Show current directory
-pwd
-ls -la
-
-# Navigate to client directory
+# Navigate to the client directory and install dependencies
+echo "Installing client dependencies..."
 cd client
-echo "Changed to client directory"
-pwd
-ls -la
-
-# Install dependencies
-echo "Installing dependencies..."
 npm install
 
 # Build the client application
-echo "Building the application..."
+echo "Building client application..."
 npm run build
 
-# Make sure the dist directory exists
-echo "Checking dist directory..."
-ls -la
+echo "Client build complete."
+echo "Listing dist directory contents:"
+ls -la dist/
 
-# Copy dist to root for Vercel
-echo "Creating output directory..."
-mkdir -p ../dist
-cp -r dist/* ../dist/
+# Navigate back to the root
+cd ..
 
-# Debug: Show final directory structure
-echo "Final output structure:"
-ls -la ../dist
-
-# Return success
-echo "Build completed successfully!"
-exit 0
+echo "Build process completed successfully!"
