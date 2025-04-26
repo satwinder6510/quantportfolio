@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Card } from '@/components/ui/card';
-import { useLocation } from '@/contexts/LocationContext';
+import { useLocation } from '@/hooks/use-location';
 import PerformanceChart from './PerformanceChart';
 import BenchmarkComparisonChart from './BenchmarkComparisonChart';
 
