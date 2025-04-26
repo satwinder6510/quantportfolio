@@ -14,13 +14,13 @@ const HowItWorksSection: React.FC = () => {
     },
     {
       number: '3',
-      title: 'Choose Strategy',
-      description: 'Select from our pre-configured AI trading strategies or customize one based on your risk profile.'
+      title: 'Receive Daily Signals',
+      description: 'Get clear buy/sell signals delivered to your dashboard each day based on our proven algorithms.'
     },
     {
       number: '4',
-      title: 'Start Trading',
-      description: 'Activate your strategy and monitor performance through our intuitive dashboard as our AI executes trades.'
+      title: 'Execute Trades',
+      description: 'Execute trades directly in your exchange at your convenience. Not time-sensitive and only takes 5 minutes daily.'
     }
   ];
 
@@ -32,7 +32,7 @@ const HowItWorksSection: React.FC = () => {
             How <span className="text-light-green dark:text-accent-orange">It Works</span>
           </h2>
           <p className="text-text-medium dark:text-dark-text-medium max-w-2xl mx-auto">
-            Get started with CryptoTrend Alpha in just a few simple steps and let our AI handle the complexity of crypto trading.
+            Get started with CryptoTrend Alpha in just a few simple steps. Our algorithm delivers daily signals that only take <span className="font-bold text-dark-green dark:text-light-green">5 minutes</span> of your time to execute.
           </p>
         </div>
         
