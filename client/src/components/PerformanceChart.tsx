@@ -314,25 +314,26 @@ const PerformanceChart: React.FC<PerformanceChartProps> = ({
         }
       };
       
+      // Only access payload values if they exist
+      const strategyValue = payload[0] ? payload[0].value : 0;
+      const benchmarkValue = payload[1] ? payload[1].value : 0;
+      
       return (
         <div className="bg-white dark:bg-gray-800 p-3 shadow-md rounded border border-gray-200 dark:border-gray-700">
           <p className="font-medium text-text-medium dark:text-dark-text-medium">{label}</p>
           <div className="mt-2">
             <p className="text-blue-600">
-              <span className="font-medium">Our Strategy:</span> {formatTooltipValue(payload[0].value, returnType === 'compound')}
+              <span className="font-medium">Our Strategy:</span> {formatTooltipValue(strategyValue, returnType === 'compound')}
             </p>
             {returnType === 'compound' ? (
               <p className="text-yellow-500">
-                <span className="font-medium">{cryptoBenchmarkName}:</span> {formatTooltipValue(payload[1].value, true)}
+                <span className="font-medium">{cryptoBenchmarkName}:</span> {formatTooltipValue(benchmarkValue, true)}
               </p>
             ) : (
               <p className="text-orange-500">
-                <span className="font-medium">{benchmarkName}:</span> {formatTooltipValue(payload[1].value, false)}
+                <span className="font-medium">{benchmarkName}:</span> {formatTooltipValue(benchmarkValue, false)}
               </p>
             )}
-            <p className="text-red-400 mt-1">
-              <span className="font-medium">Strategy Drawdown:</span> {Math.abs(payload[2].value).toFixed(1)}%
-            </p>
           </div>
         </div>
       );
@@ -398,16 +399,7 @@ const PerformanceChart: React.FC<PerformanceChartProps> = ({
           fill="url(#colorBenchmark)" 
           strokeWidth={2}
         />
-        <Area 
-          name="Strategy Drawdown" 
-          type="monotone" 
-          dataKey="strategyDrawdown" 
-          stroke="#ef4444" 
-          fill="none"
-          strokeWidth={2.5}
-          strokeDasharray="3 3"
-          activeDot={{ r: 6, stroke: "#ef4444", strokeWidth: 2, fill: "#fee2e2" }}
-        />
+
       </AreaChart>
     </ResponsiveContainer>
   );
