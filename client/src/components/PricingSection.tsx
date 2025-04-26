@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Check, X } from 'lucide-react';
+import { Check, Info } from 'lucide-react';
 
 const PricingSection: React.FC = () => {
   const scrollToSection = (sectionId: string) => {
@@ -11,164 +11,94 @@ const PricingSection: React.FC = () => {
   };
 
   return (
-    <section className="py-20" id="pricing">
+    <section className="py-20 bg-white dark:bg-dark-bg" id="pricing">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-dark-green dark:text-light-green">
-            Simple, <span className="text-light-green dark:text-accent-orange">Transparent Pricing</span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-dark-green dark:text-light-green font-serif">
+            Performance-Based Pricing
           </h2>
-          <p className="text-text-medium dark:text-dark-text-medium max-w-2xl mx-auto">
-            Choose the plan that fits your trading needs, with no hidden fees or long-term commitments.
+          <p className="text-text-medium dark:text-dark-text-medium max-w-2xl mx-auto text-lg">
+            We only succeed when you succeed
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          {/* Basic Plan */}
-          <div className="bg-white dark:bg-dark-card rounded-xl shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 overflow-hidden">
-            <div className="p-6 border-b border-gray-100 dark:border-gray-700">
-              <h3 className="text-xl font-bold mb-2 text-dark-green dark:text-light-green">Basic</h3>
-              <div className="flex items-end">
-                <span className="text-4xl font-bold text-dark-green dark:text-light-green">$29</span>
-                <span className="text-text-medium dark:text-dark-text-medium">/month</span>
-              </div>
-              <p className="text-text-medium dark:text-dark-text-medium mt-3">
-                Perfect for beginners starting with crypto trading.
-              </p>
+        <div className="max-w-3xl mx-auto">
+          <div className="bg-white dark:bg-dark-card rounded-xl shadow-lg overflow-hidden transition-all duration-300">
+            {/* Header */}
+            <div className="text-center p-6 border-b border-gray-100 dark:border-gray-700">
+              <h3 className="text-2xl font-bold mb-2 text-dark-green dark:text-light-green">One Simple Plan for Everyone</h3>
+              <p className="text-text-medium dark:text-dark-text-medium">Same great features for traders of all levels</p>
             </div>
-            <div className="p-6">
-              <ul className="space-y-3">
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-500 mt-1 mr-2 shrink-0" />
-                  <span className="text-text-medium dark:text-dark-text-medium">Up to $10,000 portfolio value</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-500 mt-1 mr-2 shrink-0" />
-                  <span className="text-text-medium dark:text-dark-text-medium">3 pre-built AI strategies</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-500 mt-1 mr-2 shrink-0" />
-                  <span className="text-text-medium dark:text-dark-text-medium">Email & push notifications</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-500 mt-1 mr-2 shrink-0" />
-                  <span className="text-text-medium dark:text-dark-text-medium">2 connected exchanges</span>
-                </li>
-                <li className="flex items-start text-gray-400 dark:text-gray-500">
-                  <X className="h-5 w-5 mt-1 mr-2 shrink-0" />
-                  <span>Custom strategy creation</span>
-                </li>
-                <li className="flex items-start text-gray-400 dark:text-gray-500">
-                  <X className="h-5 w-5 mt-1 mr-2 shrink-0" />
-                  <span>Priority support</span>
-                </li>
-              </ul>
+            
+            {/* Pricing Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
+              <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 text-center">
+                <div className="text-sm text-text-medium dark:text-dark-text-medium mb-2">Monthly Subscription</div>
+                <div className="text-4xl font-bold text-dark-green dark:text-light-green">$15</div>
+                <div className="text-xs text-text-light dark:text-dark-text-light mt-1">Billed monthly</div>
+              </div>
+              
+              <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 text-center">
+                <div className="text-sm text-text-medium dark:text-dark-text-medium mb-2">Performance Fee</div>
+                <div className="text-4xl font-bold text-dark-green dark:text-light-green">20%</div>
+                <div className="text-xs text-text-light dark:text-dark-text-light mt-1">of new profits only</div>
+              </div>
+            </div>
+            
+            {/* Features List */}
+            <div className="px-6 pb-6">
+              <h4 className="font-semibold mb-4 text-dark-green dark:text-light-green">What's Included:</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
+                <div className="flex items-start">
+                  <Check className="h-5 w-5 text-light-green shrink-0 mr-2 mt-0.5" />
+                  <span className="text-text-medium dark:text-dark-text-medium">All major crypto pairs</span>
+                </div>
+                <div className="flex items-start">
+                  <Check className="h-5 w-5 text-light-green shrink-0 mr-2 mt-0.5" />
+                  <span className="text-text-medium dark:text-dark-text-medium">Daily trade signals</span>
+                </div>
+                <div className="flex items-start">
+                  <Check className="h-5 w-5 text-light-green shrink-0 mr-2 mt-0.5" />
+                  <span className="text-text-medium dark:text-dark-text-medium">Automated execution</span>
+                </div>
+                <div className="flex items-start">
+                  <Check className="h-5 w-5 text-light-green shrink-0 mr-2 mt-0.5" />
+                  <span className="text-text-medium dark:text-dark-text-medium">Risk management tools</span>
+                </div>
+                <div className="flex items-start">
+                  <Check className="h-5 w-5 text-light-green shrink-0 mr-2 mt-0.5" />
+                  <span className="text-text-medium dark:text-dark-text-medium">Performance dashboard</span>
+                </div>
+                <div className="flex items-start">
+                  <Check className="h-5 w-5 text-light-green shrink-0 mr-2 mt-0.5" />
+                  <span className="text-text-medium dark:text-dark-text-medium">Mobile notifications</span>
+                </div>
+              </div>
+            </div>
+            
+            {/* Info Notice */}
+            <div className="mx-6 mb-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg flex">
+              <Info className="h-5 w-5 text-blue-500 shrink-0 mr-3 mt-0.5" />
+              <div className="text-sm text-text-medium dark:text-dark-text-medium">
+                <span className="font-semibold">High Watermark Policy:</span> Performance fees are only charged on profits that exceed your previous highest portfolio value. This ensures you never pay performance fees twice on the same gains.
+              </div>
+            </div>
+            
+            {/* CTA */}
+            <div className="px-6 pb-6 text-center">
               <Button
                 onClick={() => scrollToSection('get-started')}
-                className="mt-6 w-full py-2 px-4 bg-accent-orange hover:bg-orange-600 text-white rounded-lg shadow-md text-center font-medium transition-colors duration-200"
+                className="px-8 py-3 bg-accent-orange hover:bg-orange-600 text-white rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 text-lg font-medium"
               >
-                Get Started
+                Start Your 14-Day Trial
               </Button>
+              <p className="text-sm text-text-light dark:text-dark-text-light mt-3">
+                Recommended starting amount: $1000
+              </p>
             </div>
           </div>
           
-          {/* Pro Plan (Featured) */}
-          <div className="bg-white dark:bg-dark-card rounded-xl shadow-xl transform scale-105 md:scale-110 relative z-10 border-2 border-accent-orange">
-            <div className="absolute top-0 right-0 bg-accent-orange text-white py-1 px-4 text-sm font-medium rounded-bl-lg rounded-tr-xl">
-              Most Popular
-            </div>
-            <div className="p-6 border-b border-gray-100 dark:border-gray-700">
-              <h3 className="text-xl font-bold mb-2 text-dark-green dark:text-light-green">Pro</h3>
-              <div className="flex items-end">
-                <span className="text-4xl font-bold text-dark-green dark:text-light-green">$79</span>
-                <span className="text-text-medium dark:text-dark-text-medium">/month</span>
-              </div>
-              <p className="text-text-medium dark:text-dark-text-medium mt-3">
-                Ideal for active traders seeking more flexibility.
-              </p>
-            </div>
-            <div className="p-6">
-              <ul className="space-y-3">
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-500 mt-1 mr-2 shrink-0" />
-                  <span className="text-text-medium dark:text-dark-text-medium">Up to $100,000 portfolio value</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-500 mt-1 mr-2 shrink-0" />
-                  <span className="text-text-medium dark:text-dark-text-medium">All 8 AI strategies</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-500 mt-1 mr-2 shrink-0" />
-                  <span className="text-text-medium dark:text-dark-text-medium">Email, SMS & push notifications</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-500 mt-1 mr-2 shrink-0" />
-                  <span className="text-text-medium dark:text-dark-text-medium">5 connected exchanges</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-500 mt-1 mr-2 shrink-0" />
-                  <span className="text-text-medium dark:text-dark-text-medium">Basic strategy customization</span>
-                </li>
-                <li className="flex items-start text-gray-400 dark:text-gray-500">
-                  <X className="h-5 w-5 mt-1 mr-2 shrink-0" />
-                  <span>Priority support</span>
-                </li>
-              </ul>
-              <Button
-                onClick={() => scrollToSection('get-started')}
-                className="mt-6 w-full py-2 px-4 bg-accent-orange hover:bg-orange-600 text-white rounded-lg shadow-md text-center font-medium transition-colors duration-200"
-              >
-                Get Started
-              </Button>
-            </div>
-          </div>
-          
-          {/* Enterprise Plan */}
-          <div className="bg-white dark:bg-dark-card rounded-xl shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 overflow-hidden">
-            <div className="p-6 border-b border-gray-100 dark:border-gray-700">
-              <h3 className="text-xl font-bold mb-2 text-dark-green dark:text-light-green">Enterprise</h3>
-              <div className="flex items-end">
-                <span className="text-4xl font-bold text-dark-green dark:text-light-green">$199</span>
-                <span className="text-text-medium dark:text-dark-text-medium">/month</span>
-              </div>
-              <p className="text-text-medium dark:text-dark-text-medium mt-3">
-                For professional traders and institutional clients.
-              </p>
-            </div>
-            <div className="p-6">
-              <ul className="space-y-3">
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-500 mt-1 mr-2 shrink-0" />
-                  <span className="text-text-medium dark:text-dark-text-medium">Unlimited portfolio value</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-500 mt-1 mr-2 shrink-0" />
-                  <span className="text-text-medium dark:text-dark-text-medium">All AI strategies + early access</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-500 mt-1 mr-2 shrink-0" />
-                  <span className="text-text-medium dark:text-dark-text-medium">All notification channels</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-500 mt-1 mr-2 shrink-0" />
-                  <span className="text-text-medium dark:text-dark-text-medium">Unlimited connected exchanges</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-500 mt-1 mr-2 shrink-0" />
-                  <span className="text-text-medium dark:text-dark-text-medium">Advanced strategy customization</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-500 mt-1 mr-2 shrink-0" />
-                  <span className="text-text-medium dark:text-dark-text-medium">24/7 priority support</span>
-                </li>
-              </ul>
-              <Button
-                onClick={() => scrollToSection('get-started')}
-                className="mt-6 w-full py-2 px-4 bg-accent-orange hover:bg-orange-600 text-white rounded-lg shadow-md text-center font-medium transition-colors duration-200"
-              >
-                Get Started
-              </Button>
-            </div>
-          </div>
+          {/* FAQ Section could be added here */}
         </div>
       </div>
     </section>
