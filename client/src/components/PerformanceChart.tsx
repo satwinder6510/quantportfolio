@@ -12,7 +12,7 @@ import {
 import { useLocation } from '@/hooks/use-location';
 
 // Sample performance data
-const generateMonthlyData = (startDate: Date, months: number, strategyBase: number, benchmarkBase: number, volatility: number) => {
+const generateMonthlyData = (startDate: Date, months: number, strategyBase: number, benchmarkBase: number, volatility: number, isCompound: boolean) => {
   const data = [];
   let strategyValue = strategyBase;
   let benchmarkValue = benchmarkBase;
@@ -21,6 +21,10 @@ const generateMonthlyData = (startDate: Date, months: number, strategyBase: numb
   
   let strategyHighWatermark = strategyBase;
   let benchmarkHighWatermark = benchmarkBase;
+  
+  // For non-compound returns, we need to track total returns differently
+  let strategyTotalReturn = 0;
+  let benchmarkTotalReturn = 0;
   
   const currentDate = new Date();
   
@@ -33,11 +37,22 @@ const generateMonthlyData = (startDate: Date, months: number, strategyBase: numb
     
     // Strategy performance (with some volatility)
     const strategyMonthlyReturn = (Math.random() * volatility - volatility/3) + 0.033; // average 3.3% monthly
-    strategyValue = strategyValue * (1 + strategyMonthlyReturn);
     
     // Benchmark performance (with higher volatility and lower returns)
     const benchmarkMonthlyReturn = (Math.random() * volatility * 1.2 - volatility/2) + 0.015; // average 1.5% monthly
-    benchmarkValue = benchmarkValue * (1 + benchmarkMonthlyReturn);
+    
+    if (isCompound) {
+      // Compound returns - multiply by (1 + return)
+      strategyValue = strategyValue * (1 + strategyMonthlyReturn);
+      benchmarkValue = benchmarkValue * (1 + benchmarkMonthlyReturn);
+    } else {
+      // Non-compound returns - add returns to base + total
+      strategyTotalReturn += strategyMonthlyReturn * strategyBase;
+      benchmarkTotalReturn += benchmarkMonthlyReturn * benchmarkBase;
+      
+      strategyValue = strategyBase + strategyTotalReturn;
+      benchmarkValue = benchmarkBase + benchmarkTotalReturn;
+    }
     
     // Calculate drawdowns
     if (strategyValue > strategyHighWatermark) {
@@ -66,9 +81,10 @@ const generateMonthlyData = (startDate: Date, months: number, strategyBase: numb
   return data;
 };
 
-// Generate 5 years of monthly data
+// Generate performance data for both compound and non-compound scenarios
 const startDate = new Date(2021, 0); // Jan 2021
-const strategyData = generateMonthlyData(startDate, 60, 100, 100, 0.08);
+const compoundData = generateMonthlyData(startDate, 60, 100, 100, 0.08, true);
+const nonCompoundData = generateMonthlyData(startDate, 60, 100, 100, 0.08, false);
 
 interface PerformanceChartProps {
   returnType: 'compound' | 'non-compound';
@@ -104,7 +120,10 @@ const PerformanceChart: React.FC<PerformanceChartProps> = ({
         filterDate = new Date(2021, 0); // Jan 2021 (start of our data)
     }
     
-    return strategyData.filter(item => {
+    // Use the appropriate data source based on return type
+    const dataSource = returnType === 'compound' ? compoundData : nonCompoundData;
+    
+    return dataSource.filter(item => {
       const itemDate = new Date(item.date);
       return itemDate >= filterDate;
     });
