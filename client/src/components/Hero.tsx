@@ -45,43 +45,46 @@ const Hero: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="order-2 md:order-1">
-            <div className="min-h-[220px] md:min-h-[240px] relative">
-              {heroSlides.map((slide, index) => (
-                <div 
-                  key={index}
-                  className={`absolute top-0 left-0 w-full transition-opacity duration-500 ${
-                    activeSlide === index ? 'opacity-100 z-10' : 'opacity-0 z-0'
-                  }`}
-                >
-                  <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold mb-6 leading-tight">
-                    {index === 0 ? (
-                      <>
-                        <span>Automated Crypto Trading in </span>
-                        <span className="text-dark-green dark:text-light-green">5 Minutes</span>
-                        <span> Daily</span>
-                      </>
-                    ) : index === 1 ? (
-                      <>
-                        <span className="text-dark-green dark:text-light-green">Zero</span>
-                        <span> Learning Curve Required</span>
-                      </>
-                    ) : (
-                      <>
-                        <span>Get </span>
-                        <span className="text-dark-green dark:text-light-green">Results</span>
-                        <span>, Not Complexity</span>
-                      </>
-                    )}
-                  </h1>
-                  
-                  <p className="text-lg md:text-xl text-text-medium dark:text-dark-text-medium mb-8">
-                    {slide.description}
-                  </p>
-                </div>
-              ))}
+            {/* Sliding Content */}
+            <div className="relative">
+              <div className="min-h-[220px] md:min-h-[240px]">
+                {heroSlides.map((slide, index) => (
+                  <div 
+                    key={index}
+                    className={`transition-opacity duration-500 ${
+                      activeSlide === index ? 'opacity-100' : 'opacity-0 hidden'
+                    }`}
+                  >
+                    <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold mb-6 leading-tight">
+                      {index === 0 ? (
+                        <>
+                          <span>Automated Crypto Trading in </span>
+                          <span className="text-dark-green dark:text-light-green">5 Minutes</span>
+                          <span> Daily</span>
+                        </>
+                      ) : index === 1 ? (
+                        <>
+                          <span className="text-dark-green dark:text-light-green">Zero</span>
+                          <span> Learning Curve Required</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>Get </span>
+                          <span className="text-dark-green dark:text-light-green">Results</span>
+                          <span>, Not Complexity</span>
+                        </>
+                      )}
+                    </h1>
+                    
+                    <p className="text-lg md:text-xl text-text-medium dark:text-dark-text-medium mb-8">
+                      {slide.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
               
               {/* Slide Navigation Dots */}
-              <div className="absolute bottom-0 left-0 right-0 flex justify-center space-x-2">
+              <div className="flex justify-center space-x-2 mt-4 mb-8">
                 {heroSlides.map((_, index) => (
                   <button
                     key={index}
@@ -97,18 +100,18 @@ const Hero: React.FC = () => {
               </div>
             </div>
             
-            {/* Fixed: Moved location content outside of the sliding area */}
-            <div className="mt-[240px] sm:mt-[200px] md:mt-16 location-aware-content">
+            {/* Location Content - Completely separate from carousel */}
+            <div className="location-aware-content mb-6">
               {/* Location-specific content based on detected region */}
               {isLoading ? (
-                <div className="bg-white dark:bg-dark-card p-4 rounded-lg shadow-md mb-8">
+                <div className="bg-white dark:bg-dark-card p-4 rounded-lg shadow-md">
                   <p className="text-sm text-text-medium dark:text-dark-text-medium">
                     <i className="fas fa-spinner fa-spin mr-2"></i>
                     Detecting your location...
                   </p>
                 </div>
               ) : error ? (
-                <div className="bg-white dark:bg-dark-card p-4 rounded-lg shadow-md mb-8 border-l-4 border-red-500">
+                <div className="bg-white dark:bg-dark-card p-4 rounded-lg shadow-md border-l-4 border-red-500">
                   <p className="text-sm text-text-medium dark:text-dark-text-medium">
                     <span className="font-bold text-red-500">Location detection failed:</span> {error}
                   </p>
