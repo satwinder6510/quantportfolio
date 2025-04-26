@@ -141,7 +141,9 @@ const PerformanceSection: React.FC = () => {
         {/* Performance Chart Card */}
         <div className="bg-white dark:bg-dark-card rounded-xl shadow-lg mb-10 p-6">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
-            <h3 className="text-xl font-semibold text-dark-green dark:text-light-green">Strategy Performance vs Market</h3>
+            <h3 className="text-xl font-semibold text-dark-green dark:text-light-green">
+              Strategy Performance vs {returnType === 'compound' ? 'Bitcoin' : 'Market'}
+            </h3>
             <div className="flex gap-2">
               <button className="px-4 py-2 rounded-md text-sm border border-gray-200 dark:border-gray-700 text-text-medium dark:text-dark-text-medium hover:bg-gray-50 dark:hover:bg-gray-800">1Y</button>
               <button className="px-4 py-2 rounded-md text-sm border border-gray-200 dark:border-gray-700 text-text-medium dark:text-dark-text-medium hover:bg-gray-50 dark:hover:bg-gray-800">3Y</button>
@@ -154,7 +156,7 @@ const PerformanceSection: React.FC = () => {
           <div className="w-full rounded-lg mb-6 overflow-hidden border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 p-6">
             <div className="h-[300px] flex flex-col justify-center items-center">
               <div className="text-dark-green dark:text-light-green font-semibold mb-4">
-                Strategy Growth vs Market (2021-2025)
+                Strategy Growth vs {returnType === 'compound' ? 'Bitcoin' : (isIndian ? 'NIFTY 50' : 'S&P 500')} (2021-2025)
               </div>
               <div className="text-text-medium dark:text-dark-text-medium text-sm text-center max-w-md">
                 Our strategy (blue line) shows {metrics.strategy.totalReturn} growth compared to {benchmarkName} ({metrics[benchmark].totalReturn}) with significantly lower drawdowns
