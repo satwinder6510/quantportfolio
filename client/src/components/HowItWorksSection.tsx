@@ -4,23 +4,23 @@ const HowItWorksSection: React.FC = () => {
   const steps = [
     {
       number: '1',
-      title: 'Create Account',
-      description: 'Sign up in minutes with your email address and secure your account with two-factor authentication.'
+      title: 'Create Your Account',
+      description: 'Sign up in minutes with your email address. Secure your account with two-factor authentication to protect your data.'
     },
     {
       number: '2',
-      title: 'Connect Exchange',
-      description: 'Link your preferred crypto exchanges through secure API connections with read-only permissions.'
+      title: 'Connect Your Exchange (Optional)',
+      description: 'Securely link your preferred crypto exchanges through read-only API connections if you want to easily monitor your portfolios. CryptoTrend Alpha never has permission to trade on your behalf or withdraw funds.'
     },
     {
       number: '3',
-      title: 'Receive Daily Signals',
-      description: 'Get clear buy/sell signals delivered to your dashboard each day based on our proven algorithms.'
+      title: 'Review Daily Trading Signals',
+      description: 'Each day, receive clear buy/sell signal recommendations on your dashboard. These signals are generated using historical analysis of price trends, market structure, momentum, and volatility. All trading decisions are made by you, based on your individual judgment and risk tolerance.'
     },
     {
       number: '4',
-      title: 'Execute Trades',
-      description: 'Execute trades directly in your exchange at your convenience. Not time-sensitive and only takes 5 minutes daily.'
+      title: 'Execute Your Trades',
+      description: 'Choose whether and when to act on the provided signals via your own exchange account. There is no time pressure — signals remain valid throughout the trading day.'
     }
   ];
 
@@ -56,6 +56,23 @@ const HowItWorksSection: React.FC = () => {
                 </div>
               </div>
             ))}
+          </div>
+          
+          <div className="mt-10 bg-white dark:bg-dark-card rounded-xl shadow-md p-6">
+            <h3 className="text-xl font-semibold mb-3 text-dark-green dark:text-light-green">Typical daily routine:</h3>
+            <p className="text-text-medium dark:text-dark-text-medium mb-4">
+              ✅ Log in → ✅ Check today's signals → ✅ Decide and execute in ~5 minutes.
+            </p>
+            
+            <div className="mt-8 p-4 border border-gray-200 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-800">
+              <h4 className="text-lg font-semibold mb-2 text-dark-green dark:text-light-green">Important Notice:</h4>
+              <p className="text-sm text-text-medium dark:text-dark-text-medium">
+                CryptoTrend Alpha provides informational trading signals only.
+                We do not offer financial advice, portfolio management, or brokerage services.
+                Trading cryptocurrencies involves substantial risk of loss and may not be suitable for every investor.
+                Past performance is not indicative of future results.
+              </p>
+            </div>
           </div>
         </div>
       </div>
