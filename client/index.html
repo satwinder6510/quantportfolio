@@ -42,6 +42,15 @@
     <!-- This is a replit script which adds a banner on the top of the page when opened in development mode outside the replit environment -->
     <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js"></script>
     
+    <!-- Hidden Netlify Forms - these are used at build time for Netlify to detect the forms -->
+    <form name="signup" netlify netlify-honeypot="bot-field" action="/success" hidden>
+      <input type="text" name="firstName" />
+      <input type="text" name="lastName" />
+      <input type="email" name="email" />
+      <input type="password" name="password" />
+      <input type="checkbox" name="terms" />
+    </form>
+    
     <!-- Schema.org Structured Data -->
     <script type="application/ld+json">
     {
