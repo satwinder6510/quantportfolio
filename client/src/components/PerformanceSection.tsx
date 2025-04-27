@@ -92,6 +92,7 @@ const PerformanceSection: React.FC = () => {
   return (
     <section className="py-20 bg-white dark:bg-dark-bg" id="performance">
       <div className="container mx-auto px-4">
+        {/* 
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-dark-green dark:text-light-green font-serif">
             Historical Signal Model Performance (Backtest Results)
@@ -106,7 +107,8 @@ const PerformanceSection: React.FC = () => {
           </p>
         </div>
         
-        {/* Return Type Toggle */}
+        */}
+        {/* Return Type Toggle - COMMENTED OUT 
         <div className="flex justify-center mb-10">
           <div className="inline-flex bg-gray-100 dark:bg-gray-800 p-1 rounded-lg">
             <button 
@@ -145,8 +147,9 @@ const PerformanceSection: React.FC = () => {
             </div>
           </div>
         </div>
+        */}
 
-        {/* Performance Chart Card */}
+        {/* Performance Chart Card - COMMENTED OUT 
         <div className="bg-white dark:bg-dark-card rounded-xl shadow-lg mb-10 p-6">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
             <h3 className="text-xl font-semibold text-dark-green dark:text-light-green">
@@ -196,12 +199,10 @@ const PerformanceSection: React.FC = () => {
             </div>
           </div>
           
-          {/* Chart Container */}
           <div className="w-full rounded-lg mb-6 overflow-hidden border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 p-6">
             <PerformanceChart returnType={returnType} timeframe={timeframe} />
           </div>
 
-          {/* Chart Legend */}
           <div className="flex flex-wrap gap-6 mb-4 justify-center">
             <div className="flex items-center">
               <div className="w-4 h-4 bg-blue-600 rounded-full mr-2"></div>
@@ -225,7 +226,6 @@ const PerformanceSection: React.FC = () => {
             </div>
           </div>
           
-          {/* Performance Metrics Summary */}
           <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg text-center">
               <div className="text-sm font-medium text-text-medium dark:text-dark-text-medium mb-1">Total Return</div>
@@ -273,8 +273,9 @@ const PerformanceSection: React.FC = () => {
             </p>
           </div>
         </div>
+        */}
 
-        {/* Key Performance Metrics */}
+        {/* Key Performance Metrics - COMMENTED OUT
         <div className="grid md:grid-cols-3 gap-6 mb-10">
           <Card className="p-6 text-center">
             <div className="text-sm font-medium text-text-medium dark:text-dark-text-medium mb-1">Best Month</div>
@@ -294,8 +295,9 @@ const PerformanceSection: React.FC = () => {
             <div className="text-xs text-text-light dark:text-dark-text-light">Months with Positive Returns</div>
           </Card>
         </div>
+        */}
 
-        {/* Strategy vs Benchmark Chart */}
+        {/* Strategy vs Benchmark Chart - COMMENTED OUT
         <div className="bg-white dark:bg-dark-card rounded-xl shadow-lg mb-10 p-6">
           <h3 className="text-xl font-semibold mb-6 text-dark-green dark:text-light-green">
             Strategy vs. Market Benchmarks
@@ -305,7 +307,6 @@ const PerformanceSection: React.FC = () => {
             <BenchmarkComparisonChart metrics={metrics} />
           </div>
 
-          {/* Benchmark Comparison Table */}
           <div className="overflow-x-auto mb-6">
             <table className="w-full min-w-[500px]">
               <thead>
@@ -388,10 +389,14 @@ const PerformanceSection: React.FC = () => {
             )}
           </div>
         </div>
+        */}
+
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-dark-green dark:text-light-green font-serif">
+            How Our Strategy Works
+        </h2>
 
         {/* Strategy Details */}
         <Card className="p-6">
-          <h3 className="text-xl font-semibold mb-6 text-dark-green dark:text-light-green">How Our Strategy Works</h3>
           
           <div className="grid md:grid-cols-2 gap-6 mb-6">
             <div>
