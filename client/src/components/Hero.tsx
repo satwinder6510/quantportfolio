@@ -154,7 +154,7 @@ const Hero: React.FC = () => {
                     {/* Disclaimer about historical data */}
                     <div className="text-center mt-1">
                       <span className="text-[10px] text-amber-600 dark:text-amber-400">
-                        Based on historical backtest data. Past performance is not indicative of future results.
+                        Based on historical data compounding profits. Past performance is not indicative of future results.
                       </span>
                     </div>
                   </div>
