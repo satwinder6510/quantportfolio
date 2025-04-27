@@ -150,6 +150,13 @@ const Hero: React.FC = () => {
                         <span className="text-xs font-medium text-gray-700 dark:text-gray-300">Key Entry Points</span>
                       </div>
                     </div>
+                    
+                    {/* Disclaimer about historical data */}
+                    <div className="text-center mt-2">
+                      <span className="text-xs text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/30 px-2 py-0.5 rounded">
+                        Based on historical backtest data. Past performance is not indicative of future results.
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
