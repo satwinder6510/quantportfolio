@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { useLocation, RegionContent } from '@/contexts/LocationContext';
 import { Button } from '@/components/ui/button';
 
 const Hero: React.FC = () => {
   const { t } = useLanguage();
-  const { region, isLoading, error, locationEnabled, enableLocation } = useLocation();
   const [activeSlide, setActiveSlide] = useState(0);
 
   // Hero rotating messages based on our 4-step process
@@ -92,34 +90,7 @@ const Hero: React.FC = () => {
               </div>
             </div>
             
-            {/* Location Content - Completely separate from carousel */}
-            <div className="location-aware-content mb-6">
-              {/* Location-specific content based on detected region */}
-              {isLoading ? (
-                <div className="bg-white dark:bg-dark-card p-4 rounded-lg shadow-md">
-                  <p className="text-sm text-text-medium dark:text-dark-text-medium">
-                    <i className="fas fa-spinner fa-spin mr-2"></i>
-                    Detecting your location...
-                  </p>
-                </div>
-              ) : error ? (
-                <div className="bg-white dark:bg-dark-card p-4 rounded-lg shadow-md border-l-4 border-red-500">
-                  <p className="text-sm text-text-medium dark:text-dark-text-medium">
-                    <span className="font-bold text-red-500">Location detection failed:</span> {error}
-                  </p>
-                  {!locationEnabled && (
-                    <Button 
-                      onClick={enableLocation}
-                      className="mt-2 text-xs bg-light-green hover:bg-dark-green text-white py-1 px-3 rounded"
-                    >
-                      Enable Location Services
-                    </Button>
-                  )}
-                </div>
-              ) : (
-                RegionContent[region]
-              )}
-            </div>
+            {/* Location content has been removed as requested */}
             
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-8">
               <Button
