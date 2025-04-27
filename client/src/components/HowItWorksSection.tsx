@@ -58,20 +58,22 @@ const HowItWorksSection: React.FC = () => {
             ))}
           </div>
           
-          <div className="mt-10 bg-white dark:bg-dark-card rounded-xl shadow-md p-6">
-            <h3 className="text-xl font-semibold mb-3 text-dark-green dark:text-light-green">Typical daily routine:</h3>
-            <p className="text-text-medium dark:text-dark-text-medium mb-4">
-              ✅ Log in → ✅ Check today's signals → ✅ Decide and execute in ~5 minutes.
-            </p>
-            
-            <div className="mt-8 p-4 border border-gray-200 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-800">
-              <h4 className="text-lg font-semibold mb-2 text-dark-green dark:text-light-green">Important Notice:</h4>
-              <p className="text-sm text-text-medium dark:text-dark-text-medium">
-                CryptoTrend Alpha provides informational trading signals only.
-                We do not offer financial advice, portfolio management, or brokerage services.
-                Trading cryptocurrencies involves substantial risk of loss and may not be suitable for every investor.
-                Past performance is not indicative of future results.
+          <div className="mt-12 max-w-4xl mx-auto">
+            <div className="bg-white dark:bg-dark-card rounded-xl shadow-md p-6 md:p-8">
+              <h3 className="text-xl font-semibold mb-3 text-dark-green dark:text-light-green text-center">Typical daily routine:</h3>
+              <p className="text-text-medium dark:text-dark-text-medium mb-4 text-center">
+                ✅ Log in → ✅ Check today's signals → ✅ Decide and execute in ~5 minutes.
               </p>
+              
+              <div className="mt-8 p-4 md:p-6 border border-gray-200 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-800">
+                <h4 className="text-lg font-semibold mb-2 text-dark-green dark:text-light-green text-center md:text-left">Important Notice:</h4>
+                <p className="text-sm text-text-medium dark:text-dark-text-medium">
+                  CryptoTrend Alpha provides informational trading signals only.
+                  We do not offer financial advice, portfolio management, or brokerage services.
+                  Trading cryptocurrencies involves substantial risk of loss and may not be suitable for every investor.
+                  Past performance is not indicative of future results.
+                </p>
+              </div>
             </div>
           </div>
         </div>
