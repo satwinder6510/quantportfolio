@@ -121,7 +121,7 @@ const Hero: React.FC = () => {
                       <circle cx="540" cy="55" r="3" className="fill-yellow-500" />
                     </svg>
                   </div>
-                  <div className="p-2 grid grid-cols-2 gap-1 text-center text-[10px]">
+                  <div className="p-2 grid grid-cols-3 gap-1 text-center text-[10px]">
                     <div className="bg-gray-50 dark:bg-gray-800/50 rounded py-1 px-1">
                       <div className="font-medium text-dark-green dark:text-light-green">117.13%</div>
                       <div className="text-gray-500 dark:text-gray-400">Annual Return</div>
@@ -129,6 +129,22 @@ const Hero: React.FC = () => {
                     <div className="bg-gray-50 dark:bg-gray-800/50 rounded py-1 px-1">
                       <div className="font-medium text-dark-green dark:text-light-green">-18.88%</div>
                       <div className="text-gray-500 dark:text-gray-400">Max Drawdown</div>
+                    </div>
+                    <div className="bg-gray-50 dark:bg-gray-800/50 rounded py-1 px-1">
+                      <div className="font-medium text-dark-green dark:text-light-green">2.08</div>
+                      <div className="text-gray-500 dark:text-gray-400">Sharpe Ratio</div>
+                    </div>
+                    <div className="bg-gray-50 dark:bg-gray-800/50 rounded py-1 px-1">
+                      <div className="font-medium text-dark-green dark:text-light-green">78%</div>
+                      <div className="text-gray-500 dark:text-gray-400">Positive Months</div>
+                    </div>
+                    <div className="bg-gray-50 dark:bg-gray-800/50 rounded py-1 px-1">
+                      <div className="font-medium text-dark-green dark:text-light-green">3.12</div>
+                      <div className="text-gray-500 dark:text-gray-400">Profit Factor</div>
+                    </div>
+                    <div className="bg-gray-50 dark:bg-gray-800/50 rounded py-1 px-1">
+                      <div className="font-medium text-dark-green dark:text-light-green">3.8x</div>
+                      <div className="text-gray-500 dark:text-gray-400">vs BTC</div>
                     </div>
                   </div>
                 </div>
@@ -173,7 +189,7 @@ const Hero: React.FC = () => {
                       <circle cx="540" cy="90" r="3" className="fill-yellow-500" />
                     </svg>
                   </div>
-                  <div className="p-2 grid grid-cols-2 gap-1 text-center text-[10px]">
+                  <div className="p-2 grid grid-cols-3 gap-1 text-center text-[10px]">
                     <div className="bg-gray-50 dark:bg-gray-800/50 rounded py-1 px-1">
                       <div className="font-medium text-dark-green dark:text-light-green">39.64%</div>
                       <div className="text-gray-500 dark:text-gray-400">Annual Return</div>
@@ -181,6 +197,22 @@ const Hero: React.FC = () => {
                     <div className="bg-gray-50 dark:bg-gray-800/50 rounded py-1 px-1">
                       <div className="font-medium text-dark-green dark:text-light-green">-8.09%</div>
                       <div className="text-gray-500 dark:text-gray-400">Max Drawdown</div>
+                    </div>
+                    <div className="bg-gray-50 dark:bg-gray-800/50 rounded py-1 px-1">
+                      <div className="font-medium text-dark-green dark:text-light-green">2.29</div>
+                      <div className="text-gray-500 dark:text-gray-400">Sharpe Ratio</div>
+                    </div>
+                    <div className="bg-gray-50 dark:bg-gray-800/50 rounded py-1 px-1">
+                      <div className="font-medium text-dark-green dark:text-light-green">78%</div>
+                      <div className="text-gray-500 dark:text-gray-400">Positive Months</div>
+                    </div>
+                    <div className="bg-gray-50 dark:bg-gray-800/50 rounded py-1 px-1">
+                      <div className="font-medium text-dark-green dark:text-light-green">2.73</div>
+                      <div className="text-gray-500 dark:text-gray-400">Profit Factor</div>
+                    </div>
+                    <div className="bg-gray-50 dark:bg-gray-800/50 rounded py-1 px-1">
+                      <div className="font-medium text-dark-green dark:text-light-green">2.7x</div>
+                      <div className="text-gray-500 dark:text-gray-400">vs S&P 500</div>
                     </div>
                   </div>
                 </div>
