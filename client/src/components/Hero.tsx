@@ -191,18 +191,19 @@ const Hero: React.FC = () => {
               </div>
               <div className="w-full h-64 sm:h-72 md:h-80 flex items-center justify-center overflow-hidden bg-white dark:bg-dark-card rounded-b-xl">
                 {/* Simple chart visualization */}
-                <div className="w-full h-full p-6 flex flex-col">
-                  <div className="flex justify-between items-center mb-4">
+                <div className="w-full h-full p-4 md:p-6 flex flex-col">
+                  <div className="flex justify-between items-center mb-2 md:mb-4">
                     <div className="text-sm font-medium text-gray-700 dark:text-gray-300">Strategy Performance</div>
                     <div className="px-2 py-0.5 text-xs bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 rounded">5Y</div>
                   </div>
                   
-                  {/* Chart visualization */}
-                  <div className="flex-1 relative">
+                  {/* Chart visualization - modified for better responsiveness */}
+                  <div className="flex-1 relative mx-auto max-w-md">
                     <svg 
                       className="w-full h-full" 
+                      height="160"
                       viewBox="0 0 400 200" 
-                      preserveAspectRatio="none"
+                      preserveAspectRatio="xMidYMid meet"
                     >
                       {/* Strategy performance line area */}
                       <path 
