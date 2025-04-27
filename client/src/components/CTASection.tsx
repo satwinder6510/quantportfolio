@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Checkbox } from '@/components/ui/checkbox';
 import { useToast } from '@/hooks/use-toast';
 
 // Extend HTMLAttributes to support Netlify form attributes
@@ -16,98 +12,43 @@ declare module 'react' {
   }
 }
 
-// Define validation schema
-const signupSchema = z.object({
-  firstName: z.string().min(2, 'First name is required'),
-  lastName: z.string().min(2, 'Last name is required'),
-  email: z.string().email('Please enter a valid email address'),
-  password: z.string()
-    .min(8, 'Password must be at least 8 characters')
-    .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
-    .regex(/[a-z]/, 'Password must contain at least one lowercase letter')
-    .regex(/[0-9]/, 'Password must contain at least one number')
-    .regex(/[^A-Za-z0-9]/, 'Password must contain at least one special character'),
-  terms: z.boolean()
-});
-
-// Define the form data type
-interface SignupFormData {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  terms: boolean;
-}
-
 const CTASection: React.FC = () => {
-  const { register, handleSubmit, formState: { errors }, reset } = useForm<SignupFormData>({
-    resolver: zodResolver(signupSchema),
-    defaultValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-      terms: false,
-    },
-  });
-  
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [termsError, setTermsError] = useState<string | null>(null);
   const { toast } = useToast();
-
-  // Safe logging function that doesn't log any user data
-  const logFormActivity = () => {
+  
+  // Safe logging function - logs no user data
+  const logFormSubmission = () => {
     console.log('Form submission initiated at:', new Date().toISOString());
-  }
+  };
 
-  const onSubmit = async (data: SignupFormData) => {
-    // Check terms agreement
-    if (!data.terms) {
-      setTermsError('You must agree to the terms and conditions');
-      return;
-    }
+  // Form submission handler for dev environments only
+  const handleDevFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     
-    setTermsError(null);
-    setIsSubmitting(true);
-    
-    // Log submission time with no access to form data
-    logFormActivity();
-    
-    // In development environment (localhost or Replit), we'll show a toast notification
-    // instead of actually submitting the form
+    // If in development, show toast instead of submitting
     if (window.location.hostname === 'localhost' || window.location.hostname.includes('replit')) {
-      try {
-        // Simulate form submission in development
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        
+      logFormSubmission();
+      setIsSubmitting(true);
+      
+      // Simulate form submission in dev
+      setTimeout(() => {
         toast({
           title: "Account created! (Development mode)",
           description: "In production, this form would be processed by Netlify Forms.",
           variant: "default",
         });
         
-        reset();
         setIsSubmitting(false);
-      } catch (error) {
-        console.error('Error in development form simulation:', error);
-        toast({
-          title: "Something went wrong",
-          description: "Please try again later.",
-          variant: "destructive",
-        });
-        setIsSubmitting(false);
-      }
+        // Reset the form
+        e.currentTarget.reset();
+      }, 1000);
       
-      // Stop here in development mode - don't try to submit the form
-      return;
+      return false;
     }
     
-    // In production, we let the native form submission happen
-    // Netlify will intercept the form submission automatically
-    // The page will redirect to /success as specified in the form's action attribute
-    
-    // Note: We don't need to manually handle form submission or call preventDefault()
-    // as Netlify Forms works with the native HTML form submission
+    // In production, let the default form submission happen
+    logFormSubmission();
+    return true;
   };
 
   return (
@@ -126,7 +67,7 @@ const CTASection: React.FC = () => {
             <h3 className="text-xl font-bold mb-6 text-dark-green dark:text-light-green">Create Your Account</h3>
             <form 
               className="space-y-4" 
-              onSubmit={handleSubmit(onSubmit)}
+              onSubmit={handleDevFormSubmit}
               method="POST" 
               name="signup"
               data-netlify="true"
@@ -148,14 +89,13 @@ const CTASection: React.FC = () => {
                   </Label>
                   <Input
                     id="firstName"
+                    name="firstName"
                     type="text"
                     placeholder="John"
+                    required
+                    minLength={2}
                     className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-light-green dark:focus:ring-accent-orange dark:bg-dark-accent dark:text-white"
-                    {...register('firstName')}
                   />
-                  {errors.firstName && (
-                    <p className="text-red-500 text-xs mt-1">{errors.firstName.message}</p>
-                  )}
                 </div>
                 <div>
                   <Label htmlFor="lastName" className="block text-sm font-medium text-text-medium dark:text-dark-text-medium mb-1">
@@ -163,14 +103,13 @@ const CTASection: React.FC = () => {
                   </Label>
                   <Input
                     id="lastName"
+                    name="lastName"
                     type="text"
                     placeholder="Doe"
+                    required
+                    minLength={2}
                     className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-light-green dark:focus:ring-accent-orange dark:bg-dark-accent dark:text-white"
-                    {...register('lastName')}
                   />
-                  {errors.lastName && (
-                    <p className="text-red-500 text-xs mt-1">{errors.lastName.message}</p>
-                  )}
                 </div>
               </div>
               <div>
@@ -179,14 +118,12 @@ const CTASection: React.FC = () => {
                 </Label>
                 <Input
                   id="email"
+                  name="email"
                   type="email"
                   placeholder="john.doe@example.com"
+                  required
                   className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-light-green dark:focus:ring-accent-orange dark:bg-dark-accent dark:text-white"
-                  {...register('email')}
                 />
-                {errors.email && (
-                  <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>
-                )}
               </div>
               <div>
                 <Label htmlFor="password" className="block text-sm font-medium text-text-medium dark:text-dark-text-medium mb-1">
@@ -194,26 +131,27 @@ const CTASection: React.FC = () => {
                 </Label>
                 <Input
                   id="password"
+                  name="password"
                   type="password"
                   placeholder="••••••••"
+                  required
+                  minLength={8}
+                  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$"
+                  title="Password must contain at least 8 characters, including uppercase, lowercase, number, and special character"
                   className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-light-green dark:focus:ring-accent-orange dark:bg-dark-accent dark:text-white"
-                  {...register('password')}
                 />
-                {errors.password ? (
-                  <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>
-                ) : (
-                  <p className="text-gray-500 text-xs mt-1">
-                    Password must be at least 8 characters and include uppercase, lowercase, 
-                    number, and special character.
-                  </p>
-                )}
+                <p className="text-gray-500 text-xs mt-1">
+                  Password must be at least 8 characters and include uppercase, lowercase, 
+                  number, and special character.
+                </p>
               </div>
               <div className="flex items-start">
                 <div className="flex items-center h-5">
                   <input 
                     type="checkbox" 
                     id="terms"
-                    {...register('terms')}
+                    name="terms"
+                    required
                     className="h-4 w-4 rounded border-gray-300 text-dark-green focus:ring-light-green cursor-pointer"
                   />
                 </div>
@@ -221,9 +159,6 @@ const CTASection: React.FC = () => {
                   I agree to the <a href="#" className="text-dark-green dark:text-light-green hover:underline">Terms of Service</a> and <a href="#" className="text-dark-green dark:text-light-green hover:underline">Privacy Policy</a>
                 </Label>
               </div>
-              {termsError && (
-                <p className="text-red-500 text-xs mt-1">{termsError}</p>
-              )}
               <Button
                 type="submit"
                 disabled={isSubmitting}
