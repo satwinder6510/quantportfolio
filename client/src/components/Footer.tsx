@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div>
-            <h3 className="text-xl font-bold mb-4 text-dark-green dark:text-light-green">CryptoTrend Alpha</h3>
+            <h3 className="text-xl font-bold mb-4 text-dark-green dark:text-light-green">QuantPortfol.io</h3>
             <p className="text-text-medium dark:text-dark-text-medium mb-4">
               AI-powered crypto trading made simple for everyone, from beginners to professional traders.
             </p>
@@ -71,11 +71,11 @@ const Footer: React.FC = () => {
         
         <div className="pt-4 pb-4 border-t border-gray-200 dark:border-gray-700">
           <div className="text-amber-600 dark:text-amber-400 text-xs mb-4 p-3 bg-amber-50 dark:bg-amber-950/30 rounded-md">
-            <strong>Important Disclaimer:</strong> CryptoTrend Alpha is not a registered investment advisor, broker-dealer, or financial consultant. The information provided is for informational purposes only and does not constitute financial advice, investment recommendations, or an offer to buy or sell any securities. Trading in cryptocurrencies involves substantial risk of loss and is not suitable for every investor. Past performance is not indicative of future results.
+            <strong>Important Disclaimer:</strong> QuantPortfol.io is not a registered investment advisor, broker-dealer, or financial consultant. The information provided is for informational purposes only and does not constitute financial advice, investment recommendations, or an offer to buy or sell any securities. Trading in cryptocurrencies involves substantial risk of loss and is not suitable for every investor. Past performance is not indicative of future results.
           </div>
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-text-medium dark:text-dark-text-medium text-sm mb-4 md:mb-0">
-              &copy; {new Date().getFullYear()} CryptoTrend Alpha. All rights reserved.
+              &copy; {new Date().getFullYear()} QuantPortfol.io. All rights reserved.
             </p>
             <div className="flex space-x-4">
               <button 

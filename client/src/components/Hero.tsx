@@ -23,7 +23,7 @@ const Hero: React.FC = () => {
     },
     {
       title: 'Connect Your Exchange (Optional)',
-      description: 'Securely link your preferred crypto exchanges through read-only API connections if you want to easily monitor your portfolios. CryptoTrend Alpha never has permission to trade on your behalf or withdraw funds.'
+      description: 'Securely link your preferred crypto exchanges through read-only API connections if you want to easily monitor your portfolios. QuantPortfol.io never has permission to trade on your behalf or withdraw funds.'
     },
     {
       title: 'Review Daily Trading Signals',
@@ -251,7 +251,7 @@ const Hero: React.FC = () => {
               {/* Disclaimer */}
               <div className="w-full text-center p-2 border-t border-gray-100 dark:border-gray-800">
                 <span className="text-[10px] text-amber-600 dark:text-amber-400">
-                  <strong>Disclaimer:</strong> This data is for informational purposes only. CryptoTrend Alpha is not a financial advisor. Past performance is not indicative of future results. Trading cryptocurrencies involves substantial risk of loss.
+                  <strong>Disclaimer:</strong> This data is for informational purposes only. QuantPortfol.io is not a financial advisor. Past performance is not indicative of future results. Trading cryptocurrencies involves substantial risk of loss.
                 </span>
               </div>
             </div>
