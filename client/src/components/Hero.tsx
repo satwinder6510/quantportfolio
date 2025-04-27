@@ -137,11 +137,17 @@ const Hero: React.FC = () => {
                     </div>
                     <div className="bg-gray-50 dark:bg-gray-800/50 rounded py-1 px-1">
                       <div className="font-medium text-dark-green dark:text-light-green">-18.88%</div>
-                      <div className="text-gray-500 dark:text-gray-400">Max Drawdown</div>
+                      <div className="text-gray-500 dark:text-gray-400 flex items-center justify-center">
+                        Max Drawdown
+                        <InfoIcon onClick={() => showMetricInfo('maxDrawdown')} />
+                      </div>
                     </div>
                     <div className="bg-gray-50 dark:bg-gray-800/50 rounded py-1 px-1">
                       <div className="font-medium text-dark-green dark:text-light-green">2.08</div>
-                      <div className="text-gray-500 dark:text-gray-400">Sharpe Ratio</div>
+                      <div className="text-gray-500 dark:text-gray-400 flex items-center justify-center">
+                        Sharpe Ratio
+                        <InfoIcon onClick={() => showMetricInfo('sharpeRatio')} />
+                      </div>
                     </div>
                     <div className="bg-gray-50 dark:bg-gray-800/50 rounded py-1 px-1">
                       <div className="font-medium text-dark-green dark:text-light-green">78%</div>
@@ -149,11 +155,17 @@ const Hero: React.FC = () => {
                     </div>
                     <div className="bg-gray-50 dark:bg-gray-800/50 rounded py-1 px-1">
                       <div className="font-medium text-dark-green dark:text-light-green">3.12</div>
-                      <div className="text-gray-500 dark:text-gray-400">Profit Factor</div>
+                      <div className="text-gray-500 dark:text-gray-400 flex items-center justify-center">
+                        Profit Factor
+                        <InfoIcon onClick={() => showMetricInfo('profitFactor')} />
+                      </div>
                     </div>
                     <div className="bg-gray-50 dark:bg-gray-800/50 rounded py-1 px-1">
                       <div className="font-medium text-dark-green dark:text-light-green">3.54</div>
-                      <div className="text-gray-500 dark:text-gray-400">Win/Loss Ratio</div>
+                      <div className="text-gray-500 dark:text-gray-400 flex items-center justify-center">
+                        Win/Loss Ratio
+                        <InfoIcon onClick={() => showMetricInfo('winLossRatio')} />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -205,11 +217,17 @@ const Hero: React.FC = () => {
                     </div>
                     <div className="bg-gray-50 dark:bg-gray-800/50 rounded py-1 px-1">
                       <div className="font-medium text-dark-green dark:text-light-green">-8.09%</div>
-                      <div className="text-gray-500 dark:text-gray-400">Max Drawdown</div>
+                      <div className="text-gray-500 dark:text-gray-400 flex items-center justify-center">
+                        Max Drawdown
+                        <InfoIcon onClick={() => showMetricInfo('maxDrawdown')} />
+                      </div>
                     </div>
                     <div className="bg-gray-50 dark:bg-gray-800/50 rounded py-1 px-1">
                       <div className="font-medium text-dark-green dark:text-light-green">2.29</div>
-                      <div className="text-gray-500 dark:text-gray-400">Sharpe Ratio</div>
+                      <div className="text-gray-500 dark:text-gray-400 flex items-center justify-center">
+                        Sharpe Ratio
+                        <InfoIcon onClick={() => showMetricInfo('sharpeRatio')} />
+                      </div>
                     </div>
                     <div className="bg-gray-50 dark:bg-gray-800/50 rounded py-1 px-1">
                       <div className="font-medium text-dark-green dark:text-light-green">78%</div>
@@ -217,7 +235,10 @@ const Hero: React.FC = () => {
                     </div>
                     <div className="bg-gray-50 dark:bg-gray-800/50 rounded py-1 px-1">
                       <div className="font-medium text-dark-green dark:text-light-green">2.73</div>
-                      <div className="text-gray-500 dark:text-gray-400">Profit Factor</div>
+                      <div className="text-gray-500 dark:text-gray-400 flex items-center justify-center">
+                        Profit Factor
+                        <InfoIcon onClick={() => showMetricInfo('profitFactor')} />
+                      </div>
                     </div>
                     <div className="bg-gray-50 dark:bg-gray-800/50 rounded py-1 px-1">
                       <div className="font-medium text-dark-green dark:text-light-green">+2.8%</div>
@@ -296,6 +317,13 @@ const Hero: React.FC = () => {
           <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className="fill-gray-50 dark:fill-dark-accent opacity-30"></path>
         </svg>
       </div>
+      
+      {/* Metrics Info Modal */}
+      <MetricsInfoModal 
+        open={modalOpen}
+        onOpenChange={setModalOpen}
+        metricType={activeMetric}
+      />
     </section>
   );
 };
