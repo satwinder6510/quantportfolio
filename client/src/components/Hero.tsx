@@ -151,7 +151,27 @@ const Hero: React.FC = () => {
                       </div>
                     </div>
                     
-                    {/* Disclaimer about historical data */}
+                    {/* Performance Metrics */}
+                    <div className="grid grid-cols-4 gap-1 mt-2 text-center text-[10px]">
+                      <div className="bg-gray-50 dark:bg-gray-800/50 rounded py-1 px-1">
+                        <div className="font-medium text-dark-green dark:text-light-green">117.13%</div>
+                        <div className="text-gray-500 dark:text-gray-400">Annual Return</div>
+                      </div>
+                      <div className="bg-gray-50 dark:bg-gray-800/50 rounded py-1 px-1">
+                        <div className="font-medium text-dark-green dark:text-light-green">2.08</div>
+                        <div className="text-gray-500 dark:text-gray-400">Sharpe Ratio</div>
+                      </div>
+                      <div className="bg-gray-50 dark:bg-gray-800/50 rounded py-1 px-1">
+                        <div className="font-medium text-dark-green dark:text-light-green">-18.88%</div>
+                        <div className="text-gray-500 dark:text-gray-400">Max Drawdown</div>
+                      </div>
+                      <div className="bg-gray-50 dark:bg-gray-800/50 rounded py-1 px-1">
+                        <div className="font-medium text-dark-green dark:text-light-green">78%</div>
+                        <div className="text-gray-500 dark:text-gray-400">Positive Months</div>
+                      </div>
+                    </div>
+                    
+                    {/* Disclaimer about historical data - moved to bottom */}
                     <div className="text-center mt-1">
                       <span className="text-[10px] text-amber-600 dark:text-amber-400">
                         Based on historical data compounding profits. Past performance is not indicative of future results.
