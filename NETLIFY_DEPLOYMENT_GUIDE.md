@@ -2,6 +2,13 @@
 
 This guide covers how to deploy your application to Netlify, which provides a seamless hosting environment for your React application.
 
+## Quick Start
+
+We've configured your application for easy deployment to Netlify with the following files:
+- `netlify.toml` - Configuration for build settings and redirects
+- `netlify-build.sh` - Custom build script
+- `netlify/functions/geolocation.js` - Serverless function for geolocation
+
 ## Preparation Steps
 
 1. **Sign up for Netlify** if you don't already have an account at [netlify.com](https://www.netlify.com/)
@@ -26,8 +33,8 @@ This guide covers how to deploy your application to Netlify, which provides a se
    - Authorize Netlify to access your repositories
    - Select your repository
 
-3. **Configure Build Settings**
-   - Build command: `npm run build`
+3. **Configure Build Settings** (Should be auto-detected from netlify.toml)
+   - Build command: `bash netlify-build.sh`
    - Publish directory: `client/dist`
    - Click "Deploy site"
 
@@ -41,13 +48,15 @@ This guide covers how to deploy your application to Netlify, which provides a se
 
 1. **Build Your Project Locally**
    ```
-   npm run build
+   bash netlify-build.sh
    ```
 
 2. **Deploy to Netlify via drag-and-drop**
    - Go to the Netlify dashboard
    - Drag and drop the `client/dist` folder onto the Netlify dashboard
    - Netlify will automatically deploy your site
+
+> **Note:** You'll still need to set up the serverless functions if using the drag-and-drop method.
 
 ## Configuration for Serverless Functions
 

@@ -5,10 +5,10 @@
   base = "/"
   
   # Directory that contains the deploy-ready HTML files and assets
-  publish = "dist/public"
+  publish = "client/dist"
   
-  # Custom build command for Netlify that only builds the client
-  command = "cd client && npm run build"
+  # Custom build command for Netlify - use our build script
+  command = "bash netlify-build.sh"
 
 # Redirect all routes to the index.html file (for SPA)
 [[redirects]]
