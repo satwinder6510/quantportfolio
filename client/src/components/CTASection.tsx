@@ -8,17 +8,23 @@ import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { useToast } from '@/hooks/use-toast';
 
+// Define validation schema
 const signupSchema = z.object({
   firstName: z.string().min(2, 'First name is required'),
   lastName: z.string().min(2, 'Last name is required'),
   email: z.string().email('Please enter a valid email address'),
   password: z.string().min(8, 'Password must be at least 8 characters'),
-  terms: z.boolean().refine(val => val === true, {
-    message: 'You must agree to the terms and conditions',
-  }),
+  terms: z.boolean()
 });
 
-type SignupFormData = z.infer<typeof signupSchema>;
+// Define the form data type
+interface SignupFormData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  terms: boolean;
+}
 
 const CTASection: React.FC = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm<SignupFormData>({
@@ -33,10 +39,19 @@ const CTASection: React.FC = () => {
   });
   
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [termsError, setTermsError] = useState<string | null>(null);
   const { toast } = useToast();
 
   const onSubmit = async (data: SignupFormData) => {
+    // Check terms agreement
+    if (!data.terms) {
+      setTermsError('You must agree to the terms and conditions');
+      return;
+    }
+    
+    setTermsError(null);
     setIsSubmitting(true);
+    
     try {
       // Just show success message in development
       console.log('Form submitted:', data);
@@ -161,18 +176,19 @@ const CTASection: React.FC = () => {
               </div>
               <div className="flex items-start">
                 <div className="flex items-center h-5">
-                  <Checkbox
+                  <input 
+                    type="checkbox" 
                     id="terms"
                     {...register('terms')}
-                    className="mt-1 mr-2"
+                    className="h-4 w-4 rounded border-gray-300 text-dark-green focus:ring-light-green cursor-pointer"
                   />
                 </div>
-                <Label htmlFor="terms" className="ml-2 text-sm text-text-medium dark:text-dark-text-medium">
+                <Label htmlFor="terms" className="ml-2 text-sm text-text-medium dark:text-dark-text-medium cursor-pointer">
                   I agree to the <a href="#" className="text-dark-green dark:text-light-green hover:underline">Terms of Service</a> and <a href="#" className="text-dark-green dark:text-light-green hover:underline">Privacy Policy</a>
                 </Label>
               </div>
-              {errors.terms && (
-                <p className="text-red-500 text-xs mt-1">{errors.terms.message}</p>
+              {termsError && (
+                <p className="text-red-500 text-xs mt-1">{termsError}</p>
               )}
               <Button
                 type="submit"
