@@ -143,8 +143,8 @@ const Hero: React.FC = () => {
                       <div className="text-gray-500 dark:text-gray-400">Profit Factor</div>
                     </div>
                     <div className="bg-gray-50 dark:bg-gray-800/50 rounded py-1 px-1">
-                      <div className="font-medium text-dark-green dark:text-light-green">3.8x</div>
-                      <div className="text-gray-500 dark:text-gray-400">vs BTC</div>
+                      <div className="font-medium text-dark-green dark:text-light-green">3.54</div>
+                      <div className="text-gray-500 dark:text-gray-400">Win/Loss Ratio</div>
                     </div>
                   </div>
                 </div>
@@ -211,8 +211,8 @@ const Hero: React.FC = () => {
                       <div className="text-gray-500 dark:text-gray-400">Profit Factor</div>
                     </div>
                     <div className="bg-gray-50 dark:bg-gray-800/50 rounded py-1 px-1">
-                      <div className="font-medium text-dark-green dark:text-light-green">2.7x</div>
-                      <div className="text-gray-500 dark:text-gray-400">vs S&P 500</div>
+                      <div className="font-medium text-dark-green dark:text-light-green">+2.8%</div>
+                      <div className="text-gray-500 dark:text-gray-400">Avg Monthly</div>
                     </div>
                   </div>
                 </div>
