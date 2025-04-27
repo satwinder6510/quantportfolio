@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://cryptotrendalpha.com/sitemap.xml
+Sitemap: https://quantportfol.io/sitemap.xml
