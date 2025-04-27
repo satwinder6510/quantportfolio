@@ -45,177 +45,167 @@ const Hero: React.FC = () => {
   return (
     <section className="py-16 md:py-24 overflow-hidden relative" id="hero">
       <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="order-2 md:order-1">
-            {/* Sliding Content */}
-            <div className="relative">
-              <div className="min-h-[320px] md:min-h-[360px]">
+        {/* We're changing the layout to give the chart more visual space */}
+        <div className="flex flex-col items-center">
+          {/* Title Section - Compact Header */}
+          <div className="w-full text-center mb-6">
+            <h1 className="text-3xl md:text-5xl font-bold text-dark-green dark:text-light-green mb-4">
+              Automated Crypto Trading <span className="text-accent-orange">in 5 Minutes Daily</span>
+            </h1>
+            <p className="text-lg md:text-xl text-text-medium dark:text-dark-text-medium max-w-3xl mx-auto">
+              Our intelligent algorithm analyzes the market and delivers clear trading signals right to your dashboard.
+            </p>
+          </div>
+          
+          {/* Main Content - Enlarged Chart & 4-Steps Side by Side */}
+          <div className="w-full grid md:grid-cols-5 gap-8 mt-6">
+            {/* Enlarged Chart - Takes 3/5 of the space */}
+            <div className="md:col-span-3 order-1 relative">
+              <div className="relative z-10 bg-white dark:bg-dark-card rounded-2xl shadow-xl overflow-hidden h-full">
+                <div className="bg-gradient-to-r from-dark-green to-light-green dark:from-dark-accent dark:to-light-green p-1">
+                  <div className="flex items-center justify-between px-4 py-3">
+                    <div className="flex items-center space-x-3">
+                      <div className="flex space-x-1">
+                        <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                      </div>
+                      <div className="text-white font-medium">Strategy Equity Curve</div>
+                    </div>
+                    <div className="flex space-x-2">
+                      <div className="px-2 py-1 text-xs bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-200 rounded">Jan 2021 - Apr 2025</div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="w-full h-[400px] flex items-center justify-center overflow-hidden bg-white dark:bg-dark-card rounded-b-xl">
+                  {/* Enhanced Equity Curve Chart */}
+                  <div className="w-full h-full p-6 flex flex-col">
+                    {/* Chart visualization - Made much larger */}
+                    <div className="flex-1 relative mx-auto w-full">
+                      <svg 
+                        className="w-full h-full" 
+                        viewBox="0 0 800 400" 
+                        preserveAspectRatio="none"
+                      >
+                        {/* X-axis */}
+                        <line x1="60" y1="360" x2="780" y2="360" stroke="#888" strokeWidth="1" />
+                        
+                        {/* Y-axis */}
+                        <line x1="60" y1="40" x2="60" y2="360" stroke="#888" strokeWidth="1" />
+                        
+                        {/* X-axis labels */}
+                        <text x="60" y="380" fontSize="12" fill="currentColor" className="text-gray-500 dark:text-gray-400">Jan 2021</text>
+                        <text x="240" y="380" fontSize="12" fill="currentColor" className="text-gray-500 dark:text-gray-400">Jan 2022</text>
+                        <text x="420" y="380" fontSize="12" fill="currentColor" className="text-gray-500 dark:text-gray-400">Jan 2023</text>
+                        <text x="600" y="380" fontSize="12" fill="currentColor" className="text-gray-500 dark:text-gray-400">Jan 2024</text>
+                        <text x="760" y="380" fontSize="12" textAnchor="end" fill="currentColor" className="text-gray-500 dark:text-gray-400">Apr 2025</text>
+                        
+                        {/* Y-axis labels */}
+                        <text x="50" y="360" textAnchor="end" fontSize="12" fill="currentColor" className="text-gray-500 dark:text-gray-400">0%</text>
+                        <text x="50" y="280" textAnchor="end" fontSize="12" fill="currentColor" className="text-gray-500 dark:text-gray-400">+150%</text>
+                        <text x="50" y="200" textAnchor="end" fontSize="12" fill="currentColor" className="text-gray-500 dark:text-gray-400">+300%</text>
+                        <text x="50" y="120" textAnchor="end" fontSize="12" fill="currentColor" className="text-gray-500 dark:text-gray-400">+450%</text>
+                        <text x="50" y="40" textAnchor="end" fontSize="12" fill="currentColor" className="text-gray-500 dark:text-gray-400">+600%</text>
+                        
+                        {/* Gridlines */}
+                        <line x1="60" y1="280" x2="780" y2="280" stroke="#888" strokeWidth="0.5" strokeDasharray="4,4" />
+                        <line x1="60" y1="200" x2="780" y2="200" stroke="#888" strokeWidth="0.5" strokeDasharray="4,4" />
+                        <line x1="60" y1="120" x2="780" y2="120" stroke="#888" strokeWidth="0.5" strokeDasharray="4,4" />
+                        <line x1="60" y1="40" x2="780" y2="40" stroke="#888" strokeWidth="0.5" strokeDasharray="4,4" />
+                        
+                        <line x1="240" y1="40" x2="240" y2="360" stroke="#888" strokeWidth="0.5" strokeDasharray="4,4" />
+                        <line x1="420" y1="40" x2="420" y2="360" stroke="#888" strokeWidth="0.5" strokeDasharray="4,4" />
+                        <line x1="600" y1="40" x2="600" y2="360" stroke="#888" strokeWidth="0.5" strokeDasharray="4,4" />
+                        
+                        {/* Strategy equity curve area */}
+                        <path 
+                          d="M60,360 L60,330 C100,310 140,270 180,230 C220,200 260,170 300,140 C340,130 380,110 420,90 C460,75 500,65 540,55 C580,50 620,45 660,40 C700,40 740,45 780,40 L780,360 Z" 
+                          className="fill-green-500/10 dark:fill-green-500/20"
+                        />
+                        
+                        {/* Strategy equity curve line */}
+                        <path 
+                          d="M60,330 C100,310 140,270 180,230 C220,200 260,170 300,140 C340,130 380,110 420,90 C460,75 500,65 540,55 C580,50 620,45 660,40 C700,40 740,45 780,40" 
+                          fill="none" 
+                          className="stroke-green-500 dark:stroke-green-400"
+                          strokeWidth="3"
+                          strokeLinecap="round"
+                        />
+                        
+                        {/* Drawdown markers */}
+                        <circle cx="300" cy="140" r="4" className="fill-yellow-500" />
+                        <circle cx="540" cy="55" r="4" className="fill-yellow-500" />
+                      </svg>
+                    </div>
+                    
+                    {/* Legend */}
+                    <div className="flex justify-between mt-2">
+                      <div className="flex items-center">
+                        <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Strategy Equity (+610.68%)</span>
+                      </div>
+                      <div className="flex items-center">
+                        <div className="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
+                        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Key Entry Points</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Decorative elements */}
+              <div className="absolute -z-10 top-1/2 right-1/2 transform translate-x-20 -translate-y-1/2 w-64 h-64 bg-accent-orange opacity-10 rounded-full blur-3xl"></div>
+              <div className="absolute -z-10 top-1/4 left-1/4 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-light-green opacity-10 rounded-full blur-3xl"></div>
+            </div>
+            
+            {/* Steps - Takes 2/5 of the space */}
+            <div className="md:col-span-2 order-2 md:order-2 flex flex-col justify-center">
+              <h2 className="text-2xl font-bold text-dark-green dark:text-light-green mb-6">
+                4-Step Process
+              </h2>
+              
+              {/* Step Cards */}
+              <div className="space-y-4">
                 {heroSlides.map((slide, index) => (
                   <div 
                     key={index}
-                    className={`transition-opacity duration-500 ${
-                      activeSlide === index ? 'opacity-100' : 'opacity-0 hidden'
-                    }`}
+                    className="bg-white dark:bg-dark-card p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
                   >
-                    <div className="flex flex-col sm:flex-row sm:items-center mb-6">
-                      <div className="w-12 h-12 bg-accent-orange flex items-center justify-center rounded-full text-white text-xl font-bold mb-4 sm:mb-0 sm:mr-4 mx-auto sm:mx-0">
+                    <div className="flex items-start mb-2">
+                      <div className="w-8 h-8 bg-accent-orange flex items-center justify-center rounded-full text-white text-lg font-bold mr-3 flex-shrink-0">
                         {index + 1}
                       </div>
-                      <h1 className="text-3xl md:text-4xl font-bold leading-tight text-center sm:text-left">
-                        <span className="text-dark-green dark:text-light-green">{slide.title}</span>
-                      </h1>
+                      <div>
+                        <h3 className="text-lg font-bold text-dark-green dark:text-light-green">
+                          {slide.title}
+                        </h3>
+                        <p className="text-sm text-text-medium dark:text-dark-text-medium mt-1">
+                          {slide.description}
+                        </p>
+                      </div>
                     </div>
-                    
-                    <p className="text-lg md:text-xl text-text-medium dark:text-dark-text-medium mb-8 text-center sm:text-left ml-0 sm:ml-16">
-                      {slide.description}
-                    </p>
                   </div>
                 ))}
               </div>
               
-              {/* Slide Navigation Dots */}
-              <div className="flex justify-center space-x-2 mt-4 mb-8">
-                {heroSlides.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setActiveSlide(index)}
-                    className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                      activeSlide === index 
-                        ? 'bg-dark-green dark:bg-light-green scale-110' 
-                        : 'bg-gray-300 dark:bg-gray-600 opacity-50'
-                    }`}
-                    aria-label={`Go to slide ${index + 1}`}
-                  />
-                ))}
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 mt-8">
+                <Button
+                  onClick={() => scrollToSection('get-started')}
+                  className="py-3 px-6 bg-accent-orange hover:bg-orange-600 text-white rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 text-center font-medium"
+                >
+                  Start 14-Day Trial
+                </Button>
+                <Button
+                  onClick={() => scrollToSection('how-it-works')}
+                  variant="outline"
+                  className="py-3 px-6 border-2 border-dark-green dark:border-light-green text-dark-green dark:text-light-green rounded-lg hover:bg-dark-green hover:text-white dark:hover:bg-light-green dark:hover:text-dark-bg transition-colors duration-200 text-center font-medium"
+                >
+                  See How It Works
+                </Button>
               </div>
             </div>
-            
-            {/* Location content has been removed as requested */}
-            
-            <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-8">
-              <Button
-                onClick={() => scrollToSection('get-started')}
-                className="py-3 px-8 bg-accent-orange hover:bg-orange-600 text-white rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 text-center font-medium"
-              >
-                Start 14-Day Trial
-              </Button>
-              <Button
-                onClick={() => scrollToSection('how-it-works')}
-                variant="outline"
-                className="py-3 px-8 border-2 border-dark-green dark:border-light-green text-dark-green dark:text-light-green rounded-lg hover:bg-dark-green hover:text-white dark:hover:bg-light-green dark:hover:text-dark-bg transition-colors duration-200 text-center font-medium"
-              >
-                See How It Works
-              </Button>
-            </div>
-            
-{/* User profiles section - commented out until we have real users
-            <div className="mt-8 flex items-center space-x-4">
-              <div className="flex -space-x-2">
-                <div className="w-10 h-10 rounded-full border-2 border-white dark:border-dark-bg bg-gray-300 flex items-center justify-center overflow-hidden">
-                  <img 
-                    src="https://randomuser.me/api/portraits/women/44.jpg" 
-                    alt="User" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="w-10 h-10 rounded-full border-2 border-white dark:border-dark-bg bg-gray-300 flex items-center justify-center overflow-hidden">
-                  <img 
-                    src="https://randomuser.me/api/portraits/men/86.jpg" 
-                    alt="User" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="w-10 h-10 rounded-full border-2 border-white dark:border-dark-bg bg-gray-300 flex items-center justify-center overflow-hidden">
-                  <img 
-                    src="https://randomuser.me/api/portraits/women/63.jpg" 
-                    alt="User" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-              <p className="text-sm text-text-medium dark:text-dark-text-medium">
-                <span className="font-bold">10,000+</span> traders already using CryptoTrend
-              </p>
-            </div>
-            */}
-          </div>
-          
-          <div className="order-1 md:order-2 relative">
-            <div className="relative z-10 bg-white dark:bg-dark-card rounded-2xl shadow-xl overflow-hidden">
-              <div className="bg-gradient-to-r from-dark-green to-light-green dark:from-dark-accent dark:to-light-green p-1">
-                <div className="flex items-center space-x-2 p-2">
-                  <div className="flex space-x-1">
-                    <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                    <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                    <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                  </div>
-                  <div className="text-white text-xs">CryptoTrend Alpha Dashboard</div>
-                </div>
-              </div>
-              <div className="w-full h-64 sm:h-72 md:h-80 flex items-center justify-center overflow-hidden bg-white dark:bg-dark-card rounded-b-xl">
-                {/* Simple chart visualization */}
-                <div className="w-full h-full p-4 md:p-6 flex flex-col">
-                  <div className="flex justify-between items-center mb-2 md:mb-4">
-                    <div className="text-sm font-medium text-gray-700 dark:text-gray-300">Strategy Performance</div>
-                    <div className="px-2 py-0.5 text-xs bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 rounded">5Y</div>
-                  </div>
-                  
-                  {/* Chart visualization - modified for better responsiveness */}
-                  <div className="flex-1 relative mx-auto max-w-md">
-                    <svg 
-                      className="w-full h-full" 
-                      height="160"
-                      viewBox="0 0 400 200" 
-                      preserveAspectRatio="xMidYMid meet"
-                    >
-                      {/* Strategy performance line area */}
-                      <path 
-                        d="M0,180 C40,160 80,100 120,80 C160,60 200,40 240,30 C280,20 320,50 360,20 L360,200 L0,200 Z" 
-                        className="fill-green-500/10 dark:fill-green-500/20"
-                      />
-                      
-                      {/* Strategy performance line */}
-                      <path 
-                        d="M0,180 C40,160 80,100 120,80 C160,60 200,40 240,30 C280,20 320,50 360,20" 
-                        fill="none" 
-                        className="stroke-green-500 dark:stroke-green-400"
-                        strokeWidth="3"
-                        strokeLinecap="round"
-                      />
-                      
-                      {/* Benchmark line (S&P 500) */}
-                      <path 
-                        d="M0,180 C40,170 80,150 120,140 C160,130 200,110 240,120 C280,130 320,100 360,90" 
-                        fill="none" 
-                        className="stroke-gray-400 dark:stroke-gray-500"
-                        strokeWidth="2" 
-                        strokeDasharray="5,5"
-                      />
-                    </svg>
-                    
-                    {/* Y-axis labels simplified */}
-                    <div className="absolute top-0 left-0 text-xs text-gray-500 dark:text-gray-400">+600%</div>
-                    <div className="absolute bottom-0 left-0 text-xs text-gray-500 dark:text-gray-400">0%</div>
-                  </div>
-                  
-                  {/* Legend */}
-                  <div className="flex justify-between mt-4">
-                    <div className="flex items-center">
-                      <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
-                      <span className="text-xs text-gray-700 dark:text-gray-300">Strategy (+610.68%)</span>
-                    </div>
-                    <div className="flex items-center">
-                      <div className="w-3 h-3 bg-gray-400 rounded-full mr-2"></div>
-                      <span className="text-xs text-gray-700 dark:text-gray-300">S&P 500 (+75.71%)</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            {/* Decorative elements */}
-            <div className="absolute -z-10 top-1/2 right-1/2 transform translate-x-20 -translate-y-1/2 w-64 h-64 bg-accent-orange opacity-10 rounded-full blur-3xl"></div>
-            <div className="absolute -z-10 top-1/4 left-1/4 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-light-green opacity-10 rounded-full blur-3xl"></div>
           </div>
         </div>
       </div>
