@@ -8,6 +8,14 @@ import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { useToast } from '@/hooks/use-toast';
 
+// Extend HTMLAttributes to support Netlify form attributes
+declare module 'react' {
+  interface HTMLAttributes<T> {
+    'data-netlify'?: boolean | string;
+    'data-netlify-honeypot'?: string;
+  }
+}
+
 // Define validation schema
 const signupSchema = z.object({
   firstName: z.string().min(2, 'First name is required'),
@@ -52,28 +60,44 @@ const CTASection: React.FC = () => {
     setTermsError(null);
     setIsSubmitting(true);
     
-    try {
-      // Just show success message in development
-      console.log('Form submitted:', data);
+    // Log data for development purposes
+    console.log('Form submitted:', data);
+    
+    // In development environment (localhost or Replit), we'll show a toast notification
+    // instead of actually submitting the form
+    if (window.location.hostname === 'localhost' || window.location.hostname.includes('replit')) {
+      try {
+        // Simulate form submission in development
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        toast({
+          title: "Account created! (Development mode)",
+          description: "In production, this form would be processed by Netlify Forms.",
+          variant: "default",
+        });
+        
+        reset();
+        setIsSubmitting(false);
+      } catch (error) {
+        console.error('Error in development form simulation:', error);
+        toast({
+          title: "Something went wrong",
+          description: "Please try again later.",
+          variant: "destructive",
+        });
+        setIsSubmitting(false);
+      }
       
-      toast({
-        title: "Account created!",
-        description: "Check your email for further instructions.",
-        variant: "default",
-      });
-      
-      // Reset form
-      reset();
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      toast({
-        title: "Something went wrong",
-        description: "Please try again later.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
+      // Stop here in development mode - don't try to submit the form
+      return;
     }
+    
+    // In production, we let the native form submission happen
+    // Netlify will intercept the form submission automatically
+    // The page will redirect to /success as specified in the form's action attribute
+    
+    // Note: We don't need to manually handle form submission or call preventDefault()
+    // as Netlify Forms works with the native HTML form submission
   };
 
   return (
@@ -90,21 +114,14 @@ const CTASection: React.FC = () => {
           {/* Sign Up Form */}
           <div className="bg-white dark:bg-dark-card rounded-xl shadow-lg p-8 max-w-2xl mx-auto">
             <h3 className="text-xl font-bold mb-6 text-dark-green dark:text-light-green">Create Your Account</h3>
-            {/* Hidden form for Netlify form detection */}
-            <form name="signup" data-netlify="true" netlify-honeypot="bot-field" hidden>
-              <input type="text" name="firstName" />
-              <input type="text" name="lastName" />
-              <input type="email" name="email" />
-              <input type="password" name="password" />
-              <input type="checkbox" name="terms" />
-            </form>
-            
             <form 
               className="space-y-4" 
               onSubmit={handleSubmit(onSubmit)}
               method="POST" 
+              name="signup"
               data-netlify="true"
-              netlify-honeypot="bot-field"
+              data-netlify-honeypot="bot-field"
+              action="/success"
             >
               {/* Netlify form handling */}
               <input type="hidden" name="form-name" value="signup" />
