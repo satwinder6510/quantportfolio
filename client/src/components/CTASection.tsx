@@ -21,7 +21,7 @@ const signupSchema = z.object({
 type SignupFormData = z.infer<typeof signupSchema>;
 
 const CTASection: React.FC = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm<SignupFormData>({
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<SignupFormData>({
     resolver: zodResolver(signupSchema),
     defaultValues: {
       firstName: '',
@@ -38,7 +38,7 @@ const CTASection: React.FC = () => {
   const onSubmit = async (data: SignupFormData) => {
     setIsSubmitting(true);
     try {
-      // Normally we'd send this to the server, but for the demo we'll just show a success message
+      // Just show success message in development
       console.log('Form submitted:', data);
       
       toast({
@@ -47,7 +47,8 @@ const CTASection: React.FC = () => {
         variant: "default",
       });
       
-      // Reset form (would typically be handled by react-hook-form reset)
+      // Reset form
+      reset();
     } catch (error) {
       console.error('Error submitting form:', error);
       toast({
@@ -74,7 +75,28 @@ const CTASection: React.FC = () => {
           {/* Sign Up Form */}
           <div className="bg-white dark:bg-dark-card rounded-xl shadow-lg p-8 max-w-2xl mx-auto">
             <h3 className="text-xl font-bold mb-6 text-dark-green dark:text-light-green">Create Your Account</h3>
-            <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
+            {/* Hidden form for Netlify form detection */}
+            <form name="signup" data-netlify="true" netlify-honeypot="bot-field" hidden>
+              <input type="text" name="firstName" />
+              <input type="text" name="lastName" />
+              <input type="email" name="email" />
+              <input type="password" name="password" />
+              <input type="checkbox" name="terms" />
+            </form>
+            
+            <form 
+              className="space-y-4" 
+              onSubmit={handleSubmit(onSubmit)}
+              method="POST" 
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+            >
+              {/* Netlify form handling */}
+              <input type="hidden" name="form-name" value="signup" />
+              <div hidden>
+                <input name="bot-field" />
+              </div>
+              
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="firstName" className="block text-sm font-medium text-text-medium dark:text-dark-text-medium mb-1">
