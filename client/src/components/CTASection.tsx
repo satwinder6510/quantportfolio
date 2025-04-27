@@ -60,8 +60,8 @@ const CTASection: React.FC = () => {
     setTermsError(null);
     setIsSubmitting(true);
     
-    // Log data for development purposes
-    console.log('Form submitted:', data);
+    // Log only that form was submitted (no personal data or passwords)
+    console.log('Form submission initiated');
     
     // In development environment (localhost or Replit), we'll show a toast notification
     // instead of actually submitting the form
