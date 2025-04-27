@@ -43,44 +43,44 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section className="py-16 md:py-24 overflow-hidden relative" id="hero">
+    <section className="py-10 md:py-14 overflow-hidden relative" id="hero">
       <div className="container mx-auto px-4">
         {/* We're changing the layout to give the chart more visual space */}
         <div className="flex flex-col items-center">
           {/* Title Section - Compact Header */}
-          <div className="w-full text-center mb-6">
-            <h1 className="text-3xl md:text-5xl font-bold text-dark-green dark:text-light-green mb-4">
+          <div className="w-full text-center mb-3">
+            <h1 className="text-2xl md:text-4xl font-bold text-dark-green dark:text-light-green mb-2">
               Automated Crypto Trading <span className="text-accent-orange">in 5 Minutes Daily</span>
             </h1>
-            <p className="text-lg md:text-xl text-text-medium dark:text-dark-text-medium max-w-3xl mx-auto">
+            <p className="text-base md:text-lg text-text-medium dark:text-dark-text-medium max-w-2xl mx-auto">
               Our intelligent algorithm analyzes the market and delivers clear trading signals right to your dashboard.
             </p>
           </div>
           
           {/* Main Content - Enlarged Chart & 4-Steps Side by Side */}
-          <div className="w-full grid md:grid-cols-5 gap-8 mt-6">
+          <div className="w-full grid md:grid-cols-5 gap-4 mt-4">
             {/* Enlarged Chart - Takes 3/5 of the space */}
             <div className="md:col-span-3 order-1 relative">
-              <div className="relative z-10 bg-white dark:bg-dark-card rounded-2xl shadow-xl overflow-hidden h-full">
-                <div className="bg-gradient-to-r from-dark-green to-light-green dark:from-dark-accent dark:to-light-green p-1">
-                  <div className="flex items-center justify-between px-4 py-3">
-                    <div className="flex items-center space-x-3">
+              <div className="relative z-10 bg-white dark:bg-dark-card rounded-xl shadow-lg overflow-hidden h-full">
+                <div className="bg-gradient-to-r from-dark-green to-light-green dark:from-dark-accent dark:to-light-green p-0.5">
+                  <div className="flex items-center justify-between px-3 py-2">
+                    <div className="flex items-center space-x-2">
                       <div className="flex space-x-1">
-                        <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                        <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                        <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                        <div className="w-2 h-2 rounded-full bg-red-500"></div>
+                        <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
+                        <div className="w-2 h-2 rounded-full bg-green-500"></div>
                       </div>
-                      <div className="text-white font-medium">Strategy Equity Curve</div>
+                      <div className="text-white font-medium text-sm">Strategy Equity Curve</div>
                     </div>
                     <div className="flex space-x-2">
-                      <div className="px-2 py-1 text-xs bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-200 rounded">Jan 2021 - Apr 2025</div>
+                      <div className="px-2 py-0.5 text-xs bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-200 rounded">Jan 2021 - Apr 2025</div>
                     </div>
                   </div>
                 </div>
                 
-                <div className="w-full h-[400px] flex items-center justify-center overflow-hidden bg-white dark:bg-dark-card rounded-b-xl">
+                <div className="w-full h-[350px] flex items-center justify-center overflow-hidden bg-white dark:bg-dark-card rounded-b-xl">
                   {/* Enhanced Equity Curve Chart */}
-                  <div className="w-full h-full p-6 flex flex-col">
+                  <div className="w-full h-full p-3 flex flex-col">
                     {/* Chart visualization - Made much larger */}
                     <div className="flex-1 relative mx-auto w-full">
                       <svg 
@@ -95,18 +95,18 @@ const Hero: React.FC = () => {
                         <line x1="60" y1="40" x2="60" y2="360" stroke="#888" strokeWidth="1" />
                         
                         {/* X-axis labels */}
-                        <text x="60" y="380" fontSize="12" fill="currentColor" className="text-gray-500 dark:text-gray-400">Jan 2021</text>
-                        <text x="240" y="380" fontSize="12" fill="currentColor" className="text-gray-500 dark:text-gray-400">Jan 2022</text>
-                        <text x="420" y="380" fontSize="12" fill="currentColor" className="text-gray-500 dark:text-gray-400">Jan 2023</text>
-                        <text x="600" y="380" fontSize="12" fill="currentColor" className="text-gray-500 dark:text-gray-400">Jan 2024</text>
-                        <text x="760" y="380" fontSize="12" textAnchor="end" fill="currentColor" className="text-gray-500 dark:text-gray-400">Apr 2025</text>
+                        <text x="60" y="380" fontSize="10" fill="currentColor" className="text-gray-500 dark:text-gray-400">Jan 2021</text>
+                        <text x="240" y="380" fontSize="10" fill="currentColor" className="text-gray-500 dark:text-gray-400">Jan 2022</text>
+                        <text x="420" y="380" fontSize="10" fill="currentColor" className="text-gray-500 dark:text-gray-400">Jan 2023</text>
+                        <text x="600" y="380" fontSize="10" fill="currentColor" className="text-gray-500 dark:text-gray-400">Jan 2024</text>
+                        <text x="760" y="380" fontSize="10" textAnchor="end" fill="currentColor" className="text-gray-500 dark:text-gray-400">Apr 2025</text>
                         
                         {/* Y-axis labels */}
-                        <text x="50" y="360" textAnchor="end" fontSize="12" fill="currentColor" className="text-gray-500 dark:text-gray-400">0%</text>
-                        <text x="50" y="280" textAnchor="end" fontSize="12" fill="currentColor" className="text-gray-500 dark:text-gray-400">+150%</text>
-                        <text x="50" y="200" textAnchor="end" fontSize="12" fill="currentColor" className="text-gray-500 dark:text-gray-400">+300%</text>
-                        <text x="50" y="120" textAnchor="end" fontSize="12" fill="currentColor" className="text-gray-500 dark:text-gray-400">+450%</text>
-                        <text x="50" y="40" textAnchor="end" fontSize="12" fill="currentColor" className="text-gray-500 dark:text-gray-400">+600%</text>
+                        <text x="50" y="360" textAnchor="end" fontSize="10" fill="currentColor" className="text-gray-500 dark:text-gray-400">0%</text>
+                        <text x="50" y="280" textAnchor="end" fontSize="10" fill="currentColor" className="text-gray-500 dark:text-gray-400">+150%</text>
+                        <text x="50" y="200" textAnchor="end" fontSize="10" fill="currentColor" className="text-gray-500 dark:text-gray-400">+300%</text>
+                        <text x="50" y="120" textAnchor="end" fontSize="10" fill="currentColor" className="text-gray-500 dark:text-gray-400">+450%</text>
+                        <text x="50" y="40" textAnchor="end" fontSize="10" fill="currentColor" className="text-gray-500 dark:text-gray-400">+600%</text>
                         
                         {/* Gridlines */}
                         <line x1="60" y1="280" x2="780" y2="280" stroke="#888" strokeWidth="0.5" strokeDasharray="4,4" />
@@ -140,14 +140,14 @@ const Hero: React.FC = () => {
                     </div>
                     
                     {/* Legend */}
-                    <div className="flex justify-between mt-2">
+                    <div className="flex justify-between mt-1">
                       <div className="flex items-center">
-                        <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
-                        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Strategy Equity (+610.68%)</span>
+                        <div className="w-3 h-3 bg-green-500 rounded-full mr-1"></div>
+                        <span className="text-xs font-medium text-gray-700 dark:text-gray-300">Strategy Equity (+610.68%)</span>
                       </div>
                       <div className="flex items-center">
-                        <div className="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
-                        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Key Entry Points</span>
+                        <div className="w-3 h-3 bg-yellow-500 rounded-full mr-1"></div>
+                        <span className="text-xs font-medium text-gray-700 dark:text-gray-300">Key Entry Points</span>
                       </div>
                     </div>
                   </div>
@@ -161,26 +161,26 @@ const Hero: React.FC = () => {
             
             {/* Steps - Takes 2/5 of the space */}
             <div className="md:col-span-2 order-2 md:order-2 flex flex-col justify-center">
-              <h2 className="text-2xl font-bold text-dark-green dark:text-light-green mb-6">
+              <h2 className="text-xl font-bold text-dark-green dark:text-light-green mb-3">
                 4-Step Process
               </h2>
               
               {/* Step Cards */}
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {heroSlides.map((slide, index) => (
                   <div 
                     key={index}
-                    className="bg-white dark:bg-dark-card p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
+                    className="bg-white dark:bg-dark-card p-3 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
                   >
-                    <div className="flex items-start mb-2">
-                      <div className="w-8 h-8 bg-accent-orange flex items-center justify-center rounded-full text-white text-lg font-bold mr-3 flex-shrink-0">
+                    <div className="flex items-start">
+                      <div className="w-6 h-6 bg-accent-orange flex items-center justify-center rounded-full text-white text-sm font-bold mr-2 flex-shrink-0">
                         {index + 1}
                       </div>
                       <div>
-                        <h3 className="text-lg font-bold text-dark-green dark:text-light-green">
+                        <h3 className="text-base font-bold text-dark-green dark:text-light-green">
                           {slide.title}
                         </h3>
-                        <p className="text-sm text-text-medium dark:text-dark-text-medium mt-1">
+                        <p className="text-xs text-text-medium dark:text-dark-text-medium mt-0.5">
                           {slide.description}
                         </p>
                       </div>
@@ -190,17 +190,17 @@ const Hero: React.FC = () => {
               </div>
               
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 mt-8">
+              <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3 mt-4">
                 <Button
                   onClick={() => scrollToSection('get-started')}
-                  className="py-3 px-6 bg-accent-orange hover:bg-orange-600 text-white rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 text-center font-medium"
+                  className="py-2 px-4 bg-accent-orange hover:bg-orange-600 text-white rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 text-center font-medium"
                 >
                   Start 14-Day Trial
                 </Button>
                 <Button
                   onClick={() => scrollToSection('how-it-works')}
                   variant="outline"
-                  className="py-3 px-6 border-2 border-dark-green dark:border-light-green text-dark-green dark:text-light-green rounded-lg hover:bg-dark-green hover:text-white dark:hover:bg-light-green dark:hover:text-dark-bg transition-colors duration-200 text-center font-medium"
+                  className="py-2 px-4 border-2 border-dark-green dark:border-light-green text-dark-green dark:text-light-green rounded-lg hover:bg-dark-green hover:text-white dark:hover:bg-light-green dark:hover:text-dark-bg transition-colors duration-200 text-center font-medium"
                 >
                   See How It Works
                 </Button>
@@ -210,9 +210,9 @@ const Hero: React.FC = () => {
         </div>
       </div>
       
-      {/* Wave Separator */}
+      {/* Wave Separator - reduced height */}
       <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] transform rotate-180">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-full h-[60px]">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-full h-[30px]">
           <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className="fill-gray-50 dark:fill-dark-accent opacity-30"></path>
         </svg>
       </div>
