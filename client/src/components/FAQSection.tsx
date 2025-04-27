@@ -9,15 +9,15 @@ import {
 const FAQSection: React.FC = () => {
   const faqs = [
     {
-      question: "Is CryptoTrend Alpha a financial advisor?",
-      answer: "No, CryptoTrend Alpha is not a registered investment advisor, broker-dealer, or financial consultant. We provide informational trading signals only. We do not offer personalized financial advice, portfolio management, or recommendations tailored to your specific circumstances. All trading decisions should be made at your own discretion, and we strongly recommend consulting with a qualified financial professional before making investment decisions."
+      question: "Is QuantPortfol.io a financial advisor?",
+      answer: "No, QuantPortfol.io is not a registered investment advisor, broker-dealer, or financial consultant. We provide informational trading signals only. We do not offer personalized financial advice, portfolio management, or recommendations tailored to your specific circumstances. All trading decisions should be made at your own discretion, and we strongly recommend consulting with a qualified financial professional before making investment decisions."
     },
     {
       question: "How much time do I need to spend trading each day?",
       answer: "Just 5 minutes. Our algorithm generates clear buy, sell, and hold signals that you can execute at your convenience during the day. Unlike day trading that requires constant monitoring, our signals are not time-sensitive and can be implemented when it's convenient for you."
     },
     {
-      question: "Do I need trading experience to use CryptoTrend Alpha?",
+      question: "Do I need trading experience to use QuantPortfol.io?",
       answer: "No trading experience is necessary. Our platform is designed for beginners and experienced traders alike. The signals are simple to follow, and our system handles all the complex technical analysis behind the scenes."
     },
     {
@@ -26,7 +26,7 @@ const FAQSection: React.FC = () => {
     },
     {
       question: "What exchanges are supported?",
-      answer: "CryptoTrend Alpha supports all major cryptocurrency exchanges, including Binance, Coinbase Pro, Kraken, and others. You can connect your preferred exchange through our secure API integration that uses read-only permissions for maximum security."
+      answer: "QuantPortfol.io supports all major cryptocurrency exchanges, including Binance, Coinbase Pro, Kraken, and others. You can connect your preferred exchange through our secure API integration that uses read-only permissions for maximum security."
     },
     {
       question: "How secure is my account and trading data?",
@@ -54,7 +54,7 @@ const FAQSection: React.FC = () => {
             Frequently <span className="text-light-green dark:text-accent-orange">Asked Questions</span>
           </h2>
           <p className="text-text-medium dark:text-dark-text-medium max-w-2xl mx-auto">
-            Get answers to the most common questions about CryptoTrend Alpha and start your journey to effortless crypto trading.
+            Get answers to the most common questions about QuantPortfol.io and start your journey to effortless crypto trading.
           </p>
         </div>
 

@@ -48,7 +48,7 @@ export const RegionContent: Record<Region, React.ReactNode> = {
   other: (
     <div className="bg-white dark:bg-dark-card p-4 rounded-lg shadow-md mb-8 border-l-4 border-light-green fade-in">
       <p className="text-sm text-text-medium dark:text-dark-text-medium">
-        <span className="font-bold text-light-green">🌍 Welcome to CryptoTrend Alpha!</span> Our global platform supports multiple currencies and exchanges.
+        <span className="font-bold text-light-green">🌍 Welcome to QuantPortfol.io!</span> Our global platform supports multiple currencies and exchanges.
       </p>
     </div>
   ),

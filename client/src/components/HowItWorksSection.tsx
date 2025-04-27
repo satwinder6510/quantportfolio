@@ -10,7 +10,7 @@ const HowItWorksSection: React.FC = () => {
     {
       number: '2',
       title: 'Connect Your Exchange (Optional)',
-      description: 'Securely link your preferred crypto exchanges through read-only API connections if you want to easily monitor your portfolios. CryptoTrend Alpha never has permission to trade on your behalf or withdraw funds.'
+      description: 'Securely link your preferred crypto exchanges through read-only API connections if you want to easily monitor your portfolios. QuantPortfol.io never has permission to trade on your behalf or withdraw funds.'
     },
     {
       number: '3',
@@ -32,7 +32,7 @@ const HowItWorksSection: React.FC = () => {
             How <span className="text-light-green dark:text-accent-orange">It Works</span>
           </h2>
           <p className="text-text-medium dark:text-dark-text-medium max-w-2xl mx-auto">
-            Get started with CryptoTrend Alpha in just a few simple steps. Our algorithm delivers daily signals that only take <span className="font-bold text-dark-green dark:text-light-green">5 minutes</span> of your time to execute.
+            Get started with QuantPortfol.io in just a few simple steps. Our algorithm delivers daily signals that only take <span className="font-bold text-dark-green dark:text-light-green">5 minutes</span> of your time to execute.
           </p>
         </div>
         
@@ -74,7 +74,7 @@ const HowItWorksSection: React.FC = () => {
               <div className="mt-4 p-5 md:p-6 border border-gray-200 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-800">
                 <h4 className="text-lg font-semibold mb-3 text-dark-green dark:text-light-green text-center">Important Notice:</h4>
                 <p className="text-sm text-text-medium dark:text-dark-text-medium leading-relaxed">
-                  CryptoTrend Alpha provides informational trading signals only.
+                  QuantPortfol.io provides informational trading signals only.
                   We do not offer financial advice, portfolio management, or brokerage services.
                   Trading cryptocurrencies involves substantial risk of loss and may not be suitable for every investor.
                   Past performance is not indicative of future results.
