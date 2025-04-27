@@ -8,19 +8,23 @@ const Hero: React.FC = () => {
   const { region, isLoading, error, locationEnabled, enableLocation } = useLocation();
   const [activeSlide, setActiveSlide] = useState(0);
 
-  // Hero rotating messages
+  // Hero rotating messages based on our 4-step process
   const heroSlides = [
     {
-      title: 'Automated Crypto Trading in 5 Minutes Daily',
-      description: 'Our proprietary algorithm delivers 53.5% return over 5 years while saving you hours of screen time and emotional stress.'
+      title: 'Create Your Account',
+      description: 'Sign up in minutes with your email address. Secure your account with two-factor authentication to protect your data.'
     },
     {
-      title: 'Zero Learning Curve Required',
-      description: 'Start trading immediately with our intuitive platform. No technical analysis skills needed—our algorithm handles the complex work while you make simple decisions.'
+      title: 'Connect Your Exchange (Optional)',
+      description: 'Securely link your preferred crypto exchanges through read-only API connections if you want to easily monitor your portfolios. CryptoTrend Alpha never has permission to trade on your behalf or withdraw funds.'
     },
     {
-      title: 'Get Results, Not Complexity',
-      description: 'Skip the years of learning technical analysis. Our algorithm has condensed expert trading knowledge into simple buy, sell, and hold signals you can follow in minutes.'
+      title: 'Review Daily Trading Signals',
+      description: 'Each day, receive clear buy/sell signal recommendations on your dashboard. These signals are generated using historical analysis of price trends, market structure, momentum, and volatility.'
+    },
+    {
+      title: 'Execute Your Trades',
+      description: 'Choose whether and when to act on the provided signals via your own exchange account. There is no time pressure — signals remain valid throughout the trading day.'
     }
   ];
   
@@ -47,7 +51,7 @@ const Hero: React.FC = () => {
           <div className="order-2 md:order-1">
             {/* Sliding Content */}
             <div className="relative">
-              <div className="min-h-[220px] md:min-h-[240px]">
+              <div className="min-h-[320px] md:min-h-[360px]">
                 {heroSlides.map((slide, index) => (
                   <div 
                     key={index}
@@ -55,28 +59,16 @@ const Hero: React.FC = () => {
                       activeSlide === index ? 'opacity-100' : 'opacity-0 hidden'
                     }`}
                   >
-                    <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold mb-6 leading-tight">
-                      {index === 0 ? (
-                        <>
-                          <span>Automated Crypto Trading in </span>
-                          <span className="text-dark-green dark:text-light-green">5 Minutes</span>
-                          <span> Daily</span>
-                        </>
-                      ) : index === 1 ? (
-                        <>
-                          <span className="text-dark-green dark:text-light-green">Zero</span>
-                          <span> Learning Curve Required</span>
-                        </>
-                      ) : (
-                        <>
-                          <span>Get </span>
-                          <span className="text-dark-green dark:text-light-green">Results</span>
-                          <span>, Not Complexity</span>
-                        </>
-                      )}
-                    </h1>
+                    <div className="flex flex-col sm:flex-row sm:items-center mb-6">
+                      <div className="w-12 h-12 bg-accent-orange flex items-center justify-center rounded-full text-white text-xl font-bold mb-4 sm:mb-0 sm:mr-4 mx-auto sm:mx-0">
+                        {index + 1}
+                      </div>
+                      <h1 className="text-3xl md:text-4xl font-bold leading-tight text-center sm:text-left">
+                        <span className="text-dark-green dark:text-light-green">{slide.title}</span>
+                      </h1>
+                    </div>
                     
-                    <p className="text-lg md:text-xl text-text-medium dark:text-dark-text-medium mb-8">
+                    <p className="text-lg md:text-xl text-text-medium dark:text-dark-text-medium mb-8 text-center sm:text-left ml-0 sm:ml-16">
                       {slide.description}
                     </p>
                   </div>
