@@ -152,8 +152,8 @@ const Hero: React.FC = () => {
                     </div>
                     
                     {/* Disclaimer about historical data */}
-                    <div className="text-center mt-2">
-                      <span className="text-xs text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/30 px-2 py-0.5 rounded">
+                    <div className="text-center mt-1">
+                      <span className="text-[10px] text-amber-600 dark:text-amber-400">
                         Based on historical backtest data. Past performance is not indicative of future results.
                       </span>
                     </div>
