@@ -43,14 +43,14 @@ const HowItWorksSection: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
             {steps.map((step, index) => (
               <div key={index} className="relative">
-                <div className="bg-white dark:bg-dark-card rounded-xl shadow-md p-6 relative z-10">
+                <div className="bg-white dark:bg-dark-card rounded-xl shadow-md p-6 relative z-10 flex flex-col h-full">
                   <div className="w-16 h-16 bg-accent-orange flex items-center justify-center rounded-full text-white text-2xl font-bold mb-6 mx-auto lg:mx-0">
                     {step.number}
                   </div>
                   <h3 className="text-xl font-bold mb-3 text-dark-green dark:text-light-green text-center lg:text-left">
                     {step.title}
                   </h3>
-                  <p className="text-text-medium dark:text-dark-text-medium text-center lg:text-left">
+                  <p className="text-text-medium dark:text-dark-text-medium text-center lg:text-left flex-grow">
                     {step.description}
                   </p>
                 </div>
@@ -58,16 +58,22 @@ const HowItWorksSection: React.FC = () => {
             ))}
           </div>
           
-          <div className="mt-12 max-w-4xl mx-auto">
-            <div className="bg-white dark:bg-dark-card rounded-xl shadow-md p-6 md:p-8">
+          <div className="mt-16 max-w-4xl mx-auto">
+            <div className="bg-white dark:bg-dark-card rounded-xl shadow-md p-6 md:p-8 flex flex-col">
+              <div className="w-16 h-16 bg-accent-orange flex items-center justify-center rounded-full text-white text-2xl font-bold mb-6 mx-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              
               <h3 className="text-xl font-semibold mb-3 text-dark-green dark:text-light-green text-center">Typical daily routine:</h3>
-              <p className="text-text-medium dark:text-dark-text-medium mb-4 text-center">
+              <p className="text-text-medium dark:text-dark-text-medium mb-8 text-center">
                 ✅ Log in → ✅ Check today's signals → ✅ Decide and execute in ~5 minutes.
               </p>
               
-              <div className="mt-8 p-4 md:p-6 border border-gray-200 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-800">
-                <h4 className="text-lg font-semibold mb-2 text-dark-green dark:text-light-green text-center md:text-left">Important Notice:</h4>
-                <p className="text-sm text-text-medium dark:text-dark-text-medium">
+              <div className="mt-4 p-5 md:p-6 border border-gray-200 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-800">
+                <h4 className="text-lg font-semibold mb-3 text-dark-green dark:text-light-green text-center">Important Notice:</h4>
+                <p className="text-sm text-text-medium dark:text-dark-text-medium leading-relaxed">
                   CryptoTrend Alpha provides informational trading signals only.
                   We do not offer financial advice, portfolio management, or brokerage services.
                   Trading cryptocurrencies involves substantial risk of loss and may not be suitable for every investor.
