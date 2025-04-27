@@ -50,6 +50,11 @@ const CTASection: React.FC = () => {
   const [termsError, setTermsError] = useState<string | null>(null);
   const { toast } = useToast();
 
+  // Safe logging function that doesn't log any user data
+  const logFormActivity = () => {
+    console.log('Form submission initiated at:', new Date().toISOString());
+  }
+
   const onSubmit = async (data: SignupFormData) => {
     // Check terms agreement
     if (!data.terms) {
@@ -60,8 +65,8 @@ const CTASection: React.FC = () => {
     setTermsError(null);
     setIsSubmitting(true);
     
-    // Log data for development purposes
-    console.log('Form submitted:', data);
+    // Log submission time with no access to form data
+    logFormActivity();
     
     // In development environment (localhost or Replit), we'll show a toast notification
     // instead of actually submitting the form
