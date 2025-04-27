@@ -21,7 +21,12 @@ const signupSchema = z.object({
   firstName: z.string().min(2, 'First name is required'),
   lastName: z.string().min(2, 'Last name is required'),
   email: z.string().email('Please enter a valid email address'),
-  password: z.string().min(8, 'Password must be at least 8 characters'),
+  password: z.string()
+    .min(8, 'Password must be at least 8 characters')
+    .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
+    .regex(/[a-z]/, 'Password must contain at least one lowercase letter')
+    .regex(/[0-9]/, 'Password must contain at least one number')
+    .regex(/[^A-Za-z0-9]/, 'Password must contain at least one special character'),
   terms: z.boolean()
 });
 
@@ -130,6 +135,8 @@ const CTASection: React.FC = () => {
             >
               {/* Netlify form handling */}
               <input type="hidden" name="form-name" value="signup" />
+              <input type="hidden" name="form-source" value="website" />
+              <input type="hidden" name="submission-time" value={new Date().toISOString()} />
               <div hidden>
                 <input name="bot-field" />
               </div>
@@ -192,8 +199,13 @@ const CTASection: React.FC = () => {
                   className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-light-green dark:focus:ring-accent-orange dark:bg-dark-accent dark:text-white"
                   {...register('password')}
                 />
-                {errors.password && (
+                {errors.password ? (
                   <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>
+                ) : (
+                  <p className="text-gray-500 text-xs mt-1">
+                    Password must be at least 8 characters and include uppercase, lowercase, 
+                    number, and special character.
+                  </p>
                 )}
               </div>
               <div className="flex items-start">
