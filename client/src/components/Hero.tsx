@@ -189,39 +189,21 @@ const Hero: React.FC = () => {
                   <div className="text-white text-xs">CryptoTrend Alpha Dashboard</div>
                 </div>
               </div>
-              <div className="w-full h-64 sm:h-72 md:h-80 flex items-center justify-center overflow-hidden bg-white dark:bg-dark-card">
-                {/* Custom chart visualization */}
-                <div className="w-full h-full p-4">
-                  <div className="flex justify-between mb-2">
-                    <div className="text-sm font-medium text-gray-700 dark:text-gray-300">CryptoTrend Strategy Performance</div>
-                    <div className="flex space-x-2">
-                      <div className="px-2 py-0.5 text-xs bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 rounded">5Y</div>
-                      <div className="px-2 py-0.5 text-xs bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200 rounded">3Y</div>
-                      <div className="px-2 py-0.5 text-xs bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200 rounded">1Y</div>
-                    </div>
+              <div className="w-full h-64 sm:h-72 md:h-80 flex items-center justify-center overflow-hidden bg-white dark:bg-dark-card rounded-b-xl">
+                {/* Simple chart visualization */}
+                <div className="w-full h-full p-6 flex flex-col">
+                  <div className="flex justify-between items-center mb-4">
+                    <div className="text-sm font-medium text-gray-700 dark:text-gray-300">Strategy Performance</div>
+                    <div className="px-2 py-0.5 text-xs bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 rounded">5Y</div>
                   </div>
                   
                   {/* Chart visualization */}
-                  <div className="h-[80%] relative">
+                  <div className="flex-1 relative">
                     <svg 
                       className="w-full h-full" 
                       viewBox="0 0 400 200" 
                       preserveAspectRatio="none"
                     >
-                      {/* Background grid */}
-                      <rect x="0" y="0" width="400" height="200" fill="transparent" />
-                      
-                      {/* Grid lines */}
-                      <line x1="0" y1="40" x2="400" y2="40" className="stroke-gray-200 dark:stroke-gray-700" strokeWidth="1" strokeDasharray="5,5" />
-                      <line x1="0" y1="80" x2="400" y2="80" className="stroke-gray-200 dark:stroke-gray-700" strokeWidth="1" strokeDasharray="5,5" />
-                      <line x1="0" y1="120" x2="400" y2="120" className="stroke-gray-200 dark:stroke-gray-700" strokeWidth="1" strokeDasharray="5,5" />
-                      <line x1="0" y1="160" x2="400" y2="160" className="stroke-gray-200 dark:stroke-gray-700" strokeWidth="1" strokeDasharray="5,5" />
-                      
-                      {/* Vertical grid lines */}
-                      <line x1="100" y1="0" x2="100" y2="200" className="stroke-gray-200 dark:stroke-gray-700" strokeWidth="1" strokeDasharray="5,5" />
-                      <line x1="200" y1="0" x2="200" y2="200" className="stroke-gray-200 dark:stroke-gray-700" strokeWidth="1" strokeDasharray="5,5" />
-                      <line x1="300" y1="0" x2="300" y2="200" className="stroke-gray-200 dark:stroke-gray-700" strokeWidth="1" strokeDasharray="5,5" />
-                      
                       {/* Strategy performance line area */}
                       <path 
                         d="M0,180 C40,160 80,100 120,80 C160,60 200,40 240,30 C280,20 320,50 360,20 L360,200 L0,200 Z" 
@@ -245,30 +227,15 @@ const Hero: React.FC = () => {
                         strokeWidth="2" 
                         strokeDasharray="5,5"
                       />
-                      
-                      {/* Data points on strategy line */}
-                      <circle cx="0" cy="180" r="4" className="fill-white dark:fill-dark-card stroke-green-500 dark:stroke-green-400" strokeWidth="2" />
-                      <circle cx="120" cy="80" r="4" className="fill-white dark:fill-dark-card stroke-green-500 dark:stroke-green-400" strokeWidth="2" />
-                      <circle cx="240" cy="30" r="4" className="fill-white dark:fill-dark-card stroke-green-500 dark:stroke-green-400" strokeWidth="2" />
-                      <circle cx="360" cy="20" r="4" className="fill-white dark:fill-dark-card stroke-green-500 dark:stroke-green-400" strokeWidth="2" />
                     </svg>
                     
-                    {/* Y-axis labels */}
-                    <div className="absolute top-0 left-2 text-xs text-gray-500 dark:text-gray-400">+600%</div>
-                    <div className="absolute top-1/4 left-2 text-xs text-gray-500 dark:text-gray-400">+450%</div>
-                    <div className="absolute top-1/2 left-2 text-xs text-gray-500 dark:text-gray-400">+300%</div>
-                    <div className="absolute top-3/4 left-2 text-xs text-gray-500 dark:text-gray-400">+150%</div>
-                    <div className="absolute bottom-0 left-2 text-xs text-gray-500 dark:text-gray-400">0%</div>
-                    
-                    {/* X-axis labels */}
-                    <div className="absolute bottom-[-20px] left-0 text-xs text-gray-500 dark:text-gray-400">2021</div>
-                    <div className="absolute bottom-[-20px] left-1/4 text-xs text-gray-500 dark:text-gray-400">2022</div>
-                    <div className="absolute bottom-[-20px] left-1/2 text-xs text-gray-500 dark:text-gray-400">2023</div>
-                    <div className="absolute bottom-[-20px] left-3/4 text-xs text-gray-500 dark:text-gray-400">2024</div>
+                    {/* Y-axis labels simplified */}
+                    <div className="absolute top-0 left-0 text-xs text-gray-500 dark:text-gray-400">+600%</div>
+                    <div className="absolute bottom-0 left-0 text-xs text-gray-500 dark:text-gray-400">0%</div>
                   </div>
                   
                   {/* Legend */}
-                  <div className="flex justify-center space-x-6 mt-2">
+                  <div className="flex justify-between mt-4">
                     <div className="flex items-center">
                       <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
                       <span className="text-xs text-gray-700 dark:text-gray-300">Strategy (+610.68%)</span>
