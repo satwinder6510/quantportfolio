@@ -99,6 +99,11 @@ const PerformanceSection: React.FC = () => {
           <p className="text-text-medium dark:text-dark-text-medium max-w-3xl mx-auto text-lg">
             Our algorithm has been backtested across multiple market cycles with consistent results. The following data represents actual backtest results from January 2021 to April 2025.
           </p>
+          <p className="text-amber-600 dark:text-amber-400 max-w-3xl mx-auto mt-2 font-medium">
+            <span className="bg-amber-100 dark:bg-amber-950/30 px-3 py-1 rounded">
+              Historical backtest; no guarantee of future success
+            </span>
+          </p>
         </div>
         
         {/* Return Type Toggle */}
@@ -263,8 +268,8 @@ const PerformanceSection: React.FC = () => {
               </>
             )}
             
-            <p className="text-xs text-text-light dark:text-dark-text-light italic mt-2">
-              Past performance is not indicative of future results. Chart shows backtested performance from January 2021 to April 2025.
+            <p className="text-sm font-medium text-amber-600 dark:text-amber-400 mt-4 bg-amber-50 dark:bg-amber-950/30 p-2 rounded-md">
+              <strong>Disclaimer:</strong> Historical backtest; no guarantee of future success. Past performance is not indicative of future results. Chart shows backtested performance from January 2021 to April 2025.
             </p>
           </div>
         </div>
