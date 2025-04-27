@@ -60,36 +60,44 @@ const CTASection: React.FC = () => {
     setTermsError(null);
     setIsSubmitting(true);
     
-    try {
-      // Log data for development purposes
-      console.log('Form submitted:', data);
-      
-      // In development environment, just show a toast
-      if (window.location.hostname === 'localhost' || window.location.hostname.includes('replit')) {
+    // Log data for development purposes
+    console.log('Form submitted:', data);
+    
+    // In development environment (localhost or Replit), we'll show a toast notification
+    // instead of actually submitting the form
+    if (window.location.hostname === 'localhost' || window.location.hostname.includes('replit')) {
+      try {
+        // Simulate form submission in development
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
         toast({
-          title: "Account created!",
-          description: "This is a development environment. On Netlify, this form would be processed automatically.",
+          title: "Account created! (Development mode)",
+          description: "In production, this form would be processed by Netlify Forms.",
           variant: "default",
         });
+        
         reset();
+        setIsSubmitting(false);
+      } catch (error) {
+        console.error('Error in development form simulation:', error);
+        toast({
+          title: "Something went wrong",
+          description: "Please try again later.",
+          variant: "destructive",
+        });
+        setIsSubmitting(false);
       }
       
-      // In production on Netlify, the form will be handled by Netlify's form processing
-      // We don't need to manually submit it - the native HTML form submission will be
-      // captured by Netlify and processed, with a redirect to the success page.
-      
-      // Note: The form won't be fully processed in development environments
-      // Real form submissions only work when deployed to Netlify
-      
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      toast({
-        title: "Something went wrong",
-        description: "Please try again later.",
-        variant: "destructive",
-      });
-      setIsSubmitting(false);
+      // Stop here in development mode - don't try to submit the form
+      return;
     }
+    
+    // In production, we let the native form submission happen
+    // Netlify will intercept the form submission automatically
+    // The page will redirect to /success as specified in the form's action attribute
+    
+    // Note: We don't need to manually handle form submission or call preventDefault()
+    // as Netlify Forms works with the native HTML form submission
   };
 
   return (
