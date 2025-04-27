@@ -5,7 +5,7 @@
 export function getApiUrl(endpoint: string): string {
   // Check if we're in a Netlify environment
   const isNetlify = window.location.hostname.includes('netlify.app') || 
-                    process.env.NODE_ENV === 'production';
+                    import.meta.env.PROD === true;
   
   // Format the endpoint to ensure it doesn't start with multiple slashes
   const formattedEndpoint = endpoint.startsWith('/') 

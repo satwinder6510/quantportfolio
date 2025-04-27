@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { apiRequest } from '@/lib/queryClient';
+import { getApiUrl } from '@/lib/apiUtils';
 
 type Region = 'unknown' | 'india' | 'us' | 'europe' | 'other';
 
@@ -68,7 +69,8 @@ export const LocationProvider: React.FC<{children: React.ReactNode}> = ({ childr
       setIsLoading(true);
       // Normally you'd make an API call here to a geolocation service
       // For demo purposes, we'll make a call to our server which will handle the IP-based geolocation
-      const res = await apiRequest('GET', `/api/geolocation?lat=${latitude}&lng=${longitude}`, undefined);
+      const apiEndpoint = getApiUrl(`geolocation?lat=${latitude}&lng=${longitude}`);
+      const res = await apiRequest('GET', apiEndpoint, undefined);
       const data = await res.json();
       setRegion(data.region);
     } catch (error) {
@@ -84,7 +86,8 @@ export const LocationProvider: React.FC<{children: React.ReactNode}> = ({ childr
     try {
       setIsLoading(true);
       // Call to our server endpoint which will use IP-based geolocation
-      const res = await apiRequest('GET', `/api/geolocation`, undefined);
+      const apiEndpoint = getApiUrl('geolocation');
+      const res = await apiRequest('GET', apiEndpoint, undefined);
       const data = await res.json();
       setRegion(data.region);
     } catch (error) {
