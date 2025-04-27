@@ -71,7 +71,10 @@ const Footer: React.FC = () => {
           </div>
         </div>
         
-        <div className="pt-8 border-t border-gray-200 dark:border-gray-700">
+        <div className="pt-4 pb-4 border-t border-gray-200 dark:border-gray-700">
+          <div className="text-amber-600 dark:text-amber-400 text-xs mb-4 p-3 bg-amber-50 dark:bg-amber-950/30 rounded-md">
+            <strong>Important Disclaimer:</strong> CryptoTrend Alpha is not a registered investment advisor, broker-dealer, or financial consultant. The information provided is for informational purposes only and does not constitute financial advice, investment recommendations, or an offer to buy or sell any securities. Trading in cryptocurrencies involves substantial risk of loss and is not suitable for every investor. Past performance is not indicative of future results.
+          </div>
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-text-medium dark:text-dark-text-medium text-sm mb-4 md:mb-0">
               &copy; {new Date().getFullYear()} CryptoTrend Alpha. All rights reserved.

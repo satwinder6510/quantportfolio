@@ -9,6 +9,10 @@ import {
 const FAQSection: React.FC = () => {
   const faqs = [
     {
+      question: "Is CryptoTrend Alpha a financial advisor?",
+      answer: "No, CryptoTrend Alpha is not a registered investment advisor, broker-dealer, or financial consultant. We provide informational trading signals only. We do not offer personalized financial advice, portfolio management, or recommendations tailored to your specific circumstances. All trading decisions should be made at your own discretion, and we strongly recommend consulting with a qualified financial professional before making investment decisions."
+    },
+    {
       question: "How much time do I need to spend trading each day?",
       answer: "Just 5 minutes. Our algorithm generates clear buy, sell, and hold signals that you can execute at your convenience during the day. Unlike day trading that requires constant monitoring, our signals are not time-sensitive and can be implemented when it's convenient for you."
     },

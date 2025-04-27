@@ -221,7 +221,7 @@ const Hero: React.FC = () => {
               {/* Disclaimer */}
               <div className="w-full text-center p-2 border-t border-gray-100 dark:border-gray-800">
                 <span className="text-[10px] text-amber-600 dark:text-amber-400">
-                  Past performance is not indicative of future results.
+                  <strong>Disclaimer:</strong> This data is for informational purposes only. CryptoTrend Alpha is not a financial advisor. Past performance is not indicative of future results. Trading cryptocurrencies involves substantial risk of loss.
                 </span>
               </div>
             </div>
