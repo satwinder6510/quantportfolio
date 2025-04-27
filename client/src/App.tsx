@@ -8,11 +8,13 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 import { LocationProvider } from "@/contexts/LocationContext";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
+import Success from "@/pages/Success";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/success" component={Success} />
       <Route component={NotFound} />
     </Switch>
   );
