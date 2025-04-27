@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
+import InfoIcon from './InfoIcon';
+import MetricsInfoModal from './MetricsInfoModal';
 
 const Hero: React.FC = () => {
   const { t } = useLanguage();
   const [activeSlide, setActiveSlide] = useState(0);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [activeMetric, setActiveMetric] = useState<'sharpeRatio' | 'profitFactor' | 'maxDrawdown' | 'winLossRatio'>('sharpeRatio');
+  
+  const showMetricInfo = (metric: 'sharpeRatio' | 'profitFactor' | 'maxDrawdown' | 'winLossRatio') => {
+    setActiveMetric(metric);
+    setModalOpen(true);
+  };
 
   // Hero rotating messages based on our 4-step process
   const heroSlides = [
