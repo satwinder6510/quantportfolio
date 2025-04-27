@@ -7,9 +7,17 @@ const StatsSection: React.FC = () => {
   return (
     <section className="py-16 bg-white dark:bg-dark-accent transition-colors duration-300" id="performance">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-dark-green dark:text-light-green">
-          Our Performance <span className="text-light-green dark:text-accent-orange">in Numbers</span>
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 text-dark-green dark:text-light-green">
+          Historical Signal Model Performance <span className="text-light-green dark:text-accent-orange">(Backtest Results)</span>
         </h2>
+        <p className="text-center text-text-medium dark:text-dark-text-medium max-w-3xl mx-auto mb-6">
+          Performance results below are based on historical backtesting conducted from January 2021 to April 2025.
+        </p>
+        <p className="text-center text-amber-600 dark:text-amber-400 max-w-3xl mx-auto mb-10 font-medium">
+          <span className="bg-amber-100 dark:bg-amber-950/30 px-3 py-1 rounded">
+            Past performance is not indicative of future results. Actual trading outcomes may differ.
+          </span>
+        </p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Stat Card 1 */}
