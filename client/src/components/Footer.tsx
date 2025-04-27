@@ -1,12 +1,10 @@
 import React from 'react';
 import { useTheme } from '@/hooks/use-theme';
-import { useLocation } from '@/contexts/LocationContext';
-import { Sun, Moon, MapPin } from 'lucide-react';
+import { Sun, Moon } from 'lucide-react';
 import { Link } from 'wouter';
 
 const Footer: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
-  const { region, locationEnabled } = useLocation();
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -80,21 +78,6 @@ const Footer: React.FC = () => {
               &copy; {new Date().getFullYear()} CryptoTrend Alpha. All rights reserved.
             </p>
             <div className="flex space-x-4">
-              <button className="text-sm text-text-medium dark:text-dark-text-medium flex items-center">
-                <MapPin className="h-4 w-4 mr-2" />
-                <span>
-                  Location: {locationEnabled ? (
-                    <span className="text-green-500">
-                      {region === 'india' ? 'India' : 
-                       region === 'us' ? 'United States' : 
-                       region === 'europe' ? 'Europe' : 'Detected'}
-                    </span>
-                  ) : (
-                    <span className="text-yellow-500">Disabled</span>
-                  )}
-                </span>
-              </button>
-              <div className="border-r border-gray-300 dark:border-gray-700 h-4 my-auto"></div>
               <button 
                 onClick={toggleTheme}
                 className="text-sm text-text-medium dark:text-dark-text-medium flex items-center"
