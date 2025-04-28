@@ -187,6 +187,5 @@ const CTASection: React.FC = () => {
   );
 };
 
-export default CTASection;
 
 
