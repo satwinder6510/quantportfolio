@@ -25,7 +25,7 @@ const HowItWorksSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 bg-gray-50 dark:bg-dark-accent transition-colors duration-300" id="how-it-works">
+    <section className="py-20 bg-gray-50 dark:bg-dark-bg transition-colors duration-300" id="how-it-works">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-dark-green dark:text-light-green">

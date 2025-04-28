@@ -422,8 +422,8 @@ const PerformanceSection: React.FC = () => {
             </div>
           </div>
           
-          <div className="p-5 bg-accent-orange/5 dark:bg-accent-orange/10 rounded-lg mt-2">
-            <h4 className="font-semibold mb-3 text-accent-orange">Strategy Advantage: The 5-Minute Edge</h4>
+          <div className="p-5 bg-accent-orange/5 dark:bg-dark-card rounded-lg mt-2 border border-transparent dark:border-dark-accent">
+            <h4 className="font-semibold mb-3 text-accent-orange dark:text-light-green">Strategy Advantage: The 5-Minute Edge</h4>
             <p className="text-text-medium dark:text-dark-text-medium">
               Unlike most retail strategies that focus solely on entry points, our algorithm places equal emphasis on <strong>exit strategy</strong> and <strong>position sizing</strong>. This balanced approach is what enables us to capture upside while significantly reducing drawdowns.
             </p>
