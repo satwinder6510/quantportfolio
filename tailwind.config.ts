@@ -19,11 +19,11 @@ export default {
         'text-dark': '#1a2b2a',
         'text-medium': '#3c5655',
         'text-light': '#637776',
-        // Dark theme colors - more professional and subtle
-        'dark-bg': '#1a2236',
-        'dark-card': '#242e44',
-        'dark-accent': '#2c3550',
-        'dark-text': '#d8e0f0',
+        // Dark theme colors - sophisticated professional look
+        'dark-bg': '#0f172a',
+        'dark-card': '#1e293b',
+        'dark-accent': '#334155',
+        'dark-text': '#e2e8f0',
         'dark-text-medium': '#94a3b8',
         
         // ShadCN Theme Colors

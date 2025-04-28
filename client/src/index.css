@@ -36,33 +36,33 @@
 }
 
 .dark {
-  /* Dark theme variables - more professional and subtle */
-  --dark-bg: #1a2236;
-  --dark-card: #242e44;
-  --dark-accent: #2c3550;
-  --dark-text: #d8e0f0;
+  /* Dark theme variables - sophisticated professional look */
+  --dark-bg: #0f172a;
+  --dark-card: #1e293b;
+  --dark-accent: #334155;
+  --dark-text: #e2e8f0;
   --dark-text-medium: #94a3b8;
   
-  /* ShadCN variables - refined dark theme */
-  --background: 220 23% 16%;
-  --foreground: 210 20% 90%;
-  --muted: 215 25% 22%;
-  --muted-foreground: 215 15% 65%;
-  --popover: 220 23% 16%;
-  --popover-foreground: 210 20% 90%;
-  --card: 217 25% 20%;
-  --card-foreground: 210 20% 90%;
-  --border: 215 25% 22%;
-  --input: 215 25% 22%;
-  --primary: 170 40% 40%;
-  --primary-foreground: 210 20% 90%;
-  --secondary: 215 30% 25%;
-  --secondary-foreground: 210 20% 90%;
-  --accent: 15 70% 55%;
+  /* ShadCN variables - refined dark theme with more contrast */
+  --background: 217 33% 12%;
+  --foreground: 210 40% 96%;
+  --muted: 217 33% 18%;
+  --muted-foreground: 215 20% 65%;
+  --popover: 217 33% 12%;
+  --popover-foreground: 210 40% 96%;
+  --card: 217 33% 17%;
+  --card-foreground: 210 40% 96%;
+  --border: 217 33% 20%;
+  --input: 217 33% 20%;
+  --primary: 172 66% 50%;
+  --primary-foreground: 217 33% 12%;
+  --secondary: 217 33% 23%;
+  --secondary-foreground: 210 40% 96%;
+  --accent: 12 80% 55%;
   --accent-foreground: 0 0% 100%;
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 210 20% 90%;
-  --ring: 170 40% 40%;
+  --destructive: 0 70% 42%;
+  --destructive-foreground: 210 40% 96%;
+  --ring: 172 66% 50%;
 }
 
 @layer base {
@@ -72,6 +72,45 @@
 
   body {
     @apply font-sans antialiased bg-background text-foreground transition-colors duration-300;
+  }
+  
+  /* Enhanced dark mode styling */
+  .dark body {
+    @apply bg-dark-bg text-dark-text;
+  }
+  
+  .dark .custom-shadow-md {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dark .custom-shadow-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.25), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dark .card-highlight {
+    @apply bg-dark-card border border-dark-accent/30;
+  }
+  
+  /* Custom chart colors for dark mode */
+  .dark .recharts-cartesian-grid-horizontal line,
+  .dark .recharts-cartesian-grid-vertical line {
+    @apply stroke-gray-700;
+  }
+  
+  .dark .recharts-text.recharts-cartesian-axis-tick-value {
+    @apply fill-dark-text-medium;
+  }
+  
+  .dark .recharts-default-tooltip {
+    background-color: #1e293b;
+    border-color: #334155;
+    color: #e2e8f0;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.25), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Refined button styles */
+  .dark button.btn-primary {
+    @apply bg-gradient-to-r from-light-green to-dark-green hover:from-dark-green hover:to-light-green;
   }
 }
 
@@ -130,7 +169,7 @@
   }
   
   .dark .hero-gradient {
-    @apply from-dark-accent to-dark-green;
+    @apply from-dark-accent to-dark-green bg-gradient-to-br;
   }
   
   /* Hero Slider Styles */
