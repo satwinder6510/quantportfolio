@@ -76,9 +76,9 @@ const PricingSection: React.FC = () => {
               </div>
             </div>
             
-            {/* Info Notice */}
-            <div className="mx-6 mb-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg flex">
-              <Info className="h-5 w-5 text-blue-500 shrink-0 mr-3 mt-0.5" />
+            {/* Info Notice - monochromatic for dark mode */}
+            <div className="mx-6 mb-6 p-4 bg-blue-50 dark:bg-dark-card dark:border dark:border-gray-700 rounded-lg flex">
+              <Info className="h-5 w-5 text-blue-500 dark:text-primary shrink-0 mr-3 mt-0.5" />
               <div className="text-sm text-text-medium dark:text-dark-text-medium">
                 <span className="font-semibold">High Watermark Policy:</span> Performance fees are only charged on profits that exceed your previous highest portfolio value. This ensures you never pay performance fees twice on the same gains.
               </div>
@@ -88,7 +88,7 @@ const PricingSection: React.FC = () => {
             <div className="px-6 pb-6 text-center">
               <Button
                 onClick={() => scrollToSection('get-started')}
-                className="px-8 py-3 bg-accent-orange hover:bg-orange-600 text-white rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 text-lg font-medium"
+                className="px-8 py-3 bg-accent-orange hover:bg-orange-600 dark:bg-primary dark:hover:brightness-110 text-white rounded-lg shadow-md hover:shadow-lg dark:shadow-none transform hover:-translate-y-0.5 transition-all duration-200 text-lg font-medium"
               >
                 Register Interest
               </Button>

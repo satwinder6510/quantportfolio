@@ -250,8 +250,8 @@ const Hero: React.FC = () => {
               
               {/* Disclaimer */}
               <div className="w-full text-center p-2 border-t border-gray-100 dark:border-gray-800">
-                <span className="text-[10px] text-amber-600 dark:text-amber-400">
-                  <strong>Disclaimer:</strong> This data is for informational purposes only. QuantPortfol.io is not a financial advisor. Past performance is not indicative of future results. Trading cryptocurrencies involves substantial risk of loss.
+                <span className="text-[10px] text-amber-600 dark:text-gray-400">
+                  <strong className="dark:text-gray-300">Disclaimer:</strong> This data is for informational purposes only. QuantPortfol.io is not a financial advisor. Past performance is not indicative of future results. Trading cryptocurrencies involves substantial risk of loss.
                 </span>
               </div>
             </div>
@@ -295,7 +295,7 @@ const Hero: React.FC = () => {
             <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3 mt-4">
               <Button
                 onClick={() => scrollToSection('get-started')}
-                className="py-2 px-4 bg-accent-orange hover:bg-orange-600 text-white rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 text-center font-medium"
+                className="py-2 px-4 bg-accent-orange hover:bg-orange-600 dark:bg-primary dark:hover:brightness-110 text-white rounded-lg shadow-md hover:shadow-lg dark:shadow-none transform hover:-translate-y-0.5 transition-all duration-200 text-center font-medium"
               >
                 Register Interest
               </Button>
