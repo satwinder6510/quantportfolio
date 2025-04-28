@@ -94,7 +94,7 @@ const Header: React.FC = () => {
                 onClick={toggleTheme}
                 variant="outline"
                 size="icon"
-                className="rounded-full bg-gray-200 dark:bg-dark-accent hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors duration-200"
+                className="rounded-full bg-gray-200 dark:bg-dark-card hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors duration-200"
               >
                 {theme === 'light' ? <Sun className="h-5 w-5 text-yellow-500" /> : <Moon className="h-5 w-5 text-indigo-300" />}
               </Button>
@@ -164,7 +164,7 @@ const Header: React.FC = () => {
                 onClick={toggleTheme}
                 variant="outline"
                 size="icon"
-                className="rounded-full bg-gray-200 dark:bg-dark-accent hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors duration-200"
+                className="rounded-full bg-gray-200 dark:bg-dark-card hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors duration-200"
               >
                 {theme === 'light' ? <Sun className="h-5 w-5 text-yellow-500" /> : <Moon className="h-5 w-5 text-indigo-300" />}
               </Button>
