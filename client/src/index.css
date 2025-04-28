@@ -88,9 +88,22 @@
   
   /* Ensure headings stand out properly in dark mode */
   .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
-    color: #d8d8d8; /* Softer gray for headings to reduce eye strain */
+    color: #bec4c8; /* More desaturated with slight blue undertone for better night reading */
     /* Use medium weight for headings instead of bold */
     font-weight: 500;
+  }
+  
+  /* Specific heading levels with varied desaturation for visual hierarchy */
+  .dark h1 {
+    color: #c5cace; /* Slightly brighter for main headings */
+  }
+  
+  .dark h2 {
+    color: #bec4c8; /* Standard desaturated color */
+  }
+  
+  .dark h3, .dark h4, .dark h5, .dark h6 {
+    color: #b7bdc1; /* Slightly more muted for smaller headings */
   }
   
   .dark .custom-shadow-md {
