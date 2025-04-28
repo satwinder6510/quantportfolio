@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <!-- Definitions for gradients -->
+  <defs>
+    <linearGradient id="darkBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0c0c0c" />
+      <stop offset="100%" stop-color="#1a1a1a" />
+    </linearGradient>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d4af37" />
+      <stop offset="50%" stop-color="#f9f295" />
+      <stop offset="100%" stop-color="#d4af37" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Refined background -->
+  <rect width="32" height="32" rx="8" fill="url(#darkBg)" />
+  
+  <!-- Subtle border for premium look -->
+  <rect x="1" y="1" width="30" height="30" rx="7" stroke="#333333" stroke-width="0.5" fill="none" />
+  
+  <!-- Luxury diamond/shield emblem background -->
+  <path d="M16,5 L24,13 L16,28 L8,13 Z" fill="#111111" stroke="#333333" stroke-width="0.5" />
+  
+  <!-- Premium stylized Q monogram -->
+  <path d="M16,8 C12.7,8 10,10.7 10,14 C10,17.3 12.7,20 16,20 C17.3,20 18.5,19.5 19.4,18.8 L21,20.5 C21.2,20.7 21.5,20.7 21.7,20.5 C21.9,20.3 21.9,20 21.7,19.8 L20.1,18.1 C20.7,17.2 21,16.1 21,15 C21,11.7 18.3,9 16,9 L16,8 Z M16,18 C13.8,18 12,16.2 12,14 C12,11.8 13.8,10 16,10 C18.2,10 20,11.8 20,14 C20,16.2 18.2,18 16,18 Z" fill="#ffffff" />
+  
+  <!-- Gold accent line that forms part of P -->
+  <path d="M16,10 C16,10 18,10 20,13 C22,16 16,18 16,18" stroke="url(#goldGradient)" stroke-width="0.75" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+  
+  <!-- Subtle trend line -->
+  <path d="M12,22 L14,20 L16,21 L20,17" stroke="url(#goldGradient)" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6" />
+  
+  <!-- Luxury cornerpoints accent -->
+  <circle cx="8" cy="13" r="0.5" fill="url(#goldGradient)" />
+  <circle cx="24" cy="13" r="0.5" fill="url(#goldGradient)" />
+  <circle cx="16" cy="5" r="0.5" fill="url(#goldGradient)" />
+  <circle cx="16" cy="28" r="0.5" fill="url(#goldGradient)" />
+</svg>
