@@ -35,20 +35,636 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@700;800&family=Hind:wght@400;500;600;700&family=Mukta:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon-q-vector.svg">
+    <link rel="apple-touch-icon" href="/favicon-q-vector.svg">
+    <link rel="mask-icon" href="/favicon-q-vector.svg" color="#0F172A">
+    
+    <!-- Cookie Consent CSS -->
+    <style>
+      .cookie-consent {
+        position: fixed;
+        bottom: -100%;
+        left: 0;
+        right: 0;
+        background-color: #0f172a;
+        color: #f8fafc;
+        padding: 1rem;
+        z-index: 99999;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+        transition: bottom 0.5s ease-in-out;
+        border-top: 1px solid #1e293b;
+      }
+      
+      .cookie-consent.show {
+        bottom: 0;
+      }
+      
+      .cookie-consent-content {
+        flex: 1;
+        padding-right: 2rem;
+      }
+      
+      .cookie-consent h3 {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        font-size: 1.125rem;
+        font-weight: 600;
+      }
+      
+      .cookie-consent p {
+        margin-bottom: 0;
+        font-size: 0.875rem;
+        line-height: 1.5;
+        color: #cbd5e1;
+      }
+      
+      .cookie-consent-actions {
+        display: flex;
+        gap: 0.75rem;
+        flex-shrink: 0;
+      }
+      
+      .cookie-btn {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        text-align: center;
+        white-space: nowrap;
+        border-radius: 0.375rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+      
+      .cookie-btn-accept {
+        background-color: #0F766E;
+        color: white;
+        border: none;
+      }
+      
+      .cookie-btn-accept:hover {
+        background-color: #0e6b63;
+        transform: translateY(-1px);
+      }
+      
+      .cookie-btn-settings {
+        background-color: transparent;
+        color: #cbd5e1;
+        border: 1px solid #475569;
+      }
+      
+      .cookie-btn-settings:hover {
+        background-color: #1e293b;
+        border-color: #64748b;
+      }
+      
+      @media (max-width: 640px) {
+        .cookie-consent {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        
+        .cookie-consent-content {
+          padding-right: 0;
+          margin-bottom: 1rem;
+        }
+        
+        .cookie-consent-actions {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+      
+      /* Dark mode is already dark, but just in case light mode is ever implemented */
+      @media (prefers-color-scheme: light) {
+        .cookie-consent {
+          background-color: #f8fafc;
+          color: #0f172a;
+          border-top: 1px solid #e2e8f0;
+        }
+        
+        .cookie-consent p {
+          color: #475569;
+        }
+        
+        .cookie-btn-settings {
+          color: #475569;
+          border: 1px solid #cbd5e1;
+        }
+        
+        .cookie-btn-settings:hover {
+          background-color: #f1f5f9;
+          border-color: #94a3b8;
+        }
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
+    
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-consent" class="cookie-consent">
+      <div class="cookie-consent-content">
+        <h3>Cookie Consent</h3>
+        <p>We use cookies to enhance your browsing experience, serve personalized ads or content, and analyze our traffic. By clicking "Accept", you consent to our use of cookies. <a href="/cookie-policy" style="color: #38bdf8;">Cookie Policy</a></p>
+      </div>
+      <div class="cookie-consent-actions">
+        <button id="cookie-accept" class="cookie-btn cookie-btn-accept">Accept All</button>
+        <button id="cookie-settings" class="cookie-btn cookie-btn-settings">Cookie Settings</button>
+      </div>
+    </div>
+
+    <!-- Floating Language Selector Button -->
+    <div class="language-wrapper">
+      <div id="google_translate_element2"></div>
+      <div id="custom-translate-trigger" class="translate-trigger">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="translate-icon">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          <path d="M2 12h20"></path>
+        </svg>
+        <span class="translate-text">Translate</span>
+      </div>
+  
+      <!-- Language Selection Modal -->
+      <div id="language-modal" class="language-modal">
+        <div class="language-modal-content">
+          <div class="language-modal-header">
+            <h3>Choose Language</h3>
+            <button id="close-language-modal">&times;</button>
+          </div>
+          <div class="language-options">
+            <div class="language-option" onclick="doGTranslate('en|en')">English</div>
+            <div class="language-option" onclick="doGTranslate('en|es')">Español</div>
+            <div class="language-option" onclick="doGTranslate('en|fr')">Français</div>
+            <div class="language-option" onclick="doGTranslate('en|de')">Deutsch</div>
+            <div class="language-option" onclick="doGTranslate('en|zh-CN')">中文</div>
+            <div class="language-option" onclick="doGTranslate('en|hi')">हिन्दी</div>
+            <div class="language-option" onclick="doGTranslate('en|ar')">العربية</div>
+            <div class="language-option" onclick="doGTranslate('en|pt')">Português</div>
+            <div class="language-option auto-detect" onclick="detectLanguage()">
+              <div class="auto-detect-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22C12 22 20 18 20 12C20 6 16 2 12 2C8 2 4 6 4 12C4 18 12 22 12 22Z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+              </div>
+              Auto Detect
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- GTranslate implementation -->
+    <script type="text/javascript">
+      /* <![CDATA[ */
+      function googleTranslateElementInit2() {
+        new google.translate.TranslateElement({
+          pageLanguage: 'en',
+          includedLanguages: 'en,es,fr,de,zh-CN,hi,ar,pt',
+          autoDisplay: false
+        }, 'google_translate_element2');
+      }
+      /* ]]> */
+      
+      // Render the hidden Google Translate element
+      function loadGoogleTranslate() {
+        var gtScript = document.createElement('script');
+        gtScript.type = 'text/javascript';
+        gtScript.async = true;
+        gtScript.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gtScript, s);
+      }
+      
+      // Better GTranslate implementation
+      function doGTranslate(lang_pair) {
+        if (lang_pair.value) lang_pair = lang_pair.value;
+        if (lang_pair == '') return;
+        var lang = lang_pair.split('|')[1];
+        var teCombo = document.querySelector('.goog-te-combo');
+        if (teCombo) {
+          teCombo.value = lang;
+          if (document.createEvent) {
+            var event = document.createEvent('HTMLEvents');
+            event.initEvent('change', true, true);
+            teCombo.dispatchEvent(event);
+          } else {
+            teCombo.fireEvent('onchange');
+          }
+        }
+        // Close the modal after selecting a language
+        document.getElementById('language-modal').classList.remove('show');
+      }
+      
+      // Function to attempt to detect the user's browser language
+      function detectLanguage() {
+        var userLang = navigator.language || navigator.userLanguage;
+        var langCode = userLang.split('-')[0];
+        
+        // Map browser language codes to Google Translate codes
+        var langMap = {
+          'en': 'en',
+          'es': 'es',
+          'fr': 'fr',
+          'de': 'de',
+          'zh': 'zh-CN',
+          'hi': 'hi',
+          'ar': 'ar',
+          'pt': 'pt'
+        };
+        
+        // If we support this language, translate to it
+        if (langMap[langCode] && langMap[langCode] !== 'en') {
+          doGTranslate('en|' + langMap[langCode]);
+        } else {
+          // Default to no translation (English)
+          doGTranslate('en|en');
+        }
+      }
+      
+      // Cookie consent functions
+      function setCookie(name, value, days) {
+        var expires = "";
+        if (days) {
+          var date = new Date();
+          date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+          expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/; SameSite=Lax";
+      }
+      
+      function getCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+          if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+      }
+      
+      function acceptCookies(cookieType) {
+        setCookie('cookie_consent', cookieType, 365);
+        document.getElementById('cookie-consent').classList.remove('show');
+      }
+      
+      function showCookieSettings() {
+        // In a real implementation, this would open a detailed cookie settings modal
+        // For this demo, we'll just navigate to the cookie policy page
+        window.location.href = '/cookie-policy';
+      }
+      
+      document.addEventListener('DOMContentLoaded', function() {
+        // Load Google Translate API
+        loadGoogleTranslate();
+        
+        // Check for cookie consent
+        if (!getCookie('cookie_consent')) {
+          setTimeout(function() {
+            document.getElementById('cookie-consent').classList.add('show');
+          }, 1000); // Short delay to show after page load
+        }
+        
+        // Handle cookie buttons
+        document.getElementById('cookie-accept').addEventListener('click', function() {
+          acceptCookies('all');
+        });
+        
+        document.getElementById('cookie-settings').addEventListener('click', function() {
+          showCookieSettings();
+        });
+        
+        // Toggle language modal
+        document.getElementById('custom-translate-trigger').addEventListener('click', function() {
+          document.getElementById('language-modal').classList.add('show');
+        });
+        
+        // Close modal
+        document.getElementById('close-language-modal').addEventListener('click', function() {
+          document.getElementById('language-modal').classList.remove('show');
+        });
+        
+        // Close modal if clicking outside content
+        document.getElementById('language-modal').addEventListener('click', function(e) {
+          if (e.target === this) {
+            this.classList.remove('show');
+          }
+        });
+      });
+    </script>
+    
+    <style>
+      /* Hide the original Google Translate element */
+      .language-wrapper {
+        position: relative;
+      }
+      
+      #google_translate_element2 {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+        height: 0;
+        overflow: hidden;
+      }
+      
+      /* Floating trigger button */
+      .translate-trigger {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #0F766E;
+        color: white;
+        display: flex;
+        align-items: center;
+        padding: 10px 16px;
+        border-radius: 50px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        cursor: pointer;
+        z-index: 9999;
+        font-family: 'Poppins', sans-serif;
+        transition: all 0.2s ease;
+      }
+      
+      .translate-trigger:hover {
+        background-color: #0e6b63;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+      }
+      
+      .translate-icon {
+        margin-right: 8px;
+      }
+      
+      .translate-text {
+        font-weight: 500;
+        font-size: 14px;
+      }
+      
+      /* Dark mode adjustments */
+      @media (prefers-color-scheme: dark) {
+        .translate-trigger {
+          background-color: #14B8A6;
+        }
+        
+        .translate-trigger:hover {
+          background-color: #0f9e8f;
+        }
+      }
+      
+      /* Modal styling */
+      .language-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 10000;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .language-modal.show {
+        display: flex;
+      }
+      
+      .language-modal-content {
+        background-color: white;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 400px;
+        max-height: 80vh;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .language-modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 20px;
+        background-color: #0F766E;
+        color: white;
+        flex-shrink: 0;
+      }
+      
+      .language-modal-header h3 {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        font-size: 18px;
+      }
+      
+      .language-modal-header button {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        padding: 0;
+        line-height: 1;
+      }
+      
+      .language-options {
+        padding: 10px;
+        overflow-y: auto;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        max-height: calc(80vh - 60px);
+      }
+      
+      .language-option {
+        padding: 12px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-family: 'Poppins', sans-serif;
+        transition: all 0.2s ease;
+        background-color: #f5f5f5;
+        text-align: center;
+        border: 2px solid transparent;
+        font-weight: 500;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+      
+      .language-option:hover {
+        background-color: #e0f2f1;
+        color: #0F766E;
+        border-color: #0F766E;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      
+      .language-option.auto-detect {
+        grid-column: span 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #e0f2f1;
+        color: #0F766E;
+        font-weight: 500;
+      }
+      
+      .auto-detect-icon {
+        margin-right: 8px;
+        display: flex;
+        align-items: center;
+      }
+      
+      /* Dark mode for modal */
+      @media (prefers-color-scheme: dark) {
+        .language-modal-content {
+          background-color: #1a1a1a;
+          color: #f0f0f0;
+        }
+        
+        .language-modal-header {
+          background-color: #14B8A6;
+        }
+        
+        .language-option {
+          background-color: #333;
+          color: #f0f0f0;
+        }
+        
+        .language-option:hover {
+          background-color: #444;
+          color: #14B8A6;
+        }
+        
+        .language-option.auto-detect {
+          background-color: #0F766E;
+          color: white;
+        }
+      }
+      
+      /* Hide Google Translate attribution */
+      .goog-te-banner-frame {
+        display: none !important;
+      }
+      
+      body {
+        top: 0 !important;
+      }
+      
+      /* Responsive adjustments */
+      @media (max-width: 480px) {
+        .language-options {
+          grid-template-columns: 1fr;
+        }
+        
+        .language-option.auto-detect {
+          grid-column: span 1;
+        }
+      }
+      
+      /* Fix for translated content responsiveness */
+      .skiptranslate iframe {
+        display: none !important;
+      }
+      
+      /* Ensure Google Translate doesn't break layouts */
+      html body {
+        position: static !important;
+        min-height: 100%;
+        width: 100% !important;
+        overflow-x: hidden !important;
+        top: 0 !important;
+      }
+      
+      /* Fix for RTL languages and other translations */
+      .goog-te-menu-value span, .goog-te-gadget-simple span {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        max-width: 100px;
+      }
+      
+      /* Keep responsive design when translated */
+      #goog-gt-, .goog-te-banner-frame, #goog-gt-tt, .goog-te-balloon-frame, div#goog-gt-{
+        display: none !important;
+      }
+      
+      .goog-text-highlight {
+        background-color: transparent !important;
+        box-shadow: none !important;
+      }
+      
+      /* Prevent Google translate bar from appearing at top */
+      .goog-te-banner-frame.skiptranslate,
+      .goog-te-gadget-icon,
+      .goog-te-gadget-simple img,
+      img.goog-te-gadget-icon,
+      img.goog-te-gadget-icon:hover {
+        display: none !important;
+      }
+      
+      /* Fix for languages with longer words */
+      .language-options button,
+      .translate-trigger,
+      [class*="btn"],
+      [class*="button"] {
+        white-space: normal !important;
+      }
+      
+      /* Additional fixes for translated content */
+      div, p, h1, h2, h3, h4, h5, h6, span, a, button, input, textarea, select {
+        word-break: normal !important;
+        overflow-wrap: break-word !important;
+      }
+      
+      /* Handle Right-to-Left languages better */
+      html[dir="rtl"] .translate-trigger {
+        left: 20px;
+        right: auto;
+      }
+      
+      html[dir="rtl"] .translate-icon {
+        margin-right: 0;
+        margin-left: 8px;
+      }
+      
+      html[dir="rtl"] .auto-detect-icon {
+        margin-right: 0;
+        margin-left: 8px;
+      }
+      
+      /* Maintain fixed widths on elements to prevent layout shifts */
+      .container, .section, .hero, header, footer {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      
+      /* Force line heights to maintain vertical rhythm */
+      p, li, h1, h2, h3, h4, h5, h6 {
+        line-height: 1.5 !important;
+      }
+    </style>
+    
     <script type="module" src="/src/main.tsx"></script>
     <!-- This is a replit script which adds a banner on the top of the page when opened in development mode outside the replit environment -->
     <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js"></script>
     
     <!-- Hidden Netlify Forms - these are used at build time for Netlify to detect the forms -->
-    <form name="signup" netlify netlify-honeypot="bot-field" action="/success" hidden>
-      <input type="text" name="firstName" />
-      <input type="text" name="lastName" />
+    <form name="interest" netlify netlify-honeypot="bot-field" action="/success" hidden>
+      <input type="text" name="name" />
       <input type="email" name="email" />
-      <input type="password" name="password" />
-      <input type="checkbox" name="terms" />
+      <input type="tel" name="phone" />
+      <input type="text" name="telegram" />
+      <textarea name="message"></textarea>
+      <input type="checkbox" name="consent" />
       <!-- Hidden field to indicate the form was submitted through the website -->
       <input type="hidden" name="form-source" value="website" />
       <!-- Add a timestamp field -->
