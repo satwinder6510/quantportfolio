@@ -42,19 +42,19 @@ const Footer: React.FC = () => {
             <h4 className="text-lg font-bold mb-4 text-dark-green dark:text-light-green">Company</h4>
             <ul className="space-y-2">
               <li><a href="#" className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">About Us</a></li>
-              <li><a href="#" className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">Careers</a></li>
-              <li><a href="#" className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">Press</a></li>
-              <li><a href="#" className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">Blog</a></li>
+              {/* <li><a href="#" className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">Careers</a></li> */}
+              {/* <li><a href="#" className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">Press</a></li> */}
+              <li><button onClick={() => scrollToSection('faq')} className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">FAQ's</button></li>
             </ul>
           </div>
           
           <div>
             <h4 className="text-lg font-bold mb-4 text-dark-green dark:text-light-green">Resources</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">Documentation</a></li>
+              {/* <li><a href="#" className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">Documentation</a></li> */}
               <li><a href="#" className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">Help Center</a></li>
-              <li><a href="#" className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">API</a></li>
-              <li><a href="#" className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">Community</a></li>
+              {/* <li><a href="#" className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">API</a></li> */}
+              {/* <li><a href="#" className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">Community</a></li> */}
             </ul>
           </div>
           
