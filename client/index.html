@@ -40,9 +40,144 @@
     <link rel="icon" type="image/svg+xml" href="/favicon-q-vector.svg">
     <link rel="apple-touch-icon" href="/favicon-q-vector.svg">
     <link rel="mask-icon" href="/favicon-q-vector.svg" color="#0F172A">
+    
+    <!-- Cookie Consent CSS -->
+    <style>
+      .cookie-consent {
+        position: fixed;
+        bottom: -100%;
+        left: 0;
+        right: 0;
+        background-color: #0f172a;
+        color: #f8fafc;
+        padding: 1rem;
+        z-index: 99999;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+        transition: bottom 0.5s ease-in-out;
+        border-top: 1px solid #1e293b;
+      }
+      
+      .cookie-consent.show {
+        bottom: 0;
+      }
+      
+      .cookie-consent-content {
+        flex: 1;
+        padding-right: 2rem;
+      }
+      
+      .cookie-consent h3 {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        font-size: 1.125rem;
+        font-weight: 600;
+      }
+      
+      .cookie-consent p {
+        margin-bottom: 0;
+        font-size: 0.875rem;
+        line-height: 1.5;
+        color: #cbd5e1;
+      }
+      
+      .cookie-consent-actions {
+        display: flex;
+        gap: 0.75rem;
+        flex-shrink: 0;
+      }
+      
+      .cookie-btn {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        text-align: center;
+        white-space: nowrap;
+        border-radius: 0.375rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+      
+      .cookie-btn-accept {
+        background-color: #0F766E;
+        color: white;
+        border: none;
+      }
+      
+      .cookie-btn-accept:hover {
+        background-color: #0e6b63;
+        transform: translateY(-1px);
+      }
+      
+      .cookie-btn-settings {
+        background-color: transparent;
+        color: #cbd5e1;
+        border: 1px solid #475569;
+      }
+      
+      .cookie-btn-settings:hover {
+        background-color: #1e293b;
+        border-color: #64748b;
+      }
+      
+      @media (max-width: 640px) {
+        .cookie-consent {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        
+        .cookie-consent-content {
+          padding-right: 0;
+          margin-bottom: 1rem;
+        }
+        
+        .cookie-consent-actions {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+      
+      /* Dark mode is already dark, but just in case light mode is ever implemented */
+      @media (prefers-color-scheme: light) {
+        .cookie-consent {
+          background-color: #f8fafc;
+          color: #0f172a;
+          border-top: 1px solid #e2e8f0;
+        }
+        
+        .cookie-consent p {
+          color: #475569;
+        }
+        
+        .cookie-btn-settings {
+          color: #475569;
+          border: 1px solid #cbd5e1;
+        }
+        
+        .cookie-btn-settings:hover {
+          background-color: #f1f5f9;
+          border-color: #94a3b8;
+        }
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
+    
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-consent" class="cookie-consent">
+      <div class="cookie-consent-content">
+        <h3>Cookie Consent</h3>
+        <p>We use cookies to enhance your browsing experience, serve personalized ads or content, and analyze our traffic. By clicking "Accept", you consent to our use of cookies. <a href="/cookie-policy" style="color: #38bdf8;">Cookie Policy</a></p>
+      </div>
+      <div class="cookie-consent-actions">
+        <button id="cookie-accept" class="cookie-btn cookie-btn-accept">Accept All</button>
+        <button id="cookie-settings" class="cookie-btn cookie-btn-settings">Cookie Settings</button>
+      </div>
+    </div>
 
     <!-- Floating Language Selector Button -->
     <div class="language-wrapper">
@@ -154,9 +289,58 @@
         }
       }
       
+      // Cookie consent functions
+      function setCookie(name, value, days) {
+        var expires = "";
+        if (days) {
+          var date = new Date();
+          date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+          expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/; SameSite=Lax";
+      }
+      
+      function getCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+          if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+      }
+      
+      function acceptCookies(cookieType) {
+        setCookie('cookie_consent', cookieType, 365);
+        document.getElementById('cookie-consent').classList.remove('show');
+      }
+      
+      function showCookieSettings() {
+        // In a real implementation, this would open a detailed cookie settings modal
+        // For this demo, we'll just navigate to the cookie policy page
+        window.location.href = '/cookie-policy';
+      }
+      
       document.addEventListener('DOMContentLoaded', function() {
         // Load Google Translate API
         loadGoogleTranslate();
+        
+        // Check for cookie consent
+        if (!getCookie('cookie_consent')) {
+          setTimeout(function() {
+            document.getElementById('cookie-consent').classList.add('show');
+          }, 1000); // Short delay to show after page load
+        }
+        
+        // Handle cookie buttons
+        document.getElementById('cookie-accept').addEventListener('click', function() {
+          acceptCookies('all');
+        });
+        
+        document.getElementById('cookie-settings').addEventListener('click', function() {
+          showCookieSettings();
+        });
         
         // Toggle language modal
         document.getElementById('custom-translate-trigger').addEventListener('click', function() {
