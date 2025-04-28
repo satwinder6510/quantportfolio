@@ -1,0 +1,221 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light theme variables */
+  --cream: #f8f5f1;
+  --dark-green: #124947;
+  --light-green: #2ca793;
+  --accent-orange: #f3704b;
+  --text-dark: #1a2b2a;
+  --text-medium: #3c5655;
+  --text-light: #637776;
+
+  /* ShadCN variables - light theme */
+  --background: 34 38% 97%;
+  --foreground: 165 21% 13%;
+  --muted: 165 15% 95%;
+  --muted-foreground: 165 11% 45%;
+  --popover: 34 38% 97%;
+  --popover-foreground: 165 21% 13%;
+  --card: 0 0% 100%;
+  --card-foreground: 165 21% 13%;
+  --border: 165 15% 90%;
+  --input: 165 15% 90%;
+  --primary: 165 52% 24%;
+  --primary-foreground: 165 5% 95%;
+  --secondary: 170 54% 42%;
+  --secondary-foreground: 165 5% 95%;
+  --accent: 15 88% 62%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 60 9.1% 97.8%;
+  --ring: 170 54% 42%;
+  --radius: 0.5rem;
+}
+
+.dark {
+  /* Dark theme variables */
+  --dark-bg: #121212; /* Near-black background */
+  --dark-card: #1e1e1e; /* Slightly lighter card background */
+  --dark-accent: #2a2a2a; /* Subtle accent for elements */
+  --dark-text: #ffffff; /* White text for main content */
+  --dark-text-medium: #aaaaaa; /* Medium gray text for secondary content */
+  
+  /* ShadCN variables - dark theme */
+  --background: 0 0% 7%;
+  --foreground: 0 0% 98%;
+  --muted: 0 0% 14%;
+  --muted-foreground: 0 0% 63%;
+  --popover: 0 0% 9%;
+  --popover-foreground: 0 0% 98%;
+  --card: 0 0% 9%;
+  --card-foreground: 0 0% 98%;
+  --border: 0 0% 14%;
+  --input: 0 0% 14%;
+  --primary: 170 54% 42%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 0 0% 14%;
+  --secondary-foreground: 0 0% 98%;
+  --accent: 15 88% 62%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+  --ring: 170 54% 42%;
+}
+
+@layer base {
+  * {
+    @apply border-0;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground transition-colors duration-300;
+  }
+  
+  /* Dark mode styling */
+  .dark body {
+    @apply bg-dark-bg text-dark-text;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .dark .custom-shadow-md {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dark .custom-shadow-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.25), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dark .card-highlight {
+    @apply bg-dark-card border border-dark-accent/30;
+  }
+  
+  /* Custom chart colors for dark mode */
+  .dark .recharts-cartesian-grid-horizontal line,
+  .dark .recharts-cartesian-grid-vertical line {
+    @apply stroke-gray-700;
+  }
+  
+  .dark .recharts-text.recharts-cartesian-axis-tick-value {
+    @apply fill-dark-text-medium;
+  }
+  
+  .dark .recharts-default-tooltip {
+    background-color: #1e1e1e;
+    border-color: #2a2a2a;
+    color: #ffffff;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Button styling in dark mode */
+  .dark button.btn-primary {
+    background: hsl(170, 54%, 42%);
+    color: hsl(0, 0%, 98%);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Simple card styling */
+  .dark .card {
+    border: 1px solid rgba(60, 60, 60, 0.8);
+  }
+  
+  /* Simplified interactive elements */
+  .dark .interactive-element {
+    border: 1px solid rgba(60, 60, 60, 0.8);
+    transition: all 0.2s ease;
+  }
+  
+  .dark .interactive-element:hover {
+    border: 1px solid rgba(80, 80, 80, 0.9);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Custom animations and effects */
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-400 dark:bg-gray-600 rounded;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-500 dark:bg-gray-500;
+}
+
+@layer components {
+  .link-underline {
+    @apply relative;
+  }
+  
+  .link-underline::after {
+    @apply absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 content-[''];
+  }
+
+  .link-underline:hover::after {
+    @apply w-full;
+  }
+
+  .link-underline-light::after {
+    @apply bg-[#2ca793];
+  }
+
+  .link-underline-dark::after {
+    @apply bg-accent-orange;
+  }
+}
+
+@layer components {
+  .hero-gradient {
+    @apply bg-gradient-to-r from-dark-green to-light-green;
+  }
+  
+  .dark .hero-gradient {
+    background: linear-gradient(135deg, #0f1620 0%, #1e293b 100%);
+  }
+  
+  /* Hero Slider Styles */
+  .hero-slider {
+    @apply relative;
+    min-height: 14rem;
+  }
+  
+  @media (min-width: 768px) {
+    .hero-slider {
+      min-height: 18rem;
+    }
+  }
+  
+  .hero-slide {
+    @apply w-full transition-opacity duration-500;
+  }
+  
+  @keyframes heroFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

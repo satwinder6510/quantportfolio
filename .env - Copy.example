@@ -1,0 +1,5 @@
+# Database connection string
+DATABASE_URL=postgres://username:password@localhost:5432/database_name
+
+# Optional: If using Anthropic API for AI features
+# ANTHROPIC_API_KEY=your_anthropic_api_key

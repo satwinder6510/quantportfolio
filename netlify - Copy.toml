@@ -1,0 +1,27 @@
+# Netlify configuration file
+
+[build]
+  # Directory to change to before starting a build
+  base = "/"
+  
+  # Directory that contains the deploy-ready HTML files and assets
+  publish = "client/dist"
+  
+  # Custom build command for Netlify - use our build script
+  command = "bash netlify-build.sh"
+
+# Redirect all routes to the index.html file (for SPA)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Define the locations of our serverless functions
+[functions]
+  directory = "netlify/functions"
+
+# Setup for the API endpoint used by the SPA
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200

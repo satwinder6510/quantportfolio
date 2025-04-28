@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <!-- Dark background with rounded corners -->
+  <rect width="32" height="32" rx="6" fill="#0F172A"/>
+  
+  <!-- Vector Q matching the brand style -->
+  <path d="M16,6 C10.477,6 6,10.477 6,16 C6,21.523 10.477,26 16,26 C18.5,26 20.8,25 22.5,23.5 L25,26 C25.3,26.3 25.8,26.3 26.1,26 C26.4,25.7 26.4,25.2 26.1,24.9 L23.6,22.4 C25.1,20.6 26,18.4 26,16 C26,10.477 21.523,6 16,6 Z M16,8 C20.418,8 24,11.582 24,16 C24,20.418 20.418,24 16,24 C11.582,24 8,20.418 8,16 C8,11.582 11.582,8 16,8 Z" fill="#0F766E"/>
+  
+  <!-- Accent dot similar to the portfolio dot in the brand name -->
+  <circle cx="20" cy="18" r="1.5" fill="#14B8A6"/>
+</svg>
