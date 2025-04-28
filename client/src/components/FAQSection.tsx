@@ -42,7 +42,7 @@ const FAQSection: React.FC = () => {
     },
     {
       question: "How do I get started?",
-      answer: "Simply sign up for our 14-day trial, connect your preferred exchange through our secure API integration, and you'll start receiving trading signals immediately. The whole setup process takes less than 10 minutes."
+      answer: "Simply register your interest using our contact form, and we'll notify you when the platform is ready for onboarding. Once access is granted, you can connect your preferred exchange through our secure API integration, and you'll start receiving trading signals immediately. The whole setup process takes less than 10 minutes."
     }
   ];
 
@@ -78,7 +78,7 @@ const FAQSection: React.FC = () => {
             Don't see your question here?
           </p>
           <a 
-            href="#contact" 
+            href="#get-started" 
             className="inline-flex items-center text-light-green dark:text-accent-orange hover:text-dark-green dark:hover:text-light-green transition-colors"
           >
             Contact us
