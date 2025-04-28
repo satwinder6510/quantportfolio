@@ -60,10 +60,10 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="text-lg font-bold mb-4 text-dark-green dark:text-light-green">Legal</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">Terms of Service</a></li>
-              <li><a href="#" className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">Privacy Policy</a></li>
-              <li><a href="#" className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">Cookie Policy</a></li>
-              <li><a href="#" className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">Risk Disclosure</a></li>
+              <li><Link href="/terms-of-service" className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">Terms of Service</Link></li>
+              <li><Link href="/privacy-policy" className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">Privacy Policy</Link></li>
+              <li><Link href="/cookie-policy" className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">Cookie Policy</Link></li>
+              <li><Link href="/risk-disclosure" className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">Risk Disclosure</Link></li>
             </ul>
           </div>
         </div>
