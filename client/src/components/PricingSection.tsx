@@ -90,7 +90,7 @@ const PricingSection: React.FC = () => {
                 onClick={() => scrollToSection('get-started')}
                 className="px-8 py-3 bg-accent-orange hover:bg-orange-600 text-white rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 text-lg font-medium"
               >
-                Start Your 14-Day Trial
+                Register Interest
               </Button>
               <p className="text-sm text-text-light dark:text-dark-text-light mt-3">
                 Recommended starting amount: $1000

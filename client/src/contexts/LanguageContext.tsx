@@ -55,7 +55,7 @@ const translations: Translations = {
       howItWorks: 'How It Works',
       performance: 'Performance',
       pricing: 'Pricing',
-      getStarted: 'Get Started'
+      getStarted: 'Register Interest'
     }
   },
   hi: {
@@ -75,7 +75,7 @@ const translations: Translations = {
       howItWorks: 'यह कैसे काम करता है',
       performance: 'प्रदर्शन',
       pricing: 'मूल्य निर्धारण',
-      getStarted: 'शुरू करें'
+      getStarted: 'रुचि पंजीकृत करें'
     }
   },
   pa: {
@@ -95,7 +95,7 @@ const translations: Translations = {
       howItWorks: 'ਇਹ ਕਿਵੇਂ ਕੰਮ ਕਰਦਾ ਹੈ',
       performance: 'ਪ੍ਰਦਰਸ਼ਨ',
       pricing: 'ਕੀਮਤ',
-      getStarted: 'ਸ਼ੁਰੂ ਕਰੋ'
+      getStarted: 'ਦਿਲਚਸਪੀ ਰਜਿਸਟਰ ਕਰੋ'
     }
   }
 };
