@@ -188,6 +188,5 @@ const CTASection: React.FC = () => {
 };
 
 export default CTASection;
-};
 
-export default CTASection;
+
