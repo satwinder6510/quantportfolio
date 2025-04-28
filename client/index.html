@@ -44,64 +44,167 @@
   <body>
     <div id="root"></div>
 
-    <!-- Minimal Floating Language Selector -->
-    <div id="custom-translate-trigger" class="translate-trigger">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="translate-icon">
-        <circle cx="12" cy="12" r="10"></circle>
-        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-        <path d="M2 12h20"></path>
-      </svg>
-      <span class="translate-text">Translate</span>
-    </div>
-    
-    <!-- Hidden Google Translate Widget (will be shown in modal) -->
-    <div id="translate-modal" class="translate-modal">
-      <div class="translate-modal-content">
-        <div class="translate-modal-header">
-          <h3>Select or Auto-Detect Language</h3>
-          <button id="close-translate-modal">&times;</button>
+    <!-- Floating Language Selector Button -->
+    <div class="language-wrapper">
+      <div id="google_translate_element2"></div>
+      <div id="custom-translate-trigger" class="translate-trigger">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="translate-icon">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          <path d="M2 12h20"></path>
+        </svg>
+        <span class="translate-text">Translate</span>
+      </div>
+  
+      <!-- Language Selection Modal -->
+      <div id="language-modal" class="language-modal">
+        <div class="language-modal-content">
+          <div class="language-modal-header">
+            <h3>Choose Language</h3>
+            <button id="close-language-modal">&times;</button>
+          </div>
+          <div class="language-options">
+            <div class="language-option" onclick="doGTranslate('en|en')">English</div>
+            <div class="language-option" onclick="doGTranslate('en|es')">Español</div>
+            <div class="language-option" onclick="doGTranslate('en|fr')">Français</div>
+            <div class="language-option" onclick="doGTranslate('en|de')">Deutsch</div>
+            <div class="language-option" onclick="doGTranslate('en|it')">Italiano</div>
+            <div class="language-option" onclick="doGTranslate('en|pt')">Português</div>
+            <div class="language-option" onclick="doGTranslate('en|ru')">Русский</div>
+            <div class="language-option" onclick="doGTranslate('en|ja')">日本語</div>
+            <div class="language-option" onclick="doGTranslate('en|ko')">한국어</div>
+            <div class="language-option" onclick="doGTranslate('en|zh-CN')">中文 (简体)</div>
+            <div class="language-option" onclick="doGTranslate('en|zh-TW')">中文 (繁體)</div>
+            <div class="language-option" onclick="doGTranslate('en|ar')">العربية</div>
+            <div class="language-option" onclick="doGTranslate('en|hi')">हिन्दी</div>
+            <div class="language-option" onclick="doGTranslate('en|nl')">Nederlands</div>
+            <div class="language-option" onclick="doGTranslate('en|sv')">Svenska</div>
+            <div class="language-option" onclick="doGTranslate('en|tr')">Türkçe</div>
+            <div class="language-option auto-detect" onclick="detectLanguage()">
+              <div class="auto-detect-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22C12 22 20 18 20 12C20 6 16 2 12 2C8 2 4 6 4 12C4 18 12 22 12 22Z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+              </div>
+              Auto Detect
+            </div>
+          </div>
         </div>
-        <div id="google_translate_element"></div>
       </div>
     </div>
     
+    <!-- GTranslate implementation -->
     <script type="text/javascript">
-      function googleTranslateElementInit() {
+      /* <![CDATA[ */
+      function googleTranslateElementInit2() {
         new google.translate.TranslateElement({
           pageLanguage: 'en',
-          includedLanguages: 'ar,zh-CN,nl,en,fr,de,hi,it,ja,ko,pt,ru,es,sv,tr,uk',
-          layout: google.translate.TranslateElement.InlineLayout.VERTICAL,
-          autoDisplay: false,
-          gaTrack: false,
-          gaId: '',
-          autoDisplay: false,
-          multilanguagePage: true,
-          detectedLanguages: true
-        }, 'google_translate_element');
+          autoDisplay: false
+        }, 'google_translate_element2');
+      }
+      /* ]]> */
+      
+      // Render the hidden Google Translate element
+      function loadGoogleTranslate() {
+        var gtScript = document.createElement('script');
+        gtScript.type = 'text/javascript';
+        gtScript.async = true;
+        gtScript.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gtScript, s);
+      }
+      
+      // Better GTranslate implementation
+      function doGTranslate(lang_pair) {
+        if (lang_pair.value) lang_pair = lang_pair.value;
+        if (lang_pair == '') return;
+        var lang = lang_pair.split('|')[1];
+        var teCombo = document.querySelector('.goog-te-combo');
+        if (teCombo) {
+          teCombo.value = lang;
+          if (document.createEvent) {
+            var event = document.createEvent('HTMLEvents');
+            event.initEvent('change', true, true);
+            teCombo.dispatchEvent(event);
+          } else {
+            teCombo.fireEvent('onchange');
+          }
+        }
+        // Close the modal after selecting a language
+        document.getElementById('language-modal').classList.remove('show');
+      }
+      
+      // Function to attempt to detect the user's browser language
+      function detectLanguage() {
+        var userLang = navigator.language || navigator.userLanguage;
+        var langCode = userLang.split('-')[0];
+        
+        // Map browser language codes to Google Translate codes
+        var langMap = {
+          'en': 'en',
+          'es': 'es',
+          'fr': 'fr',
+          'de': 'de',
+          'it': 'it',
+          'pt': 'pt',
+          'ru': 'ru',
+          'ja': 'ja',
+          'ko': 'ko',
+          'zh': 'zh-CN',
+          'ar': 'ar',
+          'hi': 'hi',
+          'nl': 'nl',
+          'sv': 'sv',
+          'tr': 'tr'
+        };
+        
+        // If we support this language, translate to it
+        if (langMap[langCode] && langMap[langCode] !== 'en') {
+          doGTranslate('en|' + langMap[langCode]);
+        } else {
+          // Default to no translation (English)
+          doGTranslate('en|en');
+        }
       }
       
       document.addEventListener('DOMContentLoaded', function() {
-        // Toggle translate modal
+        // Load Google Translate API
+        loadGoogleTranslate();
+        
+        // Toggle language modal
         document.getElementById('custom-translate-trigger').addEventListener('click', function() {
-          document.getElementById('translate-modal').classList.add('show');
+          document.getElementById('language-modal').classList.add('show');
         });
         
         // Close modal
-        document.getElementById('close-translate-modal').addEventListener('click', function() {
-          document.getElementById('translate-modal').classList.remove('show');
+        document.getElementById('close-language-modal').addEventListener('click', function() {
+          document.getElementById('language-modal').classList.remove('show');
         });
         
         // Close modal if clicking outside content
-        document.getElementById('translate-modal').addEventListener('click', function(e) {
+        document.getElementById('language-modal').addEventListener('click', function(e) {
           if (e.target === this) {
             this.classList.remove('show');
           }
         });
       });
     </script>
-    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     
     <style>
+      /* Hide the original Google Translate element */
+      .language-wrapper {
+        position: relative;
+      }
+      
+      #google_translate_element2 {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+        height: 0;
+        overflow: hidden;
+      }
+      
       /* Floating trigger button */
       .translate-trigger {
         position: fixed;
@@ -147,7 +250,7 @@
       }
       
       /* Modal styling */
-      .translate-modal {
+      .language-modal {
         display: none;
         position: fixed;
         top: 0;
@@ -160,36 +263,40 @@
         justify-content: center;
       }
       
-      .translate-modal.show {
+      .language-modal.show {
         display: flex;
       }
       
-      .translate-modal-content {
+      .language-modal-content {
         background-color: white;
         border-radius: 8px;
         width: 90%;
         max-width: 400px;
+        max-height: 80vh;
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
       }
       
-      .translate-modal-header {
+      .language-modal-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 16px 20px;
         background-color: #0F766E;
         color: white;
+        flex-shrink: 0;
       }
       
-      .translate-modal-header h3 {
+      .language-modal-header h3 {
         margin: 0;
         font-family: 'Poppins', sans-serif;
         font-weight: 600;
         font-size: 18px;
       }
       
-      .translate-modal-header button {
+      .language-modal-header button {
         background: none;
         border: none;
         color: white;
@@ -199,46 +306,90 @@
         line-height: 1;
       }
       
-      #google_translate_element {
-        padding: 20px;
+      .language-options {
+        padding: 10px;
+        overflow-y: auto;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        max-height: calc(80vh - 60px);
+      }
+      
+      .language-option {
+        padding: 12px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-family: 'Poppins', sans-serif;
+        transition: all 0.15s ease;
+        background-color: #f5f5f5;
+        text-align: center;
+      }
+      
+      .language-option:hover {
+        background-color: #e0f2f1;
+        color: #0F766E;
+      }
+      
+      .language-option.auto-detect {
+        grid-column: span 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #e0f2f1;
+        color: #0F766E;
+        font-weight: 500;
+      }
+      
+      .auto-detect-icon {
+        margin-right: 8px;
+        display: flex;
+        align-items: center;
       }
       
       /* Dark mode for modal */
       @media (prefers-color-scheme: dark) {
-        .translate-modal-content {
+        .language-modal-content {
           background-color: #1a1a1a;
           color: #f0f0f0;
         }
         
-        .translate-modal-header {
+        .language-modal-header {
           background-color: #14B8A6;
         }
         
-        .goog-te-combo {
+        .language-option {
           background-color: #333;
-          color: #fff;
-          border: 1px solid #555;
+          color: #f0f0f0;
+        }
+        
+        .language-option:hover {
+          background-color: #444;
+          color: #14B8A6;
+        }
+        
+        .language-option.auto-detect {
+          background-color: #0F766E;
+          color: white;
         }
       }
       
-      /* Custom styling for Google elements */
-      .goog-te-gadget {
-        font-family: 'Poppins', sans-serif !important;
-        color: #333 !important;
+      /* Hide Google Translate attribution */
+      .goog-te-banner-frame {
+        display: none !important;
       }
       
-      .goog-te-gadget .goog-te-combo {
-        padding: 8px 12px;
-        border-radius: 4px;
-        border: 1px solid #ddd;
-        width: 100%;
-        font-family: 'Poppins', sans-serif;
-        font-size: 14px;
+      body {
+        top: 0 !important;
       }
       
-      @media (prefers-color-scheme: dark) {
-        .goog-te-gadget {
-          color: #f0f0f0 !important;
+      /* Responsive adjustments */
+      @media (max-width: 480px) {
+        .language-options {
+          grid-template-columns: 1fr;
+        }
+        
+        .language-option.auto-detect {
+          grid-column: span 1;
         }
       }
     </style>
