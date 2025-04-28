@@ -48,15 +48,14 @@ const Footer: React.FC = () => {
             </ul>
           </div>
           
+          {/* Resources section commented out as requested
           <div>
             <h4 className="text-lg font-bold mb-4 text-dark-green dark:text-light-green">Resources</h4>
             <ul className="space-y-2">
-              {/* <li><a href="#" className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">Documentation</a></li> */}
               <li><a href="#" className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">Help Center</a></li>
-              {/* <li><a href="#" className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">API</a></li> */}
-              {/* <li><a href="#" className="text-text-medium dark:text-dark-text-medium hover:text-dark-green dark:hover:text-light-green transition-colors duration-200">Community</a></li> */}
             </ul>
           </div>
+          */}
           
           <div>
             <h4 className="text-lg font-bold mb-4 text-dark-green dark:text-light-green">Legal</h4>
