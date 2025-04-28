@@ -100,8 +100,8 @@ const PerformanceSection: React.FC = () => {
           <p className="text-text-medium dark:text-dark-text-medium max-w-3xl mx-auto text-lg">
             Performance results below are based on historical backtesting conducted from January 2021 to April 2025.
           </p>
-          <p className="text-amber-600 dark:text-amber-400 max-w-3xl mx-auto mt-2 font-medium">
-            <span className="bg-amber-100 dark:bg-amber-950/30 px-3 py-1 rounded">
+          <p className="text-amber-600 dark:text-gray-400 max-w-3xl mx-auto mt-2 font-medium">
+            <span className="bg-amber-100 dark:bg-gray-800/60 px-3 py-1 rounded dark:border dark:border-gray-700">
               Past performance is not indicative of future results. Actual trading outcomes may differ.
             </span>
           </p>
@@ -246,7 +246,7 @@ const PerformanceSection: React.FC = () => {
           </div>
           
           <div className="mt-8 p-4 bg-amber-50 dark:bg-amber-900/20 rounded-lg border border-amber-100 dark:border-amber-800/30">
-            <h4 className="font-semibold mb-2 text-amber-700 dark:text-amber-400">Understanding the Results</h4>
+            <h4 className="font-semibold mb-2 text-amber-700 dark:text-gray-300">Understanding the Results</h4>
             
             {returnType === 'compound' ? (
               <>
@@ -268,8 +268,8 @@ const PerformanceSection: React.FC = () => {
               </>
             )}
             
-            <p className="text-sm font-medium text-amber-600 dark:text-amber-400 mt-4 bg-amber-50 dark:bg-amber-950/30 p-2 rounded-md">
-              <strong>Disclaimer:</strong> Past performance is not indicative of future results. Actual trading outcomes may differ.
+            <p className="text-sm font-medium text-amber-600 dark:text-gray-400 mt-4 bg-amber-50 dark:bg-gray-800/60 p-2 rounded-md border-0 dark:border dark:border-gray-700">
+              <strong className="dark:text-gray-300">Disclaimer:</strong> Past performance is not indicative of future results. Actual trading outcomes may differ.
             </p>
           </div>
         </div>
