@@ -297,7 +297,7 @@ const Hero: React.FC = () => {
                 onClick={() => scrollToSection('get-started')}
                 className="py-2 px-4 bg-accent-orange hover:bg-orange-600 text-white rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 text-center font-medium"
               >
-                Start 14-Day Trial
+                Register Interest
               </Button>
               <Button
                 onClick={() => scrollToSection('how-it-works')}
