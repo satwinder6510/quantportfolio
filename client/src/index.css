@@ -36,33 +36,33 @@
 }
 
 .dark {
-  /* Dark theme variables */
-  --dark-bg: #121212;
-  --dark-card: #1E1E1E;
-  --dark-accent: #2d3748;
-  --dark-text: #e2e8f0;
-  --dark-text-medium: #a0aec0;
+  /* Dark theme variables - more professional and subtle */
+  --dark-bg: #1a2236;
+  --dark-card: #242e44;
+  --dark-accent: #2c3550;
+  --dark-text: #d8e0f0;
+  --dark-text-medium: #94a3b8;
   
-  /* ShadCN variables - dark theme */
-  --background: 220 7% 8%;
-  --foreground: 165 5% 95%;
-  --muted: 220 7% 14%;
-  --muted-foreground: 217 10% 64%;
-  --popover: 220 7% 8%;
-  --popover-foreground: 165 5% 95%;
-  --card: 215 28% 17%;
-  --card-foreground: 165 5% 95%;
-  --border: 220 7% 14%;
-  --input: 220 7% 14%;
-  --primary: 170 54% 42%;
-  --primary-foreground: 165 5% 95%;
-  --secondary: 165 52% 24%;
-  --secondary-foreground: 165 5% 95%;
-  --accent: 15 88% 62%;
+  /* ShadCN variables - refined dark theme */
+  --background: 220 23% 16%;
+  --foreground: 210 20% 90%;
+  --muted: 215 25% 22%;
+  --muted-foreground: 215 15% 65%;
+  --popover: 220 23% 16%;
+  --popover-foreground: 210 20% 90%;
+  --card: 217 25% 20%;
+  --card-foreground: 210 20% 90%;
+  --border: 215 25% 22%;
+  --input: 215 25% 22%;
+  --primary: 170 40% 40%;
+  --primary-foreground: 210 20% 90%;
+  --secondary: 215 30% 25%;
+  --secondary-foreground: 210 20% 90%;
+  --accent: 15 70% 55%;
   --accent-foreground: 0 0% 100%;
   --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 165 5% 95%;
-  --ring: 170 54% 42%;
+  --destructive-foreground: 210 20% 90%;
+  --ring: 170 40% 40%;
 }
 
 @layer base {
