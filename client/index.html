@@ -44,48 +44,196 @@
   <body>
     <div id="root"></div>
 
-    <!-- Google Translate Widget -->
-    <div id="google_translate_element" class="google-translate-widget" style="position: fixed; bottom: 10px; right: 10px; z-index: 9999;"></div>
+    <!-- Minimal Floating Language Selector -->
+    <div id="custom-translate-trigger" class="translate-trigger">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="translate-icon">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+        <path d="M2 12h20"></path>
+      </svg>
+      <span class="translate-text">Translate</span>
+    </div>
+    
+    <!-- Hidden Google Translate Widget (will be shown in modal) -->
+    <div id="translate-modal" class="translate-modal">
+      <div class="translate-modal-content">
+        <div class="translate-modal-header">
+          <h3>Select Language</h3>
+          <button id="close-translate-modal">&times;</button>
+        </div>
+        <div id="google_translate_element"></div>
+      </div>
+    </div>
+    
     <script type="text/javascript">
       function googleTranslateElementInit() {
         new google.translate.TranslateElement({
           pageLanguage: 'en',
-          layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+          includedLanguages: 'ar,zh-CN,nl,en,fr,de,hi,it,ja,ko,pt,ru,es,sv,tr,uk',
+          layout: google.translate.TranslateElement.InlineLayout.VERTICAL
         }, 'google_translate_element');
       }
+      
+      document.addEventListener('DOMContentLoaded', function() {
+        // Toggle translate modal
+        document.getElementById('custom-translate-trigger').addEventListener('click', function() {
+          document.getElementById('translate-modal').classList.add('show');
+        });
+        
+        // Close modal
+        document.getElementById('close-translate-modal').addEventListener('click', function() {
+          document.getElementById('translate-modal').classList.remove('show');
+        });
+        
+        // Close modal if clicking outside content
+        document.getElementById('translate-modal').addEventListener('click', function(e) {
+          if (e.target === this) {
+            this.classList.remove('show');
+          }
+        });
+      });
     </script>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     
     <style>
-      /* Style the Google Translate Widget */
-      .google-translate-widget {
-        background-color: rgba(255, 255, 255, 0.9);
-        border-radius: 4px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        padding: 5px;
+      /* Floating trigger button */
+      .translate-trigger {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #0F766E;
+        color: white;
+        display: flex;
+        align-items: center;
+        padding: 10px 16px;
+        border-radius: 50px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        cursor: pointer;
+        z-index: 9999;
+        font-family: 'Poppins', sans-serif;
+        transition: all 0.2s ease;
       }
       
-      /* Style adjustments for dark mode */
+      .translate-trigger:hover {
+        background-color: #0e6b63;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+      }
+      
+      .translate-icon {
+        margin-right: 8px;
+      }
+      
+      .translate-text {
+        font-weight: 500;
+        font-size: 14px;
+      }
+      
+      /* Dark mode adjustments */
       @media (prefers-color-scheme: dark) {
-        .google-translate-widget {
-          background-color: rgba(31, 41, 55, 0.9);
+        .translate-trigger {
+          background-color: #14B8A6;
+        }
+        
+        .translate-trigger:hover {
+          background-color: #0f9e8f;
         }
       }
       
-      /* Hide some unnecessary elements from the widget */
-      .goog-te-gadget-simple {
-        border: none !important;
-        background-color: transparent !important;
+      /* Modal styling */
+      .translate-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 10000;
+        align-items: center;
+        justify-content: center;
       }
       
-      .goog-te-gadget-icon {
-        display: none !important;
+      .translate-modal.show {
+        display: flex;
       }
       
-      .goog-te-menu-value span:first-child {
-        color: #0F766E !important;
+      .translate-modal-content {
+        background-color: white;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 400px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+      }
+      
+      .translate-modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 20px;
+        background-color: #0F766E;
+        color: white;
+      }
+      
+      .translate-modal-header h3 {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        font-size: 18px;
+      }
+      
+      .translate-modal-header button {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        padding: 0;
+        line-height: 1;
+      }
+      
+      #google_translate_element {
+        padding: 20px;
+      }
+      
+      /* Dark mode for modal */
+      @media (prefers-color-scheme: dark) {
+        .translate-modal-content {
+          background-color: #1a1a1a;
+          color: #f0f0f0;
+        }
+        
+        .translate-modal-header {
+          background-color: #14B8A6;
+        }
+        
+        .goog-te-combo {
+          background-color: #333;
+          color: #fff;
+          border: 1px solid #555;
+        }
+      }
+      
+      /* Custom styling for Google elements */
+      .goog-te-gadget {
         font-family: 'Poppins', sans-serif !important;
-        font-weight: 500 !important;
+        color: #333 !important;
+      }
+      
+      .goog-te-gadget .goog-te-combo {
+        padding: 8px 12px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        width: 100%;
+        font-family: 'Poppins', sans-serif;
+        font-size: 14px;
+      }
+      
+      @media (prefers-color-scheme: dark) {
+        .goog-te-gadget {
+          color: #f0f0f0 !important;
+        }
       }
     </style>
     
