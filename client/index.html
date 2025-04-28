@@ -58,7 +58,7 @@
     <div id="translate-modal" class="translate-modal">
       <div class="translate-modal-content">
         <div class="translate-modal-header">
-          <h3>Select Language</h3>
+          <h3>Select or Auto-Detect Language</h3>
           <button id="close-translate-modal">&times;</button>
         </div>
         <div id="google_translate_element"></div>
@@ -70,7 +70,13 @@
         new google.translate.TranslateElement({
           pageLanguage: 'en',
           includedLanguages: 'ar,zh-CN,nl,en,fr,de,hi,it,ja,ko,pt,ru,es,sv,tr,uk',
-          layout: google.translate.TranslateElement.InlineLayout.VERTICAL
+          layout: google.translate.TranslateElement.InlineLayout.VERTICAL,
+          autoDisplay: false,
+          gaTrack: false,
+          gaId: '',
+          autoDisplay: false,
+          multilanguagePage: true,
+          detectedLanguages: true
         }, 'google_translate_element');
       }
       
