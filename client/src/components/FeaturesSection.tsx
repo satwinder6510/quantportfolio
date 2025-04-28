@@ -40,7 +40,7 @@ const FeaturesSection: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-dark-green dark:text-light-green">
-            What You're <span className="text-light-green dark:text-accent-orange">No Longer Doing</span>
+            What You're <span className="text-light-green dark:text-[#e2aa8f]">No Longer Doing</span>
           </h2>
           <p className="text-text-medium dark:text-dark-text-medium max-w-2xl mx-auto">
             Focus on what matters, automate the rest
