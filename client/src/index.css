@@ -54,15 +54,15 @@
   --card-foreground: 0 0% 82%; /* Card text (was 88%) */
   --border: 0 0% 15%; /* Border color */
   --input: 0 0% 15%; /* Input background */
-  --primary: 180 70% 35%; /* Single teal accent color */
-  --primary-foreground: 0 0% 92%; /* Primary button text (was 98%) */
+  --primary: 180 60% 45%; /* Desaturated and lightened teal for dark mode */
+  --primary-foreground: 0 0% 12%; /* Dark text on light button for contrast */
   --secondary: 0 0% 12%; /* Secondary background */
-  --secondary-foreground: 0 0% 82%; /* Secondary text (was 88%) */
-  --accent: 180 70% 35%; /* Same as primary for consistency */
-  --accent-foreground: 0 0% 92%; /* Accent text (was 98%) */
+  --secondary-foreground: 0 0% 82%; /* Secondary text */
+  --accent: 180 60% 45%; /* Same as primary for consistency */
+  --accent-foreground: 0 0% 12%; /* Dark text on light accent for contrast */
   --destructive: 0 85% 45%; /* Simplified destructive */
   --destructive-foreground: 0 0% 92%; /* Destructive text (was 98%) */
-  --ring: 180 70% 35%; /* Match primary */
+  --ring: 180 60% 45%; /* Match updated primary */
 }
 
 @layer base {
@@ -125,9 +125,10 @@
   
   /* Simplified buttons in dark mode */
   .dark button.btn-primary {
-    background: hsl(180, 70%, 35%);
+    background: hsl(180, 60%, 45%); /* Matching our new desaturated teal */
+    color: hsl(0, 0%, 12%); /* Dark text on lighter button for contrast */
     /* Subtle glow effect */
-    box-shadow: 0 0 4px rgba(0, 156, 153, 0.25);
+    box-shadow: 0 0 4px rgba(75, 196, 196, 0.25);
   }
   
   /* Simple card styling */
@@ -192,7 +193,7 @@
   }
 
   .link-underline-dark::after {
-    @apply bg-[#009c99]; /* Match our teal accent color */
+    @apply bg-[#5cbebe]; /* Matching our new desaturated teal accent */
   }
 }
 
