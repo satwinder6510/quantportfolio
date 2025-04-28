@@ -38,7 +38,7 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-4 py-3">
         <nav className="flex items-center">
           <Link href="/" className="text-2xl font-bold text-dark-green dark:text-light-green flex-shrink-0">
-            Quant<span className="text-light-green dark:text-[#e2aa8f]">Portfol.io</span>
+            Quant<span className="text-light-green dark:text-accent-orange">Portfol.io</span>
           </Link>
           
           {/* Desktop Navigation */}
