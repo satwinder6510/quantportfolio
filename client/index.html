@@ -392,6 +392,89 @@
           grid-column: span 1;
         }
       }
+      
+      /* Fix for translated content responsiveness */
+      .skiptranslate iframe {
+        display: none !important;
+      }
+      
+      /* Ensure Google Translate doesn't break layouts */
+      html body {
+        position: static !important;
+        min-height: 100%;
+        width: 100% !important;
+        overflow-x: hidden !important;
+        top: 0 !important;
+      }
+      
+      /* Fix for RTL languages and other translations */
+      .goog-te-menu-value span, .goog-te-gadget-simple span {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        max-width: 100px;
+      }
+      
+      /* Keep responsive design when translated */
+      #goog-gt-, .goog-te-banner-frame, #goog-gt-tt, .goog-te-balloon-frame, div#goog-gt-{
+        display: none !important;
+      }
+      
+      .goog-text-highlight {
+        background-color: transparent !important;
+        box-shadow: none !important;
+      }
+      
+      /* Prevent Google translate bar from appearing at top */
+      .goog-te-banner-frame.skiptranslate,
+      .goog-te-gadget-icon,
+      .goog-te-gadget-simple img,
+      img.goog-te-gadget-icon,
+      img.goog-te-gadget-icon:hover {
+        display: none !important;
+      }
+      
+      /* Fix for languages with longer words */
+      .language-options button,
+      .translate-trigger,
+      [class*="btn"],
+      [class*="button"] {
+        white-space: normal !important;
+      }
+      
+      /* Additional fixes for translated content */
+      div, p, h1, h2, h3, h4, h5, h6, span, a, button, input, textarea, select {
+        word-break: normal !important;
+        overflow-wrap: break-word !important;
+      }
+      
+      /* Handle Right-to-Left languages better */
+      html[dir="rtl"] .translate-trigger {
+        left: 20px;
+        right: auto;
+      }
+      
+      html[dir="rtl"] .translate-icon {
+        margin-right: 0;
+        margin-left: 8px;
+      }
+      
+      html[dir="rtl"] .auto-detect-icon {
+        margin-right: 0;
+        margin-left: 8px;
+      }
+      
+      /* Maintain fixed widths on elements to prevent layout shifts */
+      .container, .section, .hero, header, footer {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      
+      /* Force line heights to maintain vertical rhythm */
+      p, li, h1, h2, h3, h4, h5, h6 {
+        line-height: 1.5 !important;
+      }
     </style>
     
     <script type="module" src="/src/main.tsx"></script>
