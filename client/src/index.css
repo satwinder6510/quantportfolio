@@ -37,14 +37,14 @@
 
 .dark {
   /* Monochromatic dark theme with minimal color variation */
-  --dark-bg: #1a1a1a; /* Lighter dark gray background (was #121212) */
-  --dark-card: #242424; /* Subtle card elevation (was #1e1e1e) */
-  --dark-accent: #2e2e2e; /* Subtle accent (was #282828) */
+  --dark-bg: #222222; /* Much lighter dark gray (was #1a1a1a) */
+  --dark-card: #2c2c2c; /* Subtle card elevation (was #242424) */
+  --dark-accent: #363636; /* Subtle accent (was #2e2e2e) */
   --dark-text: #e0e0e0; /* Off-white text */
   --dark-text-medium: #a0a0a0; /* Medium gray text */
   
   /* ShadCN variables - clean monochromatic palette */
-  --background: 0 0% 10%; /* Dark background (was 7%) */
+  --background: 0 0% 13%; /* Dark background (was 10%) */
   --foreground: 0 0% 88%; /* Light text */
   --muted: 0 0% 10%; /* Muted elements */
   --muted-foreground: 0 0% 63%; /* Secondary text */
@@ -116,8 +116,8 @@
   }
   
   .dark .recharts-default-tooltip {
-    background-color: #242424;
-    border-color: #2e2e2e;
+    background-color: #2c2c2c;
+    border-color: #363636;
     color: #e0e0e0;
     /* Subtle shadow */
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
@@ -203,7 +203,7 @@
   
   .dark .hero-gradient {
     /* Simple elegant gradient using our monochromatic palette */
-    background: linear-gradient(135deg, #242424 0%, #171717 100%);
+    background: linear-gradient(135deg, #2c2c2c 0%, #1f1f1f 100%);
   }
   
   /* Hero Slider Styles */

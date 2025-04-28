@@ -20,9 +20,9 @@ export default {
         'text-medium': '#3c5655',
         'text-light': '#637776',
         // Dark theme colors - monochromatic palette
-        'dark-bg': '#1a1a1a',
-        'dark-card': '#242424',
-        'dark-accent': '#2e2e2e',
+        'dark-bg': '#222222',
+        'dark-card': '#2c2c2c',
+        'dark-accent': '#363636',
         'dark-text': '#e0e0e0',
         'dark-text-medium': '#a0a0a0',
         
