@@ -68,18 +68,10 @@
             <div class="language-option" onclick="doGTranslate('en|es')">Español</div>
             <div class="language-option" onclick="doGTranslate('en|fr')">Français</div>
             <div class="language-option" onclick="doGTranslate('en|de')">Deutsch</div>
-            <div class="language-option" onclick="doGTranslate('en|it')">Italiano</div>
-            <div class="language-option" onclick="doGTranslate('en|pt')">Português</div>
-            <div class="language-option" onclick="doGTranslate('en|ru')">Русский</div>
-            <div class="language-option" onclick="doGTranslate('en|ja')">日本語</div>
-            <div class="language-option" onclick="doGTranslate('en|ko')">한국어</div>
-            <div class="language-option" onclick="doGTranslate('en|zh-CN')">中文 (简体)</div>
-            <div class="language-option" onclick="doGTranslate('en|zh-TW')">中文 (繁體)</div>
-            <div class="language-option" onclick="doGTranslate('en|ar')">العربية</div>
+            <div class="language-option" onclick="doGTranslate('en|zh-CN')">中文</div>
             <div class="language-option" onclick="doGTranslate('en|hi')">हिन्दी</div>
-            <div class="language-option" onclick="doGTranslate('en|nl')">Nederlands</div>
-            <div class="language-option" onclick="doGTranslate('en|sv')">Svenska</div>
-            <div class="language-option" onclick="doGTranslate('en|tr')">Türkçe</div>
+            <div class="language-option" onclick="doGTranslate('en|ar')">العربية</div>
+            <div class="language-option" onclick="doGTranslate('en|pt')">Português</div>
             <div class="language-option auto-detect" onclick="detectLanguage()">
               <div class="auto-detect-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -100,6 +92,7 @@
       function googleTranslateElementInit2() {
         new google.translate.TranslateElement({
           pageLanguage: 'en',
+          includedLanguages: 'en,es,fr,de,zh-CN,hi,ar,pt',
           autoDisplay: false
         }, 'google_translate_element2');
       }
@@ -146,17 +139,10 @@
           'es': 'es',
           'fr': 'fr',
           'de': 'de',
-          'it': 'it',
-          'pt': 'pt',
-          'ru': 'ru',
-          'ja': 'ja',
-          'ko': 'ko',
           'zh': 'zh-CN',
-          'ar': 'ar',
           'hi': 'hi',
-          'nl': 'nl',
-          'sv': 'sv',
-          'tr': 'tr'
+          'ar': 'ar',
+          'pt': 'pt'
         };
         
         // If we support this language, translate to it
@@ -320,14 +306,20 @@
         border-radius: 4px;
         cursor: pointer;
         font-family: 'Poppins', sans-serif;
-        transition: all 0.15s ease;
+        transition: all 0.2s ease;
         background-color: #f5f5f5;
         text-align: center;
+        border: 2px solid transparent;
+        font-weight: 500;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
       }
       
       .language-option:hover {
         background-color: #e0f2f1;
         color: #0F766E;
+        border-color: #0F766E;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       }
       
       .language-option.auto-detect {
