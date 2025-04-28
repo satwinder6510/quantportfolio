@@ -1,8 +1,0 @@
-# Netlify _redirects file
-# This ensures that our Single Page Application routes work correctly
-
-# Redirect API requests to Netlify Functions
-/api/*  /.netlify/functions/:splat  200
-
-# Send all other routes to index.html, so our React app can handle routing
-/*      /index.html                 200
