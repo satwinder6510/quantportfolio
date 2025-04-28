@@ -120,7 +120,7 @@ const Header: React.FC = () => {
               <li>
                 <button 
                   onClick={() => scrollToSection('features')} 
-                  className="w-full text-left py-2 px-4 text-text-medium dark:text-dark-text-medium hover:bg-gray-100 dark:hover:bg-dark-accent rounded-md transition-colors duration-150"
+                  className="w-full text-left py-2 px-4 text-text-medium dark:text-dark-text-medium hover:bg-gray-100 dark:hover:bg-dark-card rounded-md transition-colors duration-150"
                 >
                   {t('nav.features')}
                 </button>
@@ -128,7 +128,7 @@ const Header: React.FC = () => {
               <li>
                 <button 
                   onClick={() => scrollToSection('how-it-works')} 
-                  className="w-full text-left py-2 px-4 text-text-medium dark:text-dark-text-medium hover:bg-gray-100 dark:hover:bg-dark-accent rounded-md transition-colors duration-150"
+                  className="w-full text-left py-2 px-4 text-text-medium dark:text-dark-text-medium hover:bg-gray-100 dark:hover:bg-dark-card rounded-md transition-colors duration-150"
                 >
                   {t('nav.howItWorks')}
                 </button>
@@ -136,7 +136,7 @@ const Header: React.FC = () => {
               <li>
                 <button 
                   onClick={() => scrollToSection('performance')} 
-                  className="w-full text-left py-2 px-4 text-text-medium dark:text-dark-text-medium hover:bg-gray-100 dark:hover:bg-dark-accent rounded-md transition-colors duration-150"
+                  className="w-full text-left py-2 px-4 text-text-medium dark:text-dark-text-medium hover:bg-gray-100 dark:hover:bg-dark-card rounded-md transition-colors duration-150"
                 >
                   {t('nav.performance')}
                 </button>
@@ -144,7 +144,7 @@ const Header: React.FC = () => {
               <li>
                 <button 
                   onClick={() => scrollToSection('pricing')} 
-                  className="w-full text-left py-2 px-4 text-text-medium dark:text-dark-text-medium hover:bg-gray-100 dark:hover:bg-dark-accent rounded-md transition-colors duration-150"
+                  className="w-full text-left py-2 px-4 text-text-medium dark:text-dark-text-medium hover:bg-gray-100 dark:hover:bg-dark-card rounded-md transition-colors duration-150"
                 >
                   {t('nav.pricing')}
                 </button>
@@ -152,7 +152,7 @@ const Header: React.FC = () => {
               <li>
                 <button 
                   onClick={() => scrollToSection('faq')} 
-                  className="w-full text-left py-2 px-4 text-text-medium dark:text-dark-text-medium hover:bg-gray-100 dark:hover:bg-dark-accent rounded-md transition-colors duration-150"
+                  className="w-full text-left py-2 px-4 text-text-medium dark:text-dark-text-medium hover:bg-gray-100 dark:hover:bg-dark-card rounded-md transition-colors duration-150"
                 >
                   FAQ
                 </button>
