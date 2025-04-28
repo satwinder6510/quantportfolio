@@ -23,7 +23,7 @@ export default {
         'dark-bg': '#222222',
         'dark-card': '#2c2c2c',
         'dark-accent': '#363636',
-        'dark-text': '#e0e0e0',
+        'dark-text': '#d1d1d1', // Softer gray to reduce eye strain (was #e0e0e0)
         'dark-text-medium': '#a0a0a0',
         
         // ShadCN Theme Colors

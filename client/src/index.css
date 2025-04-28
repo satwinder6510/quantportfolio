@@ -40,28 +40,28 @@
   --dark-bg: #222222; /* Much lighter dark gray (was #1a1a1a) */
   --dark-card: #2c2c2c; /* Subtle card elevation (was #242424) */
   --dark-accent: #363636; /* Subtle accent (was #2e2e2e) */
-  --dark-text: #e0e0e0; /* Off-white text */
+  --dark-text: #d1d1d1; /* Light gray text instead of off-white to reduce eye strain */
   --dark-text-medium: #a0a0a0; /* Medium gray text */
   
   /* ShadCN variables - clean monochromatic palette */
   --background: 0 0% 13%; /* Dark background (was 10%) */
-  --foreground: 0 0% 88%; /* Light text */
+  --foreground: 0 0% 82%; /* Light gray text (was 88%) to reduce eye strain */
   --muted: 0 0% 10%; /* Muted elements */
   --muted-foreground: 0 0% 63%; /* Secondary text */
   --popover: 0 0% 7%; /* Popover background */
-  --popover-foreground: 0 0% 88%; /* Popover text */
+  --popover-foreground: 0 0% 82%; /* Popover text (was 88%) */
   --card: 0 0% 12%; /* Card background */
-  --card-foreground: 0 0% 88%; /* Card text */
+  --card-foreground: 0 0% 82%; /* Card text (was 88%) */
   --border: 0 0% 15%; /* Border color */
   --input: 0 0% 15%; /* Input background */
   --primary: 180 70% 35%; /* Single teal accent color */
-  --primary-foreground: 0 0% 98%; /* Primary button text */
+  --primary-foreground: 0 0% 92%; /* Primary button text (was 98%) */
   --secondary: 0 0% 12%; /* Secondary background */
-  --secondary-foreground: 0 0% 88%; /* Secondary text */
+  --secondary-foreground: 0 0% 82%; /* Secondary text (was 88%) */
   --accent: 180 70% 35%; /* Same as primary for consistency */
-  --accent-foreground: 0 0% 98%; /* Accent text */
+  --accent-foreground: 0 0% 92%; /* Accent text (was 98%) */
   --destructive: 0 85% 45%; /* Simplified destructive */
-  --destructive-foreground: 0 0% 98%; /* Destructive text */
+  --destructive-foreground: 0 0% 92%; /* Destructive text (was 98%) */
   --ring: 180 70% 35%; /* Match primary */
 }
 
@@ -88,7 +88,7 @@
   
   /* Ensure headings stand out properly in dark mode */
   .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
-    color: #e2e2e2;
+    color: #d8d8d8; /* Softer gray for headings to reduce eye strain */
     /* Use medium weight for headings instead of bold */
     font-weight: 500;
   }
@@ -118,7 +118,7 @@
   .dark .recharts-default-tooltip {
     background-color: #2c2c2c;
     border-color: #363636;
-    color: #e0e0e0;
+    color: #d1d1d1; /* Using the same softer gray as our dark-text */
     /* Subtle shadow */
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
   }
