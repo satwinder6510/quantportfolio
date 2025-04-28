@@ -36,33 +36,33 @@
 }
 
 .dark {
-  /* Dark theme variables using 18% gray for true dark mode comfort */
-  --dark-bg: #232323; /* 14% gray - slightly lighter than pure 12% dark gray */
-  --dark-card: #2c2c2c; /* 17% gray for cards - creates subtle elevation */
-  --dark-accent: #383838; /* 22% gray for accents */
-  --dark-text: #e2e2e2; /* 89% gray for comfortable reading */
-  --dark-text-medium: #ababab; /* 67% gray for secondary text */
+  /* Monochromatic dark theme with minimal color variation */
+  --dark-bg: #121212; /* True dark gray background */
+  --dark-card: #1e1e1e; /* Subtle card elevation */
+  --dark-accent: #282828; /* Subtle accent */
+  --dark-text: #e0e0e0; /* Off-white text */
+  --dark-text-medium: #a0a0a0; /* Medium gray text */
   
-  /* ShadCN variables - optimized for visual comfort with perfect contrast ratios */
-  --background: 0 0% 14%; /* Dark gray background */
-  --foreground: 0 0% 89%; /* Light gray text - WCAG AA compliant contrast */
-  --muted: 0 0% 19%; /* Slightly elevated for muted elements */
-  --muted-foreground: 0 0% 67%; /* Medium gray for secondary text */
-  --popover: 0 0% 17%; /* Slightly lighter than background for depth */
-  --popover-foreground: 0 0% 89%; /* Match foreground for consistency */
-  --card: 0 0% 17%; /* Card background with subtle elevation */
-  --card-foreground: 0 0% 89%; /* Match foreground for consistency */
-  --border: 0 0% 21%; /* Subtle border that isn't too stark */
-  --input: 0 0% 21%; /* Match border for consistency */
-  --primary: 178 45% 45%; /* Desaturated teal that's easy on the eyes */
-  --primary-foreground: 0 0% 14%; /* Dark text on primary elements */
-  --secondary: 0 0% 19%; /* Subtle secondary background */
-  --secondary-foreground: 0 0% 89%; /* Match foreground for consistency */
-  --accent: 16 60% 55%; /* Muted orange accent */
-  --accent-foreground: 0 0% 96%; /* Near-white for accent text */
-  --destructive: 0 56% 38%; /* Less harsh destructive color */
-  --destructive-foreground: 0 0% 89%; /* Match foreground for consistency */
-  --ring: 178 45% 45%; /* Match primary for consistency */
+  /* ShadCN variables - clean monochromatic palette */
+  --background: 0 0% 7%; /* Dark background */
+  --foreground: 0 0% 88%; /* Light text */
+  --muted: 0 0% 10%; /* Muted elements */
+  --muted-foreground: 0 0% 63%; /* Secondary text */
+  --popover: 0 0% 7%; /* Popover background */
+  --popover-foreground: 0 0% 88%; /* Popover text */
+  --card: 0 0% 12%; /* Card background */
+  --card-foreground: 0 0% 88%; /* Card text */
+  --border: 0 0% 15%; /* Border color */
+  --input: 0 0% 15%; /* Input background */
+  --primary: 180 70% 35%; /* Single teal accent color */
+  --primary-foreground: 0 0% 98%; /* Primary button text */
+  --secondary: 0 0% 12%; /* Secondary background */
+  --secondary-foreground: 0 0% 88%; /* Secondary text */
+  --accent: 180 70% 35%; /* Same as primary for consistency */
+  --accent-foreground: 0 0% 98%; /* Accent text */
+  --destructive: 0 85% 45%; /* Simplified destructive */
+  --destructive-foreground: 0 0% 98%; /* Destructive text */
+  --ring: 180 70% 35%; /* Match primary */
 }
 
 @layer base {
@@ -116,34 +116,34 @@
   }
   
   .dark .recharts-default-tooltip {
-    background-color: #2c2c2c;
-    border-color: #383838;
-    color: #e2e2e2;
-    /* Use glow instead of shadow as recommended in dark mode */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background-color: #1e1e1e;
+    border-color: #282828;
+    color: #e0e0e0;
+    /* Subtle shadow */
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
   }
   
-  /* Enhanced buttons in dark mode */
+  /* Simplified buttons in dark mode */
   .dark button.btn-primary {
-    @apply bg-gradient-to-r from-light-green to-dark-green hover:from-dark-green hover:to-light-green;
-    /* Add a subtle glow effect instead of shadow */
-    box-shadow: 0 0 6px rgba(44, 167, 147, 0.3);
+    background: hsl(180, 70%, 35%);
+    /* Subtle glow effect */
+    box-shadow: 0 0 4px rgba(0, 156, 153, 0.25);
   }
   
-  /* Card highlighting with glow instead of shadow in dark mode */
+  /* Simple card styling */
   .dark .card {
-    border: 1px solid rgba(45, 55, 72, 0.3);
+    border: 1px solid rgba(40, 40, 40, 0.8);
   }
   
-  /* Add highlight to interactive elements */
+  /* Simplified interactive elements */
   .dark .interactive-element {
-    border: 1px solid rgba(224, 224, 224, 0.1);
+    border: 1px solid rgba(40, 40, 40, 0.8);
     transition: all 0.2s ease;
   }
   
   .dark .interactive-element:hover {
-    border: 1px solid rgba(224, 224, 224, 0.2);
-    box-shadow: 0 0 8px rgba(44, 167, 147, 0.2);
+    border: 1px solid rgba(60, 60, 60, 0.9);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
   }
 }
 
@@ -192,7 +192,7 @@
   }
 
   .link-underline-dark::after {
-    @apply bg-[#f3704b];
+    @apply bg-[#009c99]; /* Match our teal accent color */
   }
 }
 
@@ -202,16 +202,8 @@
   }
   
   .dark .hero-gradient {
-    @apply bg-gradient-to-br;
-    /* Subtle dark mode gradient - using desaturated colors */
-    background: linear-gradient(135deg, #2d3748 0%, #124947 100%);
-    /* Add very subtle texture for depth */
-    background-image: linear-gradient(135deg, #2d3748 0%, #124947 100%),
-                      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 100% 100%, 20px 20px, 20px 20px;
-    background-position: 0 0, 0 0, 0 0;
-    background-blend-mode: normal, overlay, overlay;
+    /* Simple elegant gradient using our monochromatic palette */
+    background: linear-gradient(135deg, #1e1e1e 0%, #0a0a0a 100%);
   }
   
   /* Hero Slider Styles */

@@ -19,12 +19,12 @@ export default {
         'text-dark': '#1a2b2a',
         'text-medium': '#3c5655',
         'text-light': '#637776',
-        // Dark theme colors - optimal gray values for comfortable dark mode
-        'dark-bg': '#232323',
-        'dark-card': '#2c2c2c',
-        'dark-accent': '#383838',
-        'dark-text': '#e2e2e2',
-        'dark-text-medium': '#ababab',
+        // Dark theme colors - monochromatic palette
+        'dark-bg': '#121212',
+        'dark-card': '#1e1e1e',
+        'dark-accent': '#282828',
+        'dark-text': '#e0e0e0',
+        'dark-text-medium': '#a0a0a0',
         
         // ShadCN Theme Colors
         background: "hsl(var(--background))",
